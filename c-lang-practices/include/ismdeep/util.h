@@ -7,7 +7,6 @@
 
 #include <stdint.h>
 
-
 void * create_1d_arr(size_t size, size_t sizeof_item) {
     void * arr = malloc(sizeof_item * size);
     return arr;
