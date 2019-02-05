@@ -20,4 +20,13 @@ void ** create_2d_arr(size_t rows, size_t cols, size_t sizeof_item) {
     return arr;
 }
 
+uint64_t get_file_size(const char * file_path) {
+    FILE * fp = fopen(file_path, "rb");
+    fseek(fp, 0, SEEK_END);
+    uint64_t file_size = (uint64_t) ftell(fp);
+    fseek(fp, 0, SEEK_SET);
+    fclose(fp);
+    return file_size;
+}
+
 #endif //ISMDEEP_UTIL_H
