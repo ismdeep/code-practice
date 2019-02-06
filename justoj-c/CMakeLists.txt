@@ -4,6 +4,7 @@ project(1189)
 project(1190)
 project(1193)
 project(1258)
+project(1270)
 
 set(CMAKE_C_STANDARD 99)
 
@@ -12,3 +13,4 @@ add_executable(1189 1189.c)
 add_executable(1190 1190.c)
 add_executable(1193 1193.c)
 add_executable(1258 1258.c)
+add_executable(1270 1270.c)
