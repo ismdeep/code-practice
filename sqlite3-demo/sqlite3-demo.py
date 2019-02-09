@@ -63,7 +63,7 @@ class EasySqlite:
 
 
 if __name__ == '__main__':
-    db = EasySqlite('browser.db')
+    db = EasySqlite('/data/test-sqlite3.db')
     # print(db.execute("select name from sqlite_master where type=?", ['table']))
     # print(db.execute("pragma table_info([user])"))
     print(db.insert("insert into user(username, password) values (?, ?)", ["李四", "123456"]))
