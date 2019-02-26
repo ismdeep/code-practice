@@ -6,9 +6,11 @@ project(ismdeep_time_test)
 project(ismdeep_argv_test)
 project(var-init-in-cpp)
 project(pthread-demo)
+project(dynamic-array)
 
 set(EXECUTABLE_OUTPUT_PATH "bin")
 set(CMAKE_C_STANDARD 99)
+set(CMAKE_CXX_STANDARD 11)
 
 include_directories("include")
 
@@ -18,4 +20,5 @@ add_executable(ismdeep_util_test test/ismdeep_util_test.c)
 add_executable(ismdeep_time_test test/ismdeep_time_test.c)
 add_executable(ismdeep_argv_test test/ismdeep_argv_test.c)
 add_executable(pthread-demo src/pthread-demo.c)
-add_executable(var-init-in-cpp src/var-init-in-cpp.cpp)
+add_executable(dynamic-array test/dynamic-array.cpp)
+
