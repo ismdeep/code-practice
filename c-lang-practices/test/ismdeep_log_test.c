@@ -7,6 +7,7 @@
 #include <ismdeep/log.h>
 
 int main(int argc, char * argv[]) {
-    write_log("/data/ismdeep.log", LOG_LEVEL_INFO, "log-test", "write %d", 1);
+    log_with_stdout = true;
+    write_log(LOG_INFO, "write %d", 1);
     return 0;
 }

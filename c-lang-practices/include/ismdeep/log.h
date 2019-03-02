@@ -7,16 +7,20 @@
 
 #include <time.h>
 #include <stdarg.h>
+#include <stdbool.h>
 #include <string.h>
 #include <stdint.h>
 
-#define LOG_LEVEL_INFO 0
-#define LOG_LEVEL_ERR  1
-#define LOG_LEVEL_WARN 2
+#define LOG_INFO 0
+#define LOG_ERR  1
+#define LOG_WARN 2
 
 char* log_level_arr[] = {"INFO", "ERROR", "WARN"};
+extern char *log_file_path = "log.log";
+extern char *log_tag = "log";
+extern bool log_with_stdout = false;
 
-void write_log(char * log_file_path, int log_level, char * tag, const char *fmt, ...) {
+void write_log(int log_level, const char *fmt, ...) {
     FILE * fp = fopen(log_file_path, "at");
     time_t timep;
     struct tm *p;
@@ -34,8 +38,10 @@ void write_log(char * log_file_path, int log_level, char * tag, const char *fmt,
     char buffer[4096];
     va_start(ap, fmt);
     vsprintf(buffer, fmt, ap);
-    printf("[%s][%s][%s] %s\n", str, log_level_arr[log_level], tag, buffer);
-    fprintf(fp, "[%s][%s][%s] %s\n", str, log_level_arr[log_level], tag, buffer);
+    if (log_with_stdout) {
+        printf("[%s][%s][%s] %s\n", str, log_level_arr[log_level], log_tag, buffer);
+    }
+    fprintf(fp, "[%s][%s][%s] %s\n", str, log_level_arr[log_level], log_tag, buffer);
     va_end(ap);
     fclose(fp);
 }
