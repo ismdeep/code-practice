@@ -28,7 +28,8 @@ def main():
         url=url
     )
     content = req.text
-    results = findall(content, open('in.txt', 'r').read())
+    re_pattern = '''<tr(.*?)><td height\=22px>(.*?)</td><td>(.*?)</td><td>(.*?)<font color=(.*?)>(.*?)</font>(.*?)</td><td><a href\="/showproblem.php\?pid\=(.*?)">(.*?)</a></td><td>(.*?)</td><td>(.*?)</td><td>(.*?)</td><td>(.*?)</td><td(.*?)><a href\="/userstatus.php\?user\=(.*?)">(.*?)</a></td></tr>'''
+    results = findall(content, re_pattern)
     # print(len(results))
     tb = pt.PrettyTable()
     tb.field_names = ["Run ID", "Submit Time", "Judge Status", "Pro.ID", "Language"]
