@@ -48,9 +48,13 @@ def main():
         tb.add_row([_id_, _run_time_, _status_text_, _problem_id_, _lang_])
     os.system('clear')
     print(tb)
+    # print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
 
 
 if __name__ == '__main__':
     while True:
-        main()
-        time.sleep(0.3)
+        try:
+            main()
+            time.sleep(0.3)
+        except:
+            pass
