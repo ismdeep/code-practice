@@ -7,6 +7,7 @@ project(ismdeep_argv_test)
 project(var-init-in-cpp)
 project(pthread-demo)
 project(dynamic-array)
+project(memset-benchmark)
 
 set(EXECUTABLE_OUTPUT_PATH "bin")
 set(CMAKE_C_STANDARD 99)
@@ -21,4 +22,6 @@ add_executable(ismdeep_time_test test/ismdeep_time_test.c)
 add_executable(ismdeep_argv_test test/ismdeep_argv_test.c)
 add_executable(pthread-demo src/pthread-demo.c)
 add_executable(dynamic-array test/dynamic-array.cpp)
+add_executable(memset-benchmark src/memset-benchmark.c)
+
 
