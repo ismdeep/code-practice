@@ -11,10 +11,19 @@ import json
 import smtplib
 from email.mime.text import MIMEText
 from email.header import Header
+import logging
+import time
 
 
 username = ''
 path = ''
+
+logging.basicConfig(
+    filename='/data/log/codeforces-rating-monitor.log',
+    level=logging.DEBUG,
+    format='[%(asctime)s][%(filename)s][line:%(lineno)d] %(message)s',
+    datefmt='%Y-%m-%d %H:%M:%S'
+)
 
 
 def email_account():
@@ -23,6 +32,7 @@ def email_account():
 
 
 def send_email(server, port, from_email, password, to_email, title, content, content_type):
+    logging.info('start sending email to %s' % to_email)
     sender = from_email
     receivers = to_email
     message = MIMEText(content, content_type, 'utf-8')
@@ -35,6 +45,7 @@ def send_email(server, port, from_email, password, to_email, title, content, con
         smtp_obj.connect(server, port)
         smtp_obj.login(sender, password)
         smtp_obj.sendmail(sender, receivers, message.as_string())
+        logging.info('send email to %s successfully' % to_email)
         return True
     except smtplib.SMTPException:
         return False
@@ -76,6 +87,7 @@ def main():
 if __name__ == '__main__':
     try:
         username = sys.argv[1]
+        logging.info('start codeforces-rating-moitor => username: {%s}' % username)
         path = '/data/codeforces-%s-ids.dat' % username
         main()
     except:
