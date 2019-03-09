@@ -2,7 +2,8 @@ c-lang-practices/.idea
 c-lang-practices/cmake-build-debug
 justoj-py3/.idea
 atcoder/.idea
-java-practice/.idea
+java-practice/acm/.idea
+java-practice/acm/out
 justoj-c/.idea
 justoj-c/cmake-build-debug
 in.txt
