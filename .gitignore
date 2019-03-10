@@ -2,6 +2,8 @@ c-lang-practices/.idea
 c-lang-practices/cmake-build-debug
 justoj-py3/.idea
 atcoder/.idea
+java-practice/acm/.idea
+java-practice/acm/out
 justoj-c/.idea
 justoj-c/cmake-build-debug
 in.txt
@@ -19,3 +21,5 @@ hdu-cpp/.idea
 hdu-cpp/cmake-build-debug
 lf_temp/cmake-build-debug
 lf_temp/.idea
+binary-tree/.idea
+binary-tree/cmake-build-debug
