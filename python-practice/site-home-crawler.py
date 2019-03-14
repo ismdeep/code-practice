@@ -37,10 +37,15 @@ def remove_url(url):
 
 
 def test_is_apache_directory(url='', true_func=None, false_func=None):
-    req = requests.get(
-        url=url
-    )
-    content = req.text
+    try:
+        req = requests.get(
+            url=url
+            , timeout=3
+        )
+        content = req.text
+    except:
+        print(url, 'timeout')
+        return
     if is_apache_directory(content):
         if true_func is not None:
             true_func(url)
@@ -74,18 +79,6 @@ def main():
     reqs = threadpool.makeRequests(test_is_apache_directory_thread_func, url_list)
     [pool.putRequest(req) for req in reqs]
     pool.wait()
-    exit(0)
-    url = 'http://download.ismdeep.com'
-    req = requests.get(
-        url=url
-        , timeout=3000
-    )
-    content = req.text
-    if is_nginx_directory(content):
-        print(url, 'is nginx directory')
-
-    if is_apache_directory(content):
-        print(url, 'is apache directory')
 
 
 if __name__ == '__main__':
