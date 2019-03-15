@@ -1,0 +1,19 @@
+<tr(.*?)>(.*?)<td>(.*?)</td>
+      <td>(.*?)</td>
+      <td>\n        <a href\="(.*?)">(.*?)</a>
+      </td>
+      <td class\="country">(.*?)</td>
+      <td>(.*?)</td>
+      <td class\="country">
+        <div title\="(.*?)" class\="bar">
+          <div class\="bar_inner(.*?)" style\="(.*?)">
+            \n          </div>
+        </div>
+      </td>
+      <td class\="country">
+        <div title\="(.*?)" class\="bar">
+          <div class\="bar_inner(.*?)" style\="(.*?)">
+            \n          </div>
+        </div>\n      </td>
+      \n      <td>(.*?)</td>
+    </tr>
