@@ -17,21 +17,148 @@ Accept-Language: zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7,th;q=0.6,zh-TW;q=0.5,de;q=0
 Cookie: JSESSIONID=A89F2BD81602867376FFB3A9890731C9
 '''
 
+import smtplib
+from email.mime.text import MIMEText
+from email.header import Header
 import requests
+import urllib
+import http.cookiejar
+from PIL import Image
+from PIL import ImageEnhance
+import pytesseract
+import sys
+import logging
+import time
+import json
+
+logging.basicConfig(
+    filename='/data/log/ecard.log',
+    level=logging.DEBUG,
+    format='[%(asctime)s][%(filename)s][line:%(lineno)d] %(message)s',
+    datefmt='%Y-%m-%d %H:%M:%S'
+)
 
 
-def fetch_electric_bill():
+def sys_argv(_key_):
+    for i in range(len(sys.argv)):
+        if sys.argv[i] == _key_:
+            return sys.argv[i + 1]
+    return ''
+
+
+def fetch_electric_bill(_cookie_):
+    logging.info('''fetch_electric_bill('%s')''' % _cookie_)
     req = requests.post(
         url='http://ecard.jxust.edu.cn/epay/electric/queryelectricbill'
         , data={'sysid': 2, 'roomNo': 18606, 'elcarea': 1, 'elcbuis': 53}
         , headers={
-            'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36'
-            , 'Cookie': 'JSESSIONID=A89F2BD81602867376FFB3A9890731C9'
+            'Cookie': 'JSESSIONID=' + _cookie_
         }
     )
     content = req.text
-    print(content)
+    obj = json.loads(content.strip())
+    logging.info(content)
+    return float(obj['restElecDegree'])
+
+
+def load_cookie(_username_):
+    path = '/data/ecard-' + _username_ + '.cookie'
+    try:
+        with open(path, 'r') as f:
+            return f.read().strip()
+    except:
+        return ''
+
+
+def test_authorized_cookie(_cookie_):
+    req = requests.get(
+        url='http://ecard.jxust.edu.cn/epay/',
+        headers={
+            'Cookie': 'JSESSIONID=' + _cookie_}
+    )
+    return True if req.text.find('''/epay/index/welcome.jsp''') >= 0 else False
+
+
+def generate_login_cookie(_username_, _password_):
+    cookie = load_cookie(_username_)
+    if test_authorized_cookie(cookie):
+        logging.info('cookie is authorized')
+        return cookie
+    exit(0)
+    # req = requests.get('http://ecard.jxust.edu.cn/epay/person/index')
+    # cookies = dict(req.cookies)
+    # login_success = False
+    # while not login_success:
+    #     img_req = requests.get(
+    #         url='http://ecard.jxust.edu.cn/epay/codeimage',
+    #         cookies=cookies
+    #     )
+    #     open('f.jpg', 'wb').write(img_req.content)
+    #     im = Image.open('f.jpg')
+    #     im = im.convert('L')
+    #     im = ImageEnhance.Contrast(im)
+    #     im = im.enhance(4)
+    #     captcha_code = pytesseract.image_to_string(im)
+    #     captcha_code = captcha_code.strip()
+    #     captcha_code = captcha_code.replace(' ', '')
+    #     login_req = requests.post(
+    #         url='http://ecard.jxust.edu.cn/epay/j_spring_security_check',
+    #         data={
+    #             'j_username': _username_,
+    #             'j_password': _password_,
+    #             'imageCodeName': captcha_code
+    #         },
+    #         headers={
+    #             'Cookie': 'JSESSIONID=' + cookies['JSESSIONID']
+    #         }
+    #     )
+    #     if login_req.text.find("/epay/index/welcome.jsp") >= 0:
+    #         login_success = True
+    #         print(cookies)
+    #         print(dict(login_req.cookies))
+    # return cookies
+
+
+def email_account():
+    json_obj = json.load(open('/data/email.json', 'r'))
+    return json_obj['server'], json_obj['port'], json_obj['email'], json_obj['password']
+
+
+def send_email(server, port, from_email, password, to_email, title, content, content_type):
+    logging.info('start sending email to %s' % to_email)
+    sender = from_email
+    receivers = to_email
+    message = MIMEText(content, content_type, 'utf-8')
+    message['From'] = from_email
+    message['To'] = to_email
+    subject = title
+    message['Subject'] = Header(subject, 'utf-8')
+    try:
+        smtp_obj = smtplib.SMTP()
+        smtp_obj.connect(server, port)
+        smtp_obj.login(sender, password)
+        smtp_obj.sendmail(sender, receivers, message.as_string())
+        logging.info('send email to %s successfully' % to_email)
+        return True
+    except smtplib.SMTPException:
+        return False
+
+
+def main():
+    username = sys_argv('-username')
+    password = sys_argv('-password')
+    logging.info('''{username: "%s", password: "%s"}''' % (username, password))
+    cookie = generate_login_cookie(username, password)
+    remain = fetch_electric_bill(cookie)
+    logging.info('remain: {%f}' % remain)
+    if remain < 10:
+        server, port, email, password = email_account()
+        send_success = False
+        while not send_success:
+            send_success = send_email(server, port, email, password, 'ismdeep@icloud.com',
+                                      '电费余额不足', '电费余额不足: {%s}' % (str(remain)),
+                                      'plain')
 
 
 if __name__ == '__main__':
-    fetch_electric_bill()
+    main()
