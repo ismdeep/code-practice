@@ -31,7 +31,7 @@ def main():
     days = findall(req.text,
                    '''<rect class\="day" width\="(.*?)" height\="(.*?)" x\="(.*?)" y\="(.*?)" fill\="#(.*?)" data-count\="(.*?)" data-date\="(.*?)"/>''')
     for day in days[-31::]:
-        print(day[6], day[5])
+        print(day[6], '■' * int(day[5]))
 
 
 if __name__ == '__main__':
