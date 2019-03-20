@@ -3,15 +3,16 @@
 //
 
 #include <iostream>
-using namespace std;
 
-class Stack{
+namespace ismdeep {
 
-};
-
+    template <class DataType>
+    class Stack{
+    private:
+    };
+}
 
 int main(int argc, char* argv[]) {
-
-
+    ismdeep::Stack<int> stack;
     return 0;
 }
