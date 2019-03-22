@@ -4,16 +4,12 @@
 # filename: codeforces-rating-monitor.py
 # blog: https://ismdeep.com
 import requests
-import os
 import sys
-import re
 import json
 import smtplib
 from email.mime.text import MIMEText
 from email.header import Header
 import logging
-import time
-
 
 username = ''
 path = ''
@@ -74,8 +70,11 @@ def main():
             send_success = False
             while not send_success:
                 try:
-                    send_success = send_email(server, port, email, password, 'ismdeep@icloud.com', username + '\'s rating changed',
-                                              str(rating), 'plain')
+                    msg = '''%s's rating was changed in { %s }. => %d(%s%d)''' % (username, rating[3], rating[1], '+' if rating[5] > 0 else '', rating[5])
+                    print(msg)
+                    send_success = True
+                    send_success = send_email(server, port, email, password, 'ismdeep@icloud.com',
+                                              username + '\'s rating changed', msg, 'plain')
                 except:
                     pass
             saved_rating_ids.append(rating[0])
