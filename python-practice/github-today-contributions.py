@@ -8,9 +8,6 @@ import requests
 import time
 import sys
 import re
-import smtplib
-from email.mime.text import MIMEText
-from email.header import Header
 
 
 def findall(content, pattern_str):
