@@ -58,36 +58,46 @@ def load_saved_rating_ids():
 def main():
     saved_rating_ids = load_saved_rating_ids()
     req = requests.get(
-        url='http://codeforces.com/profile/%s' % username
+        url='http://codeforces.com/profile/%s' % username,
+        timeout=3
     )
     content = req.text
     content = content[content.find('''data.push(''') + len('''data.push('''):]
     content = content[:content.find(''');''')]
     ratings = eval(content)
+    new_rating_found = False
+    new_rating = None
     for rating in ratings:
         if rating[0] not in saved_rating_ids:
-            server, port, email, password = email_account()
-            send_success = False
-            while not send_success:
-                try:
-                    msg = '''%s's rating was changed in { %s }. => %d(%s%d)''' % (username, rating[3], rating[1], '+' if rating[5] > 0 else '', rating[5])
-                    print(msg)
-                    send_success = True
-                    send_success = send_email(server, port, email, password, 'ismdeep@icloud.com',
-                                              username + '\'s rating changed', msg, 'plain')
-                except:
-                    pass
-            saved_rating_ids.append(rating[0])
-            print('''%s's rating changed at %s''' % (username, rating[0]))
+            new_rating_found = True
+            new_rating = rating
+            saved_rating_ids.append(new_rating[0])
+    if new_rating_found:
+        server, port, email, password = email_account()
+        send_success = False
+        while not send_success:
+            try:
+                msg = '''%s's rating was changed in { %s }. => %d(%s%d)''' % (
+                username, new_rating[3], new_rating[1], '+' if new_rating[5] > 0 else '', new_rating[5])
+                print(msg)
+                send_success = True
+                send_success = send_email(server, port, email, password, 'ismdeep@icloud.com',
+                                          username + '\'s rating changed', msg, 'plain')
+            except:
+                pass
+        print('''%s's rating changed at %s''' % (username, new_rating[0]))
     with open(path, 'w') as f:
         f.write(str(saved_rating_ids))
 
 
 if __name__ == '__main__':
-    try:
-        username = sys.argv[1]
-        logging.info('start codeforces-rating-moitor => username: {%s}' % username)
-        path = '/data/codeforces-%s-ids.dat' % username
-        main()
-    except:
-        exit(0)
+    username = sys.argv[1]
+    logging.info('start codeforces-rating-moitor => username: {%s}' % username)
+    path = '/data/codeforces-%s-ids.dat' % username
+    done_flag = False
+    while not done_flag:
+        try:
+            main()
+            done_flag = True
+        except Exception as e:
+            print(e)
