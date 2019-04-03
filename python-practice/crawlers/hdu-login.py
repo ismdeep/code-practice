@@ -4,15 +4,11 @@
 # filename: hdu-login.py
 # blog: https://ismdeep.com
 
-
 import requests
-import os
 import sys
-import json
-import http.cookiejar
 
 
-def main():
+def try_hdu_login(_username_, _password_):
     req = requests.get(
         url='http://acm.hdu.edu.cn/',
         headers={
@@ -21,24 +17,19 @@ def main():
     )
     cookie = req.cookies
     cookie = cookie.get_dict()
-    username = sys.argv[1]
-    password = sys.argv[2]
     req = requests.post(
         url='http://acm.hdu.edu.cn/userloginex.php?action=login',
         data={
-            'username': username,
-            'password': password,
-            'login': 'Sign In'
+            'username': _username_,
+            'userpass': _password_,
+            'login': 'Sign+In'
         },
-        cookies=cookie,
-        headers={
-            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36',
-            'Cookie': cookie['PHPSESSID']
-        }
+        cookies=cookie
     )
-    print(req.text)
-
+    return True if req.text.find('<a href="/userstatus.php?user=') >= 0 else False
 
 
 if __name__ == '__main__':
-    main()
+    username = sys.argv[1]
+    password = sys.argv[2]
+    print(try_hdu_login(username, password))
