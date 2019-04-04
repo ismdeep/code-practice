@@ -16,7 +16,7 @@ Accept-Encoding: gzip, deflate
 Accept-Language: zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7,th;q=0.6,zh-TW;q=0.5,de;q=0.4,ja;q=0.3,fr;q=0.2,id;q=0.1,ru;q=0.1,es;q=0.1,am;q=0.1,pt;q=0.1,pl;q=0.1,ca;q=0.1,hu;q=0.1,lt;q=0.1,sq;q=0.1,nb;q=0.1,mt;q=0.1,cy;q=0.1,it;q=0.1,da;q=0.1,so;q=0.1,tr;q=0.1,la;q=0.1,nl;q=0.1,su;q=0.1,ro;q=0.1,vi;q=0.1,lb;q=0.1,ko;q=0.1,et;q=0.1
 Cookie: JSESSIONID=A89F2BD81602867376FFB3A9890731C9
 '''
-
+import os
 import smtplib
 from email.mime.text import MIMEText
 from email.header import Header
@@ -31,13 +31,7 @@ import logging
 import time
 import json
 
-logging.basicConfig(
-    filename='/data/ecard.log',
-    level=logging.DEBUG,
-    format='[%(asctime)s][%(filename)s][line:%(lineno)d] %(message)s',
-    datefmt='%Y-%m-%d %H:%M:%S'
-)
-
+# -username 6120180107 -password 191211 -workspace D:\data\ecard
 
 def sys_argv(_key_):
     for i in range(len(sys.argv)):
@@ -62,7 +56,7 @@ def fetch_electric_bill(_cookie_):
 
 
 def load_cookie(_username_):
-    path = '/data/ecard-' + _username_ + '.cookie'
+    path = 'ecard-' + _username_ + '.cookie'
     try:
         with open(path, 'r') as f:
             return f.read().strip()
@@ -71,7 +65,7 @@ def load_cookie(_username_):
 
 
 def save_cookie(_username_, _cookie_):
-    path = '/data/ecard-' + _username_ + '.cookie'
+    path = 'ecard-' + _username_ + '.cookie'
     try:
         with open(path, 'w') as f:
             f.write(_cookie_)
@@ -108,7 +102,7 @@ def generate_login_cookie(_username_, _password_):
         im = Image.open('f.jpg')
         im = im.convert('L')
         im = ImageEnhance.Contrast(im)
-        im = im.enhance(8)
+        im = im.enhance(20)
         captcha_code = pytesseract.image_to_string(im)
         captcha_code = captcha_code.strip()
         captcha_code = captcha_code.replace(' ', '')
@@ -159,6 +153,12 @@ def send_email(server, port, from_email, password, to_email, title, content, con
 
 
 def main():
+    logging.basicConfig(
+        filename='ecard.log',
+        level=logging.DEBUG,
+        format='[%(asctime)s][%(filename)s][line:%(lineno)d] %(message)s',
+        datefmt='%Y-%m-%d %H:%M:%S'
+    )
     username = sys_argv('-username')
     password = sys_argv('-password')
     logging.info('''{username: "%s", password: "%s"}''' % (username, password))
@@ -169,10 +169,17 @@ def main():
         server, port, email, password = email_account()
         send_success = False
         while not send_success:
-            send_success = send_email(server, port, email, password, 'ismdeep@icloud.com',
-                                      '电费余额不足', '电费余额不足: {%s}' % (str(remain)),
-                                      'plain')
+            send_success = send_email(
+                server,
+                port,
+                email,
+                password,
+                'ismdeep@icloud.com',
+                '电费余额不足',
+                '电费余额不足: {%s}' % (str(remain)),
+                'plain')
 
 
 if __name__ == '__main__':
+    os.chdir(sys_argv('-workspace'))
     main()
