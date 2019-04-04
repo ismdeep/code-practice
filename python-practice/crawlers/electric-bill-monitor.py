@@ -32,7 +32,7 @@ import time
 import json
 
 logging.basicConfig(
-    filename='D:\\ecard.log',
+    filename='/data/ecard.log',
     level=logging.DEBUG,
     format='[%(asctime)s][%(filename)s][line:%(lineno)d] %(message)s',
     datefmt='%Y-%m-%d %H:%M:%S'
@@ -70,6 +70,15 @@ def load_cookie(_username_):
         return ''
 
 
+def save_cookie(_username_, _cookie_):
+    path = '/data/ecard-' + _username_ + '.cookie'
+    try:
+        with open(path, 'w') as f:
+            f.write(_cookie_)
+    except:
+        pass
+
+
 def test_authorized_cookie(_cookie_):
     req = requests.get(
         url='http://ecard.jxust.edu.cn/epay/',
@@ -80,9 +89,9 @@ def test_authorized_cookie(_cookie_):
 
 
 def generate_login_cookie(_username_, _password_):
-    # cookie = load_cookie(_username_)
+    cookie = load_cookie(_username_)
     # cookie = 'A6698C052D841D24DB8310E26D21D853'
-    cookie = ''
+    # cookie = ''
     if test_authorized_cookie(cookie):
         logging.info('cookie is authorized')
         return cookie
@@ -99,7 +108,7 @@ def generate_login_cookie(_username_, _password_):
         im = Image.open('f.jpg')
         im = im.convert('L')
         im = ImageEnhance.Contrast(im)
-        im = im.enhance(4)
+        im = im.enhance(8)
         captcha_code = pytesseract.image_to_string(im)
         captcha_code = captcha_code.strip()
         captcha_code = captcha_code.replace(' ', '')
@@ -120,6 +129,7 @@ def generate_login_cookie(_username_, _password_):
         if login_req.headers['Location'].find('epay/') >= 0:
             login_success = True
             cookies = dict(login_req.cookies)
+    save_cookie(_username_, cookies['JSESSIONID'])
     return cookies['JSESSIONID']
 
 
