@@ -32,7 +32,7 @@ import time
 import json
 
 logging.basicConfig(
-    filename='/data/log/ecard.log',
+    filename='D:\\ecard.log',
     level=logging.DEBUG,
     format='[%(asctime)s][%(filename)s][line:%(lineno)d] %(message)s',
     datefmt='%Y-%m-%d %H:%M:%S'
@@ -80,43 +80,47 @@ def test_authorized_cookie(_cookie_):
 
 
 def generate_login_cookie(_username_, _password_):
-    cookie = load_cookie(_username_)
+    # cookie = load_cookie(_username_)
+    # cookie = 'A6698C052D841D24DB8310E26D21D853'
+    cookie = ''
     if test_authorized_cookie(cookie):
         logging.info('cookie is authorized')
         return cookie
-    exit(0)
-    # req = requests.get('http://ecard.jxust.edu.cn/epay/person/index')
-    # cookies = dict(req.cookies)
-    # login_success = False
-    # while not login_success:
-    #     img_req = requests.get(
-    #         url='http://ecard.jxust.edu.cn/epay/codeimage',
-    #         cookies=cookies
-    #     )
-    #     open('f.jpg', 'wb').write(img_req.content)
-    #     im = Image.open('f.jpg')
-    #     im = im.convert('L')
-    #     im = ImageEnhance.Contrast(im)
-    #     im = im.enhance(4)
-    #     captcha_code = pytesseract.image_to_string(im)
-    #     captcha_code = captcha_code.strip()
-    #     captcha_code = captcha_code.replace(' ', '')
-    #     login_req = requests.post(
-    #         url='http://ecard.jxust.edu.cn/epay/j_spring_security_check',
-    #         data={
-    #             'j_username': _username_,
-    #             'j_password': _password_,
-    #             'imageCodeName': captcha_code
-    #         },
-    #         headers={
-    #             'Cookie': 'JSESSIONID=' + cookies['JSESSIONID']
-    #         }
-    #     )
-    #     if login_req.text.find("/epay/index/welcome.jsp") >= 0:
-    #         login_success = True
-    #         print(cookies)
-    #         print(dict(login_req.cookies))
-    # return cookies
+    req = requests.get('http://ecard.jxust.edu.cn/epay/person/index')
+    cookies = dict(req.cookies)
+    login_success = False
+    try_time = 0
+    while not login_success:
+        img_req = requests.get(
+            url='http://ecard.jxust.edu.cn/epay/codeimage',
+            cookies=cookies
+        )
+        open('f.jpg', 'wb').write(img_req.content)
+        im = Image.open('f.jpg')
+        im = im.convert('L')
+        im = ImageEnhance.Contrast(im)
+        im = im.enhance(4)
+        captcha_code = pytesseract.image_to_string(im)
+        captcha_code = captcha_code.strip()
+        captcha_code = captcha_code.replace(' ', '')
+        try_time += 1
+        logging.info("try_time: {%d} => %s" % (try_time, captcha_code))
+        login_req = requests.post(
+            url='http://ecard.jxust.edu.cn/epay/j_spring_security_check',
+            data={
+                'j_username': _username_,
+                'j_password': _password_,
+                'imageCodeName': captcha_code
+            },
+            headers={
+                'Cookie': 'JSESSIONID=' + cookies['JSESSIONID']
+            },
+            allow_redirects=False
+        )
+        if login_req.headers['Location'].find('epay/') >= 0:
+            login_success = True
+            cookies = dict(login_req.cookies)
+    return cookies['JSESSIONID']
 
 
 def email_account():
