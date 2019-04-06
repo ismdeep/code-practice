@@ -17,7 +17,6 @@ project(linked-stack-with-tail)
 project(sequence-list)
 project(bigint)
 
-set(EXECUTABLE_OUTPUT_PATH "bin")
 set(CMAKE_C_STANDARD 99)
 set(CMAKE_CXX_STANDARD 11)
 
