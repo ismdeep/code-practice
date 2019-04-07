@@ -31,8 +31,6 @@ import logging
 import time
 import json
 
-# -username 6120180107 -password 191211 -workspace D:\data\ecard
-
 def sys_argv(_key_):
     for i in range(len(sys.argv)):
         if sys.argv[i] == _key_:
@@ -84,8 +82,6 @@ def test_authorized_cookie(_cookie_):
 
 def generate_login_cookie(_username_, _password_):
     cookie = load_cookie(_username_)
-    # cookie = 'A6698C052D841D24DB8310E26D21D853'
-    # cookie = ''
     if test_authorized_cookie(cookie):
         logging.info('cookie is authorized')
         return cookie
