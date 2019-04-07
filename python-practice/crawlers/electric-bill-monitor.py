@@ -89,6 +89,7 @@ def generate_login_cookie(_username_, _password_):
     cookies = dict(req.cookies)
     login_success = False
     try_time = 0
+    print(cookies)
     while not login_success:
         img_req = requests.get(
             url='http://ecard.jxust.edu.cn/epay/codeimage',
@@ -159,6 +160,7 @@ def main():
     password = sys_argv('-password')
     logging.info('''{username: "%s", password: "%s"}''' % (username, password))
     cookie = generate_login_cookie(username, password)
+    print(cookie)
     remain = fetch_electric_bill(cookie)
     logging.info('remain: {%f}' % remain)
     if remain < 10:
