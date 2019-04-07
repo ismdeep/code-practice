@@ -3,7 +3,6 @@
 import requests
 import re
 
-
 remove_list = [
     '<span class="hljs-number">', '</code>','</span>','<span class="hljs-keyword">','<span class="hljs-built_in">',
     '<span class="hljs-string">', '<span class="hljs-comment">', '<span class="hljs-preprocessor">', '<code class=" hljs cpp">',
