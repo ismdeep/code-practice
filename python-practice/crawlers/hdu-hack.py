@@ -1,4 +1,5 @@
 # coding:utf-8
+import os
 import re
 import time
 
@@ -61,7 +62,12 @@ def parse_code_fun2(content):
 
 
 def get_code(csdn_blog_url):
-    req = requests.get(url=csdn_blog_url)
+    req = requests.get(
+        url=csdn_blog_url,
+        headers={
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36'
+        }
+    )
     content = req.text
     code = parse_code_fun1(content)
     if code is '':
@@ -70,22 +76,35 @@ def get_code(csdn_blog_url):
 
 
 def get_hdu_code_list(_problem_id_):
-    url = 'https://so.csdn.net/so/search/s.do?q=hdu%20'+str(_problem_id_)+'&t=blog&u='
-    req = requests.get(
-        url=url
-    )
-    content = req.text
-    items = findall(content, '''<div class=\"limit_width\">\r\n                                <a href=\"(.*?)\" target=\"_blank\" strategy=\"SearchFromCsdn\">(.*?)</a>\r\n                                <a href=\"(.*?)\" target=\"_blank\" strategy=\"SearchFromCsdn\">(.*?)</a>\r\n                            </div>''')
     codes = []
-    for item in items:
-        try:
-            code = get_code(item[0])
-            if len(code) >= 50:
-                codes.append(code)
-        except:
-            pass
+    for pageno in range(1,10):
+        url = 'https://so.csdn.net/so/search/s.do?q=hdu%20' + str(_problem_id_) + '&t=blog&u='
+        req = requests.get(
+            url=url,
+            headers={
+                'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36'
+            }
+        )
+        content = req.text
+        items = findall(content,
+                        '''<div class=\"limit_width\">\r\n                                <a href=\"(.*?)\" target=\"_blank\" strategy=\"SearchFromCsdn\">(.*?)</a>\r\n                                <a href=\"(.*?)\" target=\"_blank\" strategy=\"SearchFromCsdn\">(.*?)</a>\r\n                            </div>''')
+
+        for item in items:
+            try:
+                code = get_code(item[0])
+                if len(code) >= 50 and item[1].find(str(_problem_id_)) >= 0 and (item[1].find('hdu') >= 0 or item[1].find('HDU') >= 0):
+                    print(item[1])
+                    codes.append(code)
+            except:
+                pass
     return codes
 ## hdu-csdn-crawler.py end   ##########################################################
+
+
+def try_compile_cpp_code(_code_):
+    open('main.cpp', 'w').write(_code_)
+    content = os.popen('g++ -w -DONLINE_JUDGE main.cpp -o 2>err.msg;cat err.msg').read()
+    return True if '' == content.strip() else False
 
 
 def sys_argv(_key_):
@@ -126,6 +145,9 @@ def login_cookie(_username_, _password_):
 
 
 def submit_code(_username_, _cookie_, _problem_id_, _lang_, _code_):
+    if _lang_ == lang['g++'] or _lang_ == lang['c++']:
+        if not try_compile_cpp_code(_code_):
+            return 'Compile Error by localhost'
     requests.post(
         url='http://acm.hdu.edu.cn/submit.php?action=submit',
         data={
@@ -191,6 +213,7 @@ def solve_problem(_problem_id_):
             _problem_id_=_problem_id_,
             _lang_=lang_id,
             _code_=codes[_index_])
+        print(result)
         if result == 'Compilation Error':
             print('Compilation Error')
             # exit(0)
