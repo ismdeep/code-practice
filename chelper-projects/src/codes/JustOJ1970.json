@@ -1,0 +1,39 @@
+{
+  "name" : "JustOJ1970",
+  "testType" : "SINGLE",
+  "input" : {
+    "type" : "STANDARD",
+    "fileName" : "input.txt"
+  },
+  "output" : {
+    "type" : "STANDARD",
+    "fileName" : "output.txt"
+  },
+  "tests" : [ {
+    "input" : "YUANzi1987",
+    "output" : "zvbo941987",
+    "index" : 0,
+    "active" : true
+  }, {
+    "input" : "YUANzi1987\nABCDEFGHIJKLMNOPQRSTUVWXYZ\n0512700231\nabcdefghijklmnopqrstuvwxyz\nsgshdjkhgk45341231321#$%()()()())RRGHJIOIOGRRRUOPOfffff\n5645242318789#$$%*@@%$*%gsjtyidslegwrgewgVJGEGGLYERGGLITEGFKYRSEGK\nfffffffffffff",
+    "output" : "zvbo941987\nbcdefghijklmnopqrstuvwxyza\n0512700231\n22233344455566677778889999\n747435544545341231321#$%()()()())sshikjpjphsssvpqp33333\n5645242318789#$$%*@@%$*%47589437534974394wkhfhhmzfshhmjufhglzstfhl\n3333333333333",
+    "index" : 1,
+    "active" : true
+  } ],
+  "location" : "src/codes",
+  "vmArgs" : "-Xmx256m -Xss64m",
+  "mainClass" : "Main",
+  "taskClass" : "codes.JustOJ1970",
+  "checkerClass" : "net.egork.chelper.checkers.TokenChecker",
+  "checkerParameters" : "",
+  "testClasses" : [ ],
+  "date" : "2019.04.10",
+  "contestName" : "",
+  "truncate" : true,
+  "inputClass" : "java.util.Scanner",
+  "outputClass" : "java.io.PrintWriter",
+  "includeLocale" : false,
+  "failOnOverflow" : false,
+  "interactive" : false,
+  "interactor" : "net.egork.chelper.tester.Interactor"
+}
