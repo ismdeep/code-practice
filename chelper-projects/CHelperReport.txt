@@ -1,2 +1,2 @@
-25 src/codes/JustOJ1970.json
+25 src/codes/JustOJ2405.json
 0

@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="84a22948-5a03-4625-a70f-dd7284ea8432" name="Default Changelist" comment="" />
+    <list default="true" id="84a22948-5a03-4625-a70f-dd7284ea8432" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../c-lang-practices/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../c-lang-practices/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../c-lang-practices/ds/bigint/bigint.c" beforeDir="false" afterPath="$PROJECT_DIR$/../c-lang-practices/ds/bigint/bigint.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CHelperReport.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CHelperReport.txt" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -13,21 +18,12 @@
     <option name="isMigrated" value="true" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/codes/JustOJ1970.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="441">
-              <caret line="28" column="9" lean-forward="true" selection-start-line="28" selection-start-column="9" selection-end-line="28" selection-end-column="9" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
       <find>out.write</find>
+      <find>add</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -40,6 +36,7 @@
         <option value="$PROJECT_DIR$/src/codes/HDU2268.java" />
         <option value="$PROJECT_DIR$/output/Main.java" />
         <option value="$PROJECT_DIR$/src/codes/JustOJ1970.java" />
+        <option value="$PROJECT_DIR$/src/codes/JustOJ2405.java" />
       </list>
     </option>
   </component>
@@ -62,8 +59,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -91,6 +86,8 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -138,6 +135,8 @@
       <method v="2">
         <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
       </method>
     </configuration>
     <configuration name="HDU2687" type="Task" factoryName="Task">
@@ -147,11 +146,22 @@
         <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
       </method>
     </configuration>
     <configuration name="JustOJ1970" type="Task" factoryName="Task">
       <taskConf>src/codes/JustOJ1970.json</taskConf>
       <method v="2">
+        <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
+      </method>
+    </configuration>
+    <configuration name="JustOJ2405" type="Task" factoryName="Task">
+      <taskConf>src/codes/JustOJ2405.json</taskConf>
+      <method v="2">
+        <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
       </method>
     </configuration>
@@ -189,17 +199,18 @@
       <workItem from="1554736225578" duration="1445000" />
       <workItem from="1554776658343" duration="1431000" />
       <workItem from="1554899233296" duration="1062000" />
+      <workItem from="1555144696768" duration="1334000" />
+      <workItem from="1555157897722" duration="770000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="9953000" />
+    <option name="totallyTimeSpent" value="12057000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="44" y="23" width="1236" height="777" extended-state="6" />
-    <editor active="true" />
+    <frame x="44" y="23" width="1236" height="777" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26633167" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.27470687" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -208,7 +219,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.7326284" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.45166162" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.25528702" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -298,10 +309,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/codes/JustOJ2405.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="456">
+          <caret line="25" column="9" selection-start-line="25" selection-start-column="9" selection-end-line="25" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_111.jdk/Contents/Home/src.zip!/java/math/BigInteger.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7796">
+          <caret line="1647" column="50" selection-start-line="1647" selection-start-column="47" selection-end-line="1647" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/codes/JustOJ1970.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="441">
-          <caret line="28" column="9" lean-forward="true" selection-start-line="28" selection-start-column="9" selection-end-line="28" selection-end-column="9" />
+        <state relative-caret-position="80">
+          <caret line="9" column="7" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
         </state>
       </provider>
     </entry>
