@@ -31,3 +31,5 @@ python-practice/packages_build/ismdeep_utils/__pycache__
 python-practice/packages_build/ismdeep_utils/dist
 python-practice/packages_build/ismdeep_utils/ismdeep_utils.egg-info
 python-practice/packages_build/ismdeep_utils/build
+groovy-practice/out
+groovy-practice/.idea
