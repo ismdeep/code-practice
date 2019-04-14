@@ -20,10 +20,10 @@ int digital_count(int val) {
 }
 
 
-char compare_sign(int val) {
-    if (0 == val) return '=';
-    if (val > 0) return '>';
-    return '<';
+char *compare_sign(int val) {
+    if (0 == val) { return "=="; }
+    if (val > 0) return ">";
+    return "<";
 }
 
 
@@ -237,7 +237,6 @@ struct BigInt *bigint_add(const struct BigInt *a, const struct BigInt *b) {
 
 char *bigint_2_string(const struct BigInt *bigint);
 struct BigInt *bigint_multiply(const struct BigInt *a, const struct BigInt *b) {
-    printf("%s * %s == ", bigint_2_string(a), bigint_2_string(b));
     struct BigInt *zero = create_bigint(0);
     if (bigint_compare(zero, a) * bigint_compare(zero, b) == 0) {
         return zero;
