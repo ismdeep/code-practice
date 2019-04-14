@@ -20,11 +20,11 @@ int digital_count(int val) {
 }
 
 
-//char compare_sign(int val) {
-//    if (0 == val) return '=';
-//    if (val > 0) return '>';
-//    return '<';
-//}
+char compare_sign(int val) {
+    if (0 == val) return '=';
+    if (val > 0) return '>';
+    return '<';
+}
 
 
 struct BigInt {
@@ -33,6 +33,11 @@ struct BigInt {
     short sign; /* 0+ 1- */
     int *data;
 };
+
+void free_bigint(struct BigInt *bigint) {
+    free(bigint->data);
+    free(bigint);
+}
 
 struct BigInt *create_bigint(int val) {
     struct BigInt *bigint;
@@ -80,6 +85,15 @@ struct BigInt *create_bigint_from_str(const char str[]) {
             bigint->data[bigint->top] += (str[j] - '0');
         }
     }
+
+
+    /* special judge for -0 */
+    if (0 == bigint->top && 0 == bigint->data[0]) {
+        bigint->sign = 0;
+    }
+
+    while (bigint->top > 0 && bigint->data[bigint->top] == 0) --bigint->top;
+
     return bigint;
 }
 
@@ -133,6 +147,7 @@ struct BigInt *bigint_subtract(const struct BigInt *a, const struct BigInt *b) {
 
     if (1 == a->sign && 0 == b->sign) {
         struct BigInt *ans = bigint_add(bigint_abs(a), b);
+        ans->sign = 1;
         return ans;
     }
 
@@ -198,6 +213,7 @@ struct BigInt *bigint_add(const struct BigInt *a, const struct BigInt *b) {
     ans = (struct BigInt *) malloc(sizeof(struct BigInt));
     ans->length = a->top > b->top ? a->top + 3 : b->top + 3;
     ans->data = (int *) malloc(sizeof(int) * ans->length);
+    ans->sign = 0;
     memset(ans->data, 0, sizeof(int) * ans->length);
     ans->top = -1;
 
@@ -214,6 +230,36 @@ struct BigInt *bigint_add(const struct BigInt *a, const struct BigInt *b) {
         ans->data[i + 1] += ans->data[i] / MOD;
         ans->data[i] %= MOD;
     }
+    ans->top = ans->length - 1;
+    while (ans->top > 0 && ans->data[ans->top] == 0) --ans->top;
+    return ans;
+}
+
+char *bigint_2_string(const struct BigInt *bigint);
+struct BigInt *bigint_multiply(const struct BigInt *a, const struct BigInt *b) {
+    printf("%s * %s == ", bigint_2_string(a), bigint_2_string(b));
+    struct BigInt *zero = create_bigint(0);
+    if (bigint_compare(zero, a) * bigint_compare(zero, b) == 0) {
+        return zero;
+    }
+
+    struct BigInt *ans;
+    ans = (struct BigInt *) malloc(sizeof(struct BigInt));
+    ans->length = a->length + b->length;
+    ans->sign = (a->sign + b->sign) % 2;
+    ans->data = (int *) malloc(sizeof(int) * (ans->length));
+    memset(ans->data, 0, sizeof(int) * ans->length);
+    /* @todo deal with the multiplication process */
+    for (int i = 0; i <= a->top; ++i) {
+        for (int j = 0; j <= b->top; ++j) {
+            ans->data[i+j] += a->data[i] * b->data[j];
+        }
+        for (int j = 0; j < ans->length - 1; ++j) {
+            ans->data[j + 1] += ans->data[j] / MOD;
+            ans->data[j] %= MOD;
+        }
+    }
+
     ans->top = ans->length - 1;
     while (ans->top > 0 && ans->data[ans->top] == 0) --ans->top;
     return ans;
@@ -242,32 +288,4 @@ char *bigint_2_string(const struct BigInt *bigint) {
         }
     }
     return data;
-}
-
-
-int main(int argc, char *argv[]) {
-    struct BigInt *bigint_a = create_bigint(2309847);
-    assert(strcmp("2309847", bigint_2_string(bigint_a)) == 0);
-
-    struct BigInt *bigint_b = create_bigint(-2309847);
-    assert(strcmp("-2309847", bigint_2_string(bigint_b)) == 0);
-
-    struct BigInt *bigint_c = create_bigint_from_str("23974997920438");
-    assert(strcmp("23974997920438", bigint_2_string(bigint_c)) == 0);
-
-    struct BigInt *bigint_d = create_bigint_from_str("-23974997920438");
-    assert(strcmp("-23974997920438", bigint_2_string(bigint_d)) == 0);
-
-    struct BigInt *bigint_e = create_bigint_from_str("10000000");
-    assert(strcmp("10000000", bigint_2_string(bigint_e)) == 0);
-
-    assert(bigint_compare(bigint_a, bigint_a) == 0);
-    assert(bigint_compare(bigint_a, bigint_b) == 1);
-    assert(bigint_compare(bigint_a, bigint_c) == -1);
-    assert(bigint_compare(bigint_a, bigint_d) == 1);
-    assert(bigint_compare(bigint_a, bigint_e) == -1);
-
-    printf("%s\n", bigint_2_string(bigint_subtract(bigint_d, bigint_b)));
-
-    return 0;
 }
