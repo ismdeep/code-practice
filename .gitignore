@@ -33,3 +33,5 @@ python-practice/packages_build/ismdeep_utils/ismdeep_utils.egg-info
 python-practice/packages_build/ismdeep_utils/build
 groovy-practice/out
 groovy-practice/.idea
+c-lang-practices/bigint/cmake-build-debug
+c-lang-practices/bigint/.idea
