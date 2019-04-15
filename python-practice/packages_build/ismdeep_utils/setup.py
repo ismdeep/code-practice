@@ -23,5 +23,5 @@ setup(
     author='ismdeep',
     author_email='ismdeep@protonmail.com',
     url='https://github.com/ismdeep/ismdeep_utils_py',
-    py_modules=['ismdeep_utils']
+    py_modules=['ismdeep_utils'], install_requires=['pytest']
 )

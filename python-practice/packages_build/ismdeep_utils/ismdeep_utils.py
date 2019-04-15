@@ -24,8 +24,7 @@ import re
 from email.mime.text import MIMEText
 from email.header import Header
 
-
-__version__ = '0.0.4'
+__version__ = '0.0.8'
 
 
 class ArgvUtil:
@@ -72,7 +71,53 @@ class StringUtil:
         return _str_
 
 
+class DateTime:
+    year = 0
+    month = 0
+    day = 0
+    hour = 0
+    minute = 0
+    second = 0
+
+    def __init__(self):
+        now = datetime.datetime.now()
+        self.year = now.year
+        self.month = now.month
+        self.day = now.day
+        self.hour = now.hour
+        self.minute = now.minute
+        self.second = now.second
+
+    def __str__(self):
+        return '%04d-%02d-%02d %02d:%02d:%02d' % (self.year, self.month, self.day, self.hour, self.minute, self.second)
+
+    def timestamp(self):
+        return int(datetime.datetime.strptime(str(self), '%Y-%m-%d %H:%M:%S').timestamp())
+
+    def parse(self, _date_str_):
+        d = datetime.datetime.strptime(_date_str_, '%Y-%m-%d %H:%M:%S')
+        self.year = d.year
+        self.month = d.month
+        self.day = d.day
+        self.hour = d.hour
+        self.minute = d.minute
+        self.second = d.second
+
+    def parse_from_timestamp(self, _timestamp_):
+        d = datetime.datetime.strptime(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(_timestamp_)),'%Y-%m-%d %H:%M:%S')
+        self.year = d.year
+        self.month = d.month
+        self.day = d.day
+        self.hour = d.hour
+        self.minute = d.minute
+        self.second = d.second
+
+
 class DateTimeUtil:
+    @staticmethod
+    def unix_timestamp(_datetime_):
+        return int(_datetime_.timestamp())
+
     @staticmethod
     def unix_timestamp_now_second():
         return int(time.time())
@@ -82,5 +127,18 @@ class DateTimeUtil:
         return int(time.time() * 1000)
 
     @staticmethod
-    def simple_date_time_string(format_str='%Y-%m-%d %H:%M:%S'):
-        return datetime.datetime.now().strftime(format_str)
+    def simple_date_time_string(_date_time_=datetime.datetime.now(), _format_str_='%Y-%m-%d %H:%M:%S'):
+        return _date_time_.strftime(_format_str_)
+
+    @staticmethod
+    def parse_to_datetime(_date_str_):
+        return datetime.datetime.strptime(_date_str_, '%Y-%m-%d %H:%M:%S')
+
+    @staticmethod
+    def parse_from_timestamp_to_datetime(_timestamp_):
+        return datetime.datetime.strptime(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(_timestamp_)),
+                                          '%Y-%m-%d %H:%M:%S')
+
+    @staticmethod
+    def add_minute(_datetime_):
+        return DateTimeUtil.parse_from_timestamp_to_datetime(DateTimeUtil.unix_timestamp(_datetime_) + 60)
