@@ -111,7 +111,7 @@ bool bigint_multiply_test(int test_times) {
         struct BigInt *c = bigint_multiply(a, b);
         sprintf(cmd, "python3 -c \"print(%s * %s == %s)\"", bigint_2_string(a), bigint_2_string(b), bigint_2_string(c));
         assert(strcmp("True", run_command(cmd)) == 0);
-        printf("bigint_subtract_test() => test(%d): SUCCEEDED\n", i + 1);
+        printf("bigint_multiply_test() => test(%d): SUCCEEDED\n", i + 1);
         free_bigint(a);
         free_bigint(b);
         free_bigint(c);
@@ -119,12 +119,33 @@ bool bigint_multiply_test(int test_times) {
     return true;
 }
 
+bool bigint_divided_by_int_test(int test_times) {
+    TIMES(i, test_times) {
+        struct BigInt *a;
+        int val = 0;
+        while (0 == val) {
+            val = rand_int(-2147483647, 2147483647);
+        }
+
+        a = create_bigint_from_str(rand_bigint_str(2, rand_int(1, 30)));
+        char cmd[65535];
+        struct BigInt *c = bigint_divided_by_int(a, val);
+        sprintf(cmd, "python3 -c \"print(%s // %d == %s)\"", bigint_2_string(a), val, bigint_2_string(c));
+        assert(strcmp("True", run_command(cmd)) == 0);
+        printf("bigint_divided_by_int_test() => test(%d): SUCCEEDED\n", i + 1);
+        free_bigint(a);
+        free_bigint(c);
+    }
+    return true;
+}
+
 int main(int argc, char *argv[]) {
-    printf("bigint_create_test() => tests: %s\n", bigint_create_test(300) ? "SUCCEEDED" : "FAILED");
-    printf("bigint_create_str_test() => tests: %s\n", bigint_create_str_test(300) ? "SUCCEEDED" : "FAILED");
-    printf("bigint_compare_test() => tests: %s\n", bigint_compare_test(300) ? "SUCCEEDED" : "FAILED");
-    printf("bigint_add_test() => tests: %s\n", bigint_add_test(300) ? "SUCCEEDED" : "FAILED");
-    printf("bigint_subtract_test() => tests: %s\n", bigint_subtract_test(300) ? "SUCCEEDED" : "FAILED");
-    printf("bigint_multiply_test() => tests: %s\n", bigint_multiply_test(300) ? "SUCCEEDED" : "FAILED");
+//    printf("bigint_create_test() => tests: %s\n", bigint_create_test(300) ? "SUCCEEDED" : "FAILED");
+//    printf("bigint_create_str_test() => tests: %s\n", bigint_create_str_test(300) ? "SUCCEEDED" : "FAILED");
+//    printf("bigint_compare_test() => tests: %s\n", bigint_compare_test(300) ? "SUCCEEDED" : "FAILED");
+//    printf("bigint_add_test() => tests: %s\n", bigint_add_test(300) ? "SUCCEEDED" : "FAILED");
+//    printf("bigint_subtract_test() => tests: %s\n", bigint_subtract_test(300) ? "SUCCEEDED" : "FAILED");
+//    printf("bigint_multiply_test() => tests: %s\n", bigint_multiply_test(300) ? "SUCCEEDED" : "FAILED");
+    printf("bigint_divided_by_int_test() => tests: %s\n", bigint_divided_by_int_test(300) ? "SUCCEEDED" : "FAILED");
     return 0;
 }

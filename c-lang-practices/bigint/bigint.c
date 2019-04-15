@@ -288,3 +288,49 @@ char *bigint_2_string(const struct BigInt *bigint) {
     }
     return data;
 }
+
+
+struct BigInt *bigint_divided_by_int(struct BigInt *bigint, int val) {
+    assert(0 != val);
+
+    if (strcmp("0", bigint_2_string(bigint)) == 0) {
+        return create_bigint_from_str("0");
+    }
+
+    struct BigInt *ans;
+    ans = (struct BigInt *) malloc(sizeof(struct BigInt));
+    ans->length = bigint->length;
+    ans->sign = bigint->sign;
+    ans->data = (int *) malloc(sizeof(int) * ans->length);
+    long long *data = (long long *) malloc(sizeof(long long) * ans->length);
+    memset(     data, 0, sizeof(long long) * ans->length);
+    memset(ans->data, 0, sizeof(int) * ans->length);
+    ans->top = bigint->top;
+    for (int i = 0; i <= ans->top; ++i) {
+        data[i] = bigint->data[i];
+    }
+
+    if (val < 0) {
+        ans->sign = 1 - ans->sign;
+        val = -val;
+    }
+
+    for (int i = ans->top; i >= 1; --i) {
+        data[i-1] += (MOD * (data[i] % val));
+        data[i] /= val;
+    }
+    data[0] /= val;
+    if (1 == ans->sign) ++data[0];
+
+    for (int i = 0; i <= ans->top; ++i) {
+        data[i+1] += data[i] / MOD;
+        data[i] %= MOD;
+    }
+    ++ans->top;
+    while (ans->top > 0 && data[ans->top] == 0) --ans->top;
+    for (int i = 0; i <= ans->top; ++i) {
+        ans->data[i] = data[i];
+    }
+
+    return ans;
+}
