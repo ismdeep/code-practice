@@ -141,19 +141,26 @@ struct BigInt *bigint_subtract(const struct BigInt *a, const struct BigInt *b) {
     if (0 == bigint_compare(a, b)) return create_bigint(0);
 
     if (0 == a->sign && 1 == b->sign) {
-        struct BigInt *ans = bigint_add(a, bigint_abs(b));
+        struct BigInt *b_abs_val = bigint_abs(b);
+        struct BigInt *ans = bigint_add(a, b_abs_val);
+        free_bigint(b_abs_val);
         return ans;
     }
 
     if (1 == a->sign && 0 == b->sign) {
-        struct BigInt *ans = bigint_add(bigint_abs(a), b);
+        struct BigInt *a_abs_val = bigint_abs(a);
+        struct BigInt *ans = bigint_add(a_abs_val, b);
         ans->sign = 1;
+        free_bigint(a_abs_val);
         return ans;
     }
 
     if (1 == a->sign && 1 == b->sign) {
-        struct BigInt *ans = bigint_subtract(bigint_abs(b), bigint_abs(a));
-//        ans->sign = 1 - ans->sign;
+        struct BigInt *a_abs_val = bigint_abs(a);
+        struct BigInt *b_abs_val = bigint_abs(b);
+        struct BigInt *ans = bigint_subtract(b_abs_val, a_abs_val);
+        free_bigint(a_abs_val);
+        free_bigint(b_abs_val);
         return ans;
     }
 
@@ -194,18 +201,26 @@ struct BigInt *bigint_subtract(const struct BigInt *a, const struct BigInt *b) {
 
 struct BigInt *bigint_add(const struct BigInt *a, const struct BigInt *b) {
     if (1 == a->sign && 1 == b->sign) {
-        struct BigInt *ans = bigint_add(bigint_abs(a), bigint_abs(b));
+        struct BigInt *a_abs_val = bigint_abs(a);
+        struct BigInt *b_abs_val = bigint_abs(b);
+        struct BigInt *ans = bigint_add(a_abs_val, b_abs_val);
         ans->sign = 1;
+        free_bigint(a_abs_val);
+        free_bigint(b_abs_val);
         return ans;
     }
 
     if (1 == a->sign && 0 == b->sign) {
-        struct BigInt *ans = bigint_subtract(b, bigint_abs(a));
+        struct BigInt *a_abs_val = bigint_abs(a);
+        struct BigInt *ans = bigint_subtract(b, a_abs_val);
+        free_bigint(a_abs_val);
         return ans;
     }
 
     if (0 == a->sign && 1 == b->sign) {
-        struct BigInt *ans = bigint_subtract(a, bigint_abs(b));
+        struct BigInt *b_abs_val = bigint_abs(b);
+        struct BigInt *ans = bigint_subtract(a, b_abs_val);
+        free_bigint(b_abs_val);
         return ans;
     }
 
@@ -332,5 +347,8 @@ struct BigInt *bigint_divided_by_int(struct BigInt *bigint, int val) {
         ans->data[i] = data[i];
     }
 
+    free(data);
+
     return ans;
 }
+
