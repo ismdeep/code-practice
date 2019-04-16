@@ -39,6 +39,21 @@ void free_bigint(struct BigInt *bigint) {
     free(bigint);
 }
 
+void bigint_arrange(struct BigInt *bigint) {
+    bigint->top = bigint->length - 1;
+    for (int i = 0; i < bigint->top; ++i) {
+        if (bigint->data[i] >= 0) {
+            bigint->data[i+1] += (bigint->data[i] / MOD);
+            bigint->data[i] %= MOD;
+        }else{
+            int val = (-bigint->data[i]) / MOD + 1;
+            bigint->data[i + 1] -= val;
+            bigint->data[i] += (val * MOD);
+        }
+    }
+    while (bigint->data[bigint->top] == 0 && bigint->top > 0) --bigint->top;
+}
+
 struct BigInt *create_bigint(int val) {
     struct BigInt *bigint;
     bigint = (struct BigInt *) malloc(sizeof(struct BigInt));
@@ -185,16 +200,7 @@ struct BigInt *bigint_subtract(const struct BigInt *a, const struct BigInt *b) {
         ans->data[i] -= b->data[i];
     }
 
-    /* arrange data */
-    for (int i = 0; i < ans->length - 1; ++i) {
-        while (ans->data[i] < 0) {
-            --ans->data[i + 1];
-            ans->data[i] += MOD;
-        }
-    }
-
-    ans->top = ans->length - 1;
-    while (ans->top > 0 && ans->data[ans->top] == 0) --ans->top;
+    bigint_arrange(ans);
 
     return ans;
 }
@@ -240,13 +246,7 @@ struct BigInt *bigint_add(const struct BigInt *a, const struct BigInt *b) {
         ans->data[i] += b->data[i];
     }
 
-    /* arrange data */
-    for (int i = 0; i < ans->length - 1; ++i) {
-        ans->data[i + 1] += ans->data[i] / MOD;
-        ans->data[i] %= MOD;
-    }
-    ans->top = ans->length - 1;
-    while (ans->top > 0 && ans->data[ans->top] == 0) --ans->top;
+    bigint_arrange(ans);
     return ans;
 }
 
@@ -268,14 +268,10 @@ struct BigInt *bigint_multiply(const struct BigInt *a, const struct BigInt *b) {
         for (int j = 0; j <= b->top; ++j) {
             ans->data[i+j] += a->data[i] * b->data[j];
         }
-        for (int j = 0; j < ans->length - 1; ++j) {
-            ans->data[j + 1] += ans->data[j] / MOD;
-            ans->data[j] %= MOD;
-        }
+        bigint_arrange(ans);
     }
 
-    ans->top = ans->length - 1;
-    while (ans->top > 0 && ans->data[ans->top] == 0) --ans->top;
+    bigint_arrange(ans);
     return ans;
 }
 
@@ -346,7 +342,6 @@ struct BigInt *bigint_divided_by_int(struct BigInt *bigint, int val) {
     for (int i = 0; i <= ans->top; ++i) {
         ans->data[i] = data[i];
     }
-
     free(data);
 
     return ans;

@@ -60,7 +60,7 @@ bool bigint_compare_test(int test_times) {
                 compare_sign(bigint_compare(bigint_a, bigint_b)),
                 bigint_2_string(bigint_b));
         assert(strcmp("True", run_command(cmd)) == 0);
-        printf("bigint_create_str_test() => test(%d): SUCCEEDED\n", i + 1);
+        printf("bigint_compare_test() => test(%d): SUCCEEDED\n", i + 1);
         free_bigint(bigint_a);
         free_bigint(bigint_b);
     }
