@@ -15,7 +15,6 @@ project(stl-set-demo)
 project(linked-stack)
 project(linked-stack-with-tail)
 project(sequence-list)
-project(bigint)
 
 set(CMAKE_C_STANDARD 99)
 set(CMAKE_CXX_STANDARD 11)
@@ -37,4 +36,4 @@ add_executable(stl-set-demo src/stl-set-demo.cpp)
 add_executable(linked-stack ds/linked-stack/linked-stack.c)
 add_executable(linked-stack-with-tail ds/linked-stack/linked-stack-with-tail.c)
 add_executable(sequence-list ds/list/sequence-list.c)
-add_executable(bigint ds/bigint/bigint.c)
+
