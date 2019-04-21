@@ -17,7 +17,7 @@ SERIAL_NO = int((datetime.utcnow() - datetime(1970, 1, 1)).total_seconds())
 
 handler = logging.StreamHandler()
 handler.setLevel(logging.INFO)
-handler.setFormatter(logging.Formatter('%(asctime)s: %(message)s', datefmt='%H:%M:%S'))
+handler.setFormatter(logging.Formatter('%(asctime)s %(message)s', datefmt='%Y-%m-%d %H:%M:%S'))
 
 logger = logging.getLogger(__name__)
 logger.addHandler(handler)
@@ -87,7 +87,7 @@ class Resolver(ProxyResolver):
         _key_ = '%s{%s}' % (str(request.q.qname), str(request.q.qtype))
         val = redis_client.get(_key_)
         if val is not None:
-            logging.info('>> reply from redis {%s}' % _key_)
+            logger.info('>> reply from redis {%s}' , _key_)
             reply = request.reply()
             return reply.replyZone(val)
         reply = super().resolve(request, handler)
