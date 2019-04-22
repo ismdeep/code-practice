@@ -38,3 +38,5 @@ c-lang-practices/bigint/.idea
 python-practice/packages_build/ismdeep_utils/.idea
 c-lang-practices/aes/.idea
 c-lang-practices/aes/cmake-build-debug
+c-lang-practices/ldpc-0508044/cmake-build-debug
+c-lang-practices/ldpc-0508044/.idea

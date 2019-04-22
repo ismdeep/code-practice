@@ -106,10 +106,10 @@ if __name__ == '__main__':
     upstream = os.getenv('UPSTREAM', '180.76.76.76')
     resolver = Resolver(upstream)
     udp_server = DNSServer(resolver, port=port)
-    tcp_server = DNSServer(resolver, port=port, tcp=True)
+    # tcp_server = DNSServer(resolver, port=port, tcp=True)
     logger.info('starting DNS server on port %d, upstream DNS server "%s"', port, upstream)
     udp_server.start_thread()
-    tcp_server.start_thread()
+    # tcp_server.start_thread()
 
     try:
         while udp_server.isAlive():
