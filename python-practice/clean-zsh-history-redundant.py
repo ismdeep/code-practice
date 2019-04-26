@@ -5,7 +5,6 @@
 # blog: https://ismdeep.com
 
 import os
-import sys
 import codecs
 from ismdeep_utils import DateTimeUtil
 
