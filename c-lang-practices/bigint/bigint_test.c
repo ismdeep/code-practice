@@ -145,6 +145,13 @@ bool bigint_divided_by_int_test(int test_times) {
     return true;
 }
 
+bool bigint_divided_by_bigint_test(int test_times) {
+//    TIMES(i, test_times) {
+//
+//    }
+    return true;
+}
+
 int main(int argc, char *argv[]) {
     printf("bigint_create_test() => tests: %s\n", bigint_create_test(300) ? "SUCCEEDED" : "FAILED");
     printf("bigint_create_str_test() => tests: %s\n", bigint_create_str_test(300) ? "SUCCEEDED" : "FAILED");
@@ -153,5 +160,6 @@ int main(int argc, char *argv[]) {
     printf("bigint_subtract_test() => tests: %s\n", bigint_subtract_test(300) ? "SUCCEEDED" : "FAILED");
     printf("bigint_multiply_test() => tests: %s\n", bigint_multiply_test(300) ? "SUCCEEDED" : "FAILED");
     printf("bigint_divided_by_int_test() => tests: %s\n", bigint_divided_by_int_test(300) ? "SUCCEEDED" : "FAILED");
+    printf("bigint_divided_by_bigint_test() => tests: %s\n", bigint_divided_by_bigint_test(300) ? "SUCCEEDED" : "FAILED");
     return 0;
 }
