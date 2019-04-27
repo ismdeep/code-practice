@@ -348,6 +348,17 @@ struct BigInt *bigint_divided_by_int(struct BigInt *bigint, int val) {
 }
 
 struct BigInt *bigint_divided_by_bigint(struct BigInt *a, struct BigInt *b) {
+    if (a->top < b->top) {
+        return create_bigint(0);
+    }
+
+    if (a->top == b->top) {
+        int left = 0;
+        int right = MOD;
+        return create_bigint(1);
+    }
+
+
     struct BigInt *ans = (struct BigInt *) malloc(sizeof(struct BigInt));
     ans->sign = a->sign == b->sign ? 0 : 1;
     ans->top = a->top;
