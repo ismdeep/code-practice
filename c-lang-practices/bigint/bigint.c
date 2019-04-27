@@ -347,3 +347,24 @@ struct BigInt *bigint_divided_by_int(struct BigInt *bigint, int val) {
     return ans;
 }
 
+struct BigInt *bigint_divided_by_bigint(struct BigInt *a, struct BigInt *b) {
+    struct BigInt *ans = (struct BigInt *) malloc(sizeof(struct BigInt));
+    ans->sign = a->sign == b->sign ? 0 : 1;
+    ans->top = a->top;
+    ans->length = a->length;
+    ans->data = (int *) malloc(sizeof(int) * ans->length);
+    memset(ans->data, 0, sizeof(int) * ans->length);
+
+    struct BigInt *remainder = (struct BigInt *) malloc(sizeof(struct BigInt));
+    remainder->sign = 0;
+    remainder->top = 0;
+    remainder->length = 1;
+    remainder->data = (int *) malloc(sizeof(int) * 1);
+
+    for (int _index_ = a->top; _index_ >= 0; --_index_) {
+        struct BigInt *tmp = bigint_multiply(remainder, create_bigint(MOD));
+        tmp = bigint_add(tmp, create_bigint(a->data[_index_]));
+    }
+
+    return ans;
+}

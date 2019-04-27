@@ -53,7 +53,7 @@ def hide_info():
 
 
 def read_info():
-    im = Image.open('/Users/ismdeep/Desktop/tmp.png')
+    im = Image.open('/Users/ismdeep/Desktop/info.png')
     w, h = im.size
     a = []
     for i in range(w):
@@ -80,7 +80,7 @@ def read_info():
 
 
 def main():
-    hide_info()
+    # hide_info()
     read_info()
 
 

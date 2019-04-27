@@ -23,25 +23,19 @@ def task_assignment_generator(seed=None):
                     b.append(val)
             r.shuffle(b)
             try:
-                ans.append((b[0], b[1], b[2]))
+                tmp = [b[0],b[1],b[2]]
+                tmp.sort()
+                ans.append((tmp[0], tmp[1], tmp[2]))
             except:
                 found = False
                 break
-            # print((b[0], b[1], b[2]))
             task_cnt[b[0]] += 1
             task_cnt[b[1]] += 1
             task_cnt[b[2]] += 1
             found = True
-
     return ans
 
 
 tasks = [0] * 20
 ans = task_assignment_generator(1)
 print(ans)
-for a, b, c in ans:
-    tasks[a] += 1
-    tasks[b] += 1
-    tasks[c] += 1
-
-print(tasks)
