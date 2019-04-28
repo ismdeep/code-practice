@@ -24,12 +24,9 @@ bool bigint_create_test(int test_times) {
     TIMES(i, test_times) {
         int val = rand_int(-65535, 65535);
         struct BigInt *bigint_a = create_bigint(val);
-        char cmd[65535];
-        TIMES(j, 65535) {
-            cmd[i] = 'a';
-        }
-        sprintf(cmd, "python3 -c \"print(%d == %s)\"", val, bigint_2_string(bigint_a));
-        assert(strcmp("True", run_command(cmd)) == 0);
+        char val_s[1024];
+        sprintf(val_s, "%d", val);
+        assert(strcmp(val_s, bigint_2_string(bigint_a)) == 0);
         printf("bigint_create_test() => test(%d): SUCCEEDED\n", i + 1);
         free_bigint(bigint_a);
     }
@@ -67,25 +64,24 @@ bool bigint_compare_test(int test_times) {
     return true;
 }
 
-bool bigint_add_test(int test_times) {
-    TIMES(i, test_times) {
+bool bigint_add_test() {
+    FILE *fin = fopen("test-add.dat", "r");
+    char str_a[1024], str_b[1024], str_c[1024];
+    int i = 0;
+    while (fscanf(fin, "%s %s %s", str_a, str_b, str_c) != EOF) {
         struct BigInt *a;
         struct BigInt *b;
-        char *str_a = rand_bigint_str(2, rand_int(1, 30));
-        char *str_b = rand_bigint_str(2, rand_int(1, 30));
         a = create_bigint_from_str(str_a);
         b = create_bigint_from_str(str_b);
         char cmd[65535];
         struct BigInt *sum = bigint_add(a, b);
-        sprintf(cmd, "python3 -c \"print(%s + %s == %s)\"", bigint_2_string(a), bigint_2_string(b), bigint_2_string(sum));
-        assert(strcmp("True", run_command(cmd)) == 0);
-        printf("bigint_add_test() => test(%d): SUCCEEDED\n", i + 1);
-        free(str_a);
-        free(str_b);
+        assert(strcmp(str_c, bigint_2_string(sum)) == 0);
+        printf("bigint_add_test() => test(%d): SUCCEEDED\n", ++i);
         free_bigint(a);
         free_bigint(b);
         free_bigint(sum);
     }
+    fclose(fin);
     return true;
 }
 
@@ -145,21 +141,18 @@ bool bigint_divided_by_int_test(int test_times) {
     return true;
 }
 
-bool bigint_divided_by_bigint_test(int test_times) {
-//    TIMES(i, test_times) {
-//
-//    }
+bool bigint_divided_by_bigint_test() {
     return true;
 }
 
 int main(int argc, char *argv[]) {
     printf("bigint_create_test() => tests: %s\n", bigint_create_test(300) ? "SUCCEEDED" : "FAILED");
-    printf("bigint_create_str_test() => tests: %s\n", bigint_create_str_test(300) ? "SUCCEEDED" : "FAILED");
-    printf("bigint_compare_test() => tests: %s\n", bigint_compare_test(300) ? "SUCCEEDED" : "FAILED");
-    printf("bigint_add_test() => tests: %s\n", bigint_add_test(300) ? "SUCCEEDED" : "FAILED");
-    printf("bigint_subtract_test() => tests: %s\n", bigint_subtract_test(300) ? "SUCCEEDED" : "FAILED");
-    printf("bigint_multiply_test() => tests: %s\n", bigint_multiply_test(300) ? "SUCCEEDED" : "FAILED");
-    printf("bigint_divided_by_int_test() => tests: %s\n", bigint_divided_by_int_test(300) ? "SUCCEEDED" : "FAILED");
-    printf("bigint_divided_by_bigint_test() => tests: %s\n", bigint_divided_by_bigint_test(300) ? "SUCCEEDED" : "FAILED");
+//    printf("bigint_create_str_test() => tests: %s\n", bigint_create_str_test(300) ? "SUCCEEDED" : "FAILED");
+//    printf("bigint_compare_test() => tests: %s\n", bigint_compare_test(300) ? "SUCCEEDED" : "FAILED");
+//    printf("test_bigint_add() => tests: %s\n", bigint_add_test() ? "SUCCEEDED" : "FAILED");
+//    printf("bigint_subtract_test() => tests: %s\n", bigint_subtract_test(300) ? "SUCCEEDED" : "FAILED");
+//    printf("bigint_multiply_test() => tests: %s\n", bigint_multiply_test(300) ? "SUCCEEDED" : "FAILED");
+//    printf("bigint_divided_by_int_test() => tests: %s\n", bigint_divided_by_int_test(300) ? "SUCCEEDED" : "FAILED");
+//    printf("bigint_divided_by_bigint_test() => tests: %s\n", bigint_divided_by_bigint_test() ? "SUCCEEDED" : "FAILED");
     return 0;
 }

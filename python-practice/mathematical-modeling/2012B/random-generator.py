@@ -5,6 +5,8 @@
 # blog: https://ismdeep.com
 
 from random import Random
+import os
+import sys
 
 
 def task_assignment_generator(seed=None):
@@ -37,5 +39,10 @@ def task_assignment_generator(seed=None):
 
 
 tasks = [0] * 20
-ans = task_assignment_generator(1)
+seed = None
+try:
+    seed = int(sys.argv[1])
+except:
+    pass
+ans = task_assignment_generator()
 print(ans)
