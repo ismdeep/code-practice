@@ -150,6 +150,19 @@ def send_email(server, port, from_email, password, to_email, title, content, con
         return False
 
 
+def push_data(_data_):
+    data = {
+        'keyid': 'electric_bill_remain',
+        'data': _data_,
+        'token': sys_argv('-token')
+    }
+    req = requests.post(
+        url='http://info.ismdeep.com/api/info/push_data',
+        data=data
+    )
+    print(req.text)
+
+
 def main():
     logging.basicConfig(
         filename='ecard.log',
@@ -164,6 +177,7 @@ def main():
     print(cookie)
     remain = fetch_electric_bill(cookie)
     logging.info('remain: {%f}' % remain)
+    push_data('%.2f'%(float(remain)))
     if remain < 10:
         server, port, email, password = email_account()
         send_success = False
