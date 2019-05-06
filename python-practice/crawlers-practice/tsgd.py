@@ -4,27 +4,40 @@
 # filename: tsgd.py
 # blog: https://ismdeep.com
 
-# coding: utf-8
-
-import os
 import sys
 import time
-import atexit
-import signal
-import json
 import urllib
 import http.cookiejar
 import re
+import json
+import requests
+from ismdeep_utils import ArgvUtil
+
+
+def push_data(_keyid_, _data_):
+    data = {
+        'keyid': _keyid_,
+        'data': _data_,
+        'token': ArgvUtil.get_sys_argv('-token')
+    }
+    req = requests.post(
+        url='https://info.ismdeep.com/api/info/push_data',
+        data=data,
+        timeout=3
+    )
+    print(req.text)
 
 
 class StringUtil:
     def __init__(self):
         pass
 
+    @staticmethod
     def between(_content_, _begin_, _end_):
         _content_ = _content_[_content_.find(_begin_) + len(_begin_) : ]
         _content_ = _content_[:_content_.find(_end_)]
         return _content_
+
 
 class JxustTSG:
     fullname = ''
@@ -44,7 +57,6 @@ class JxustTSG:
         req = urllib.request.Request(self.home_site + '/dzjs/login_form.asp', None, self.header)
         opener = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(self.cj))
         r = opener.open(req)
-        # r.read().decode('gb2312')
 
     def login(self):
         login_form_data = {
@@ -95,12 +107,26 @@ class JxustTSG:
 
     def xj_all(self):
         rents = self.rent_list()
+        rents_data = []
         for item in rents:
             from_date = item[2]
             to_date = item[3]
             book_name = item[0]
+            rents_data.append({
+                'from_date': item[2],
+                'to_date': item[3],
+                'book_name': item[0]
+            })
             print("%s => %s (%s - %s) %s " % (time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()), self.fullname, from_date, to_date, "《" + book_name + "》"))
             self.xj(item[6][item[6].find('nbsl=')+5:])
+        try:
+            push_data('tsgd-%s'%self.username, json.dumps({
+                'fullname': self.fullname,
+                'data': rents_data
+            }))
+        except Exception as e:
+            print(e)
+            pass
 
     def logout(self):
         req = urllib.request.Request(self.home_site + '/share/Exit.asp', None, self.header)
@@ -117,4 +143,4 @@ def tsg_xj(username, password):
 
 
 if __name__ == '__main__':
-    tsg_xj(sys.argv[1], sys.argv[2])
+    tsg_xj(ArgvUtil.get_sys_argv('-username'), ArgvUtil.get_sys_argv('-password'))

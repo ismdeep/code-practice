@@ -157,7 +157,7 @@ def push_data(_data_):
         'token': sys_argv('-token')
     }
     req = requests.post(
-        url='http://info.ismdeep.com/api/info/push_data',
+        url='https://info.ismdeep.com/api/info/push_data',
         data=data
     )
     print(req.text)
