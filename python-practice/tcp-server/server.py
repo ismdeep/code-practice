@@ -22,12 +22,72 @@ def load_config_list():
     return configs
 
 
+def fetch_path_type(_path_):
+    if os.path.isdir(_path_):
+        return 1
+    if os.path.isfile(_path_):
+        return 2
+    return 0
+
+
+def is_file(_path_):
+    return True if fetch_path_type(_path_) == 2 else False
+
+
+def is_dir(_path_):
+    return True if fetch_path_type(_path_) == 1 else False
+
+
+def parse_request_header(_data_):
+    request_header = {
+        'http': '1.1',
+        'method': '',
+        'uri': '',
+        'url': '',
+        'args': '',
+        'host': '',
+        'user-agent': ''
+    }
+    _data_ = _data_.split('\r\n')
+    for item in _data_:
+        if item.lower().find('http/') >= 0:
+            request_header['http'] = item[item.lower().find('http/')+5:]
+            '''method'''
+            request_header['method'] = item[:item.find(' ')].lower().strip()
+            '''uri'''
+            tmp = item[item.find(' ') + 1:]
+            tmp = tmp[:tmp.find(' ')]
+            request_header['uri'] = tmp
+            if request_header['uri'].find('?') >= 0:
+                try:
+                    request_header['url'] = request_header['uri'][:request_header['uri'].find('?')]
+                except:
+                    request_header['url'] = '/'
+                try:
+                    request_header['args'] = request_header['uri'][request_header['uri'].find('?'):]
+                except:
+                    request_header['args'] = ''
+            else:
+                request_header['url'] = request_header['uri']
+                request_header['args'] = ''
+        if item.lower().find('user-agent') >= 0:
+            request_header['user-agent'] = item[item.find(':')+1:].strip()
+        if item.lower().find('host') >= 0:
+            request_header['host'] = item[item.find(':')+1:].strip().lower()
+    return request_header
+
+
 def generate_data_package(_content_):
-    ans = '''HTTP/1.1 200 OK\r\nDate: %s\r\nServer: Honix\r\nX-Powered-By: HonixPY\r\nContent-Length: %d\r\n\r\n%s''' % (
-        strftime("%a, %d %b %Y %H:%M:%S GMT", gmtime()),
-        len(_content_),
-        _content_
-    )
+    ans = ('HTTP/1.1 200 OK\r\n'
+           'Date: %(datetime)s\r\n'
+           'Server: Honix\r\n'
+           'X-Powered-By: HonixPY\r\n'
+           'Content-Length: %(datalen)d\r\n\r\n%(content)s') % \
+          ({
+              'datetime': strftime("%a, %d %b %Y %H:%M:%S GMT", gmtime()),
+              'datalen': len(_content_),
+              'content': _content_
+          })
     return ans
 
 
@@ -50,35 +110,19 @@ def generate_file_data_package(_file_path_, _range_from_, _range_to_):
 
 def tcp_handle(_tcpclient_):
     _data_ = _tcpclient_.recv(BUFSIZE)
-    request_header = _data_.decode().split('\r\n')
-    range_from = 0
-    range_to = 18446744073709551615
-    for item in request_header:
-        item = item.lower()
-        if item.find('range') >= 0:
-            print(item)
-            tmp = item[item.find('bytes') + 5:]
-            if tmp.find('=') >= 0:
-                tmp = tmp[tmp.find('=')+1:]
-            if tmp.find('/'):
-                tmp = tmp[:tmp.find('/')]
-            v = tmp.split('-')
-            try:
-                range_from = int(v[0])
-            except:
-                range_from = 0
-            try:
-                range_to = int(v[1])
-            except:
-                range_to = 18446744073709551615
-            print(range_from, range_to)
-    header, range_from, range_to, file = generate_file_data_package('CentOS-7-x86_64-DVD-1810.iso', range_from, range_to)
-    _tcpclient_.send(header)
-    while range_from <= range_to:
-        length = min(range_to - range_from + 1, 1024 * 1024 * 4)
-        data = file.read(length)
-        range_from += length
-        _tcpclient_.send(data)
+    request_header = parse_request_header(_data_.decode().split('\r\n\r\n')[0])
+    print(json.dumps(request_header, indent=4))
+    host_name = request_header['host']
+    config = server_configs[host_name] if host_name in server_configs else server_configs['default']
+    print(json.dumps(config, indent=4))
+    # header, range_from, range_to, file = generate_file_data_package('CentOS-7-x86_64-DVD-1810.iso', range_from,range_to)
+    # _tcpclient_.send(header)
+    # while range_from <= range_to:
+    #     length = min(range_to - range_from + 1, 1024 * 1024 * 4)
+    #     data = file.read(length)
+    #     range_from += length
+    #     _tcpclient_.send(data)
+    _tcpclient_.send('HTTP/1.1 200 OK\r\nServer: Apache\r\n\r\nhello'.encode())
     _tcpclient_.close()
 
 
