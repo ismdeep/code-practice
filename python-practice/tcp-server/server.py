@@ -1,13 +1,25 @@
+import json
 import os
 from socket import *
 import _thread
-import time
 from time import gmtime, strftime
 
 HOST = '0.0.0.0'
-PORT = 11113
+PORT = 80
 BUFSIZE = 4096
 ADDR = (HOST, PORT)
+
+server_configs = None
+
+
+def load_config_list():
+    configs = {}
+    for root, dirs, files in os.walk('config'):
+        for file in files:
+            with open('config/%s' % file, 'r') as f:
+                obj = json.loads(f.read())
+                configs[obj['server_name']] = obj
+    return configs
 
 
 def generate_data_package(_content_):
@@ -71,6 +83,8 @@ def tcp_handle(_tcpclient_):
 
 
 def main():
+    global server_configs
+    server_configs = load_config_list()
     tcpserver = socket(AF_INET, SOCK_STREAM)
     tcpserver.bind(ADDR)
     tcpserver.listen(10)
