@@ -1,7 +1,8 @@
 import json
 import os
+import platform
 from socket import *
-import _thread
+import threading
 from time import gmtime, strftime
 
 HOST = '0.0.0.0'
@@ -10,6 +11,8 @@ BUFSIZE = 4096
 ADDR = (HOST, PORT)
 
 server_configs = None
+
+directory_separator: str = '/'
 
 
 def load_config_list():
@@ -77,6 +80,15 @@ def parse_request_header(_data_):
     return request_header
 
 
+def parse_file_path(_config_, _url_):
+    _path_ = _config_['root']
+    sections = _url_.split('/')
+    for section in sections:
+        if len(section) > 0:
+            _path_ += directory_separator + section
+    return _path_
+
+
 def generate_data_package(_content_):
     ans = ('HTTP/1.1 200 OK\r\n'
            'Date: %(datetime)s\r\n'
@@ -100,34 +112,70 @@ def generate_file_data_package(_file_path_, _range_from_, _range_to_):
     ans += 'HTTP/1.1 200 OK\r\n'
     ans += 'Date: %s\r\n' % strftime("%a, %d %b %Y %H:%M:%S GMT", gmtime())
     ans += 'Server: Apache\r\n'
-    ans += 'Accept-Ranges: bytes\r\n'
     ans += 'Content-Length: %d\r\n' % file_size
-    ans += 'Cache-Control: max-age=600\r\n'
     ans += 'Connection: close\r\n'
-    ans += 'Content-Type: application/x-msdownload\r\n\r\n'
+    ans += 'Content-Type: text/html;charset=utf-8\r\n\r\n'
     return ans.encode(), _range_from_, _range_to_, f
+
+
+def generate_404(_config_):
+    file_path = _config_['root'] + directory_separator + _config_['error_page_404']
+    file_size = os.path.getsize(file_path)
+    f = open(file_path, 'rb')
+    ans = ''
+    ans += 'HTTP/1.1 404 Not Found\r\n'
+    ans += 'Server: Honix\r\n'
+    ans += 'Date: %s\r\n' % strftime("%a, %d %b %Y %H:%M:%S GMT", gmtime())
+    # ans += 'Accept-Ranges: bytes\r\n'
+    ans += 'Content-Length: %d\r\n' % file_size
+    # ans += 'Cache-Control: max-age=600\r\n'
+    ans += 'Connection: close\r\n'
+    ans += 'Status: 404\r\n'
+    ans += 'Content-Type: text/html;charset=utf-8\r\n\r\n'
+    return ans.encode(), f
 
 
 def tcp_handle(_tcpclient_):
     _data_ = _tcpclient_.recv(BUFSIZE)
     request_header = parse_request_header(_data_.decode().split('\r\n\r\n')[0])
-    print(json.dumps(request_header, indent=4))
+    print(request_header)
     host_name = request_header['host']
     config = server_configs[host_name] if host_name in server_configs else server_configs['default']
-    print(json.dumps(config, indent=4))
-    # header, range_from, range_to, file = generate_file_data_package('CentOS-7-x86_64-DVD-1810.iso', range_from,range_to)
-    # _tcpclient_.send(header)
-    # while range_from <= range_to:
-    #     length = min(range_to - range_from + 1, 1024 * 1024 * 4)
-    #     data = file.read(length)
-    #     range_from += length
-    #     _tcpclient_.send(data)
-    _tcpclient_.send('HTTP/1.1 200 OK\r\nServer: Apache\r\n\r\nhello'.encode())
-    _tcpclient_.close()
+    file_path = parse_file_path(config, request_header['url'])
+    if os.path.isdir(file_path):
+        if os.path.isfile(file_path + directory_separator + config['default_file']):
+            file_path = file_path + directory_separator + config['default_file']
+            header, range_from, range_to, file = generate_file_data_package(file_path, 0, 239847289374927)
+            _tcpclient_.send(header)
+            while range_from <= range_to:
+                length = min(range_to - range_from + 1, 1024 * 1024 * 4)
+                data = file.read(length)
+                range_from += length
+                _tcpclient_.send(data)
+            _tcpclient_.close()
+        else:
+            '''send back file list'''
+    elif os.path.isfile(file_path):
+        header, range_from, range_to, file = generate_file_data_package(file_path, 0, 239847289374927)
+        _tcpclient_.send(header)
+        while range_from <= range_to:
+            length = min(range_to - range_from + 1, 1024 * 1024 * 4)
+            data = file.read(length)
+            range_from += length
+            _tcpclient_.send(data)
+        _tcpclient_.close()
+    else:
+        header, file = generate_404(config)
+        _tcpclient_.send(header)
+        _tcpclient_.send(file.read())
+        _tcpclient_.close()
 
 
 def main():
     global server_configs
+    global directory_separator
+    if 'Windows' == platform.system():
+        directory_separator = '\\'
     server_configs = load_config_list()
     tcpserver = socket(AF_INET, SOCK_STREAM)
     tcpserver.bind(ADDR)
@@ -135,7 +183,7 @@ def main():
     print('waiting for connection...')
     while True:
         tcpclient, addr = tcpserver.accept()
-        _thread.start_new_thread(tcp_handle, (tcpclient,))
+        threading.Thread(target=tcp_handle, args=(tcpclient,)).start()
 
 
 if __name__ == '__main__':
