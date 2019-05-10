@@ -155,6 +155,8 @@ def tcp_handle(_tcpclient_):
             _tcpclient_.close()
         else:
             '''send back file list'''
+            _tcpclient_.send('test'.encode())
+            _tcpclient_.close()
     elif os.path.isfile(file_path):
         header, range_from, range_to, file = generate_file_data_package(file_path, 0, 239847289374927)
         _tcpclient_.send(header)
