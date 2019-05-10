@@ -3,6 +3,5 @@
   "root": "D:\\htdocs\\dev.server.ismdeep.com",
   "server": "HonixD",
   "default_file": "index.html",
-  "error_page_404": "404.html",
-  "error_page_502": "502.html"
+  "tpl": "D:\\projects\\code-practice\\python-practice\\http-server\\tpl\\download"
 }
