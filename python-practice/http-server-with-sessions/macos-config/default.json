@@ -1,0 +1,7 @@
+{
+  "server_name": "default",
+  "root": "/data/tmp/htdocs/default",
+  "server": "Honix",
+  "default_file": "index.html",
+  "tpl": "/data/code-practice/python-practice/http-server-with-sessions/macos-tpl/default"
+}

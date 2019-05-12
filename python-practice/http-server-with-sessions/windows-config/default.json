@@ -1,0 +1,7 @@
+{
+  "server_name": "default",
+  "root": "D:\\htdocs\\default",
+  "server": "Honix",
+  "default_file": "index.html",
+  "tpl": "D:\\projects\\code-practice\\python-practice\\http-server\\tpl\\default"
+}

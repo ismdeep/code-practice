@@ -1,0 +1,7 @@
+{
+  "server_name": "dev.server.ismdeep.com",
+  "root": "D:\\htdocs\\dev.server.ismdeep.com",
+  "server": "HonixD",
+  "default_file": "index.html",
+  "tpl": "D:\\projects\\code-practice\\python-practice\\http-server\\tpl\\download"
+}

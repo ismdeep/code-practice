@@ -1,0 +1,7 @@
+{
+  "server_name": "dev.server.ismdeep.com",
+  "root": "/data/tmp/htdocs/dev.server.ismdeep.com",
+  "server": "HonixD",
+  "default_file": "index.html",
+  "tpl": "/data/code-practice/python-practice/http-server-with-sessions/macos-tpl/download"
+}
