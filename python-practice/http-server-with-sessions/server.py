@@ -3,7 +3,6 @@ import os
 import platform
 from socket import *
 import threading
-from time import gmtime, strftime
 from urllib.parse import unquote
 from ismdeep_utils import ArgvUtil
 import random
@@ -100,7 +99,9 @@ def parse_file_type(_file_path_):
 
 
 def dump_response_header(_response_header_):
+    print('---- Response Header ----')
     print(_response_header_)
+    return ''
 
 
 def send_file_data_handle(_config_, _response_header_, _tcpclient_, _file_path_):
@@ -109,12 +110,6 @@ def send_file_data_handle(_config_, _response_header_, _tcpclient_, _file_path_)
     range_from = 0
     file = open(_file_path_, 'rb')
     headers = dump_response_header(_response_header_) + '\r\n'
-    # headers += 'HTTP/1.1 200 OK\r\n'
-    # headers += 'Date: %s\r\n' % strftime("%a, %d %b %Y %H:%M:%S GMT", gmtime())
-    # headers += 'Server: %s\r\n' % _config_['server']
-    # headers += 'Content-Length: %d\r\n' % file_size
-    # headers += 'Connection: close\r\n'
-    # headers += 'Content-Type: %s\r\n\r\n' % parse_file_type(_file_path_)
     _tcpclient_.send(headers.encode())
     while range_from <= range_to:
         length = min(range_to - range_from + 1, 1024 * 1024 * 4)
@@ -134,12 +129,6 @@ def get_files(_file_path_):
 def send_file_list_handle(_config_, _response_header_, _tcp_client_, _file_path_):
     dirs, files = get_files(_file_path_)
     headers = dump_response_header(_response_header_) + '\r\n'
-    # headers = ''
-    # headers += 'HTTP/1.1 200 OK\r\n'
-    # headers += 'Date: %s\r\n' % strftime("%a, %d %b %Y %H:%M:%S GMT", gmtime())
-    # headers += 'Server: %s\r\n' % _config_['server']
-    # headers += 'Connection: close\r\n'
-    # headers += 'Content-Type: text/html;charset=utf-8\r\n\r\n'
     content = open(_config_['tpl'] + directory_separator + 'file-list.html', 'r').read()
     content_file = open(_config_['tpl'] + directory_separator + 'file-list-file.html', 'r').read()
     content_dir = open(_config_['tpl'] + directory_separator + 'file-list-dir.html', 'r').read()
@@ -165,14 +154,6 @@ def send_404_handle(_config_, _response_header_, _tcp_client_):
     file_size = os.path.getsize(file_path)
     f = open(file_path, 'rb')
     headers = dump_response_header(_response_header_)
-    # headers = ''
-    # headers += 'HTTP/1.1 404 Not Found\r\n'
-    # headers += 'Server: %s\r\n' % _config_['server']
-    # headers += 'Date: %s\r\n' % strftime("%a, %d %b %Y %H:%M:%S GMT", gmtime())
-    # headers += 'Content-Length: %d\r\n' % file_size
-    # headers += 'Connection: close\r\n'
-    # headers += 'Status: 404\r\n'
-    # headers += 'Content-Type: text/html;charset=utf-8\r\n\r\n'
     _tcp_client_.send(headers.encode())
     _tcp_client_.send(f.read())
     _tcp_client_.close()
@@ -183,14 +164,6 @@ def send_502_handle(_config_, _response_header_, _tcp_client_):
     file_size = os.path.getsize(file_path)
     f = open(file_path, 'rb')
     headers = dump_response_header(_response_header_) + '\r\n'
-    # headers = ''
-    # headers += 'HTTP/1.1 502\r\n'
-    # headers += 'Server: Honix\r\n'
-    # headers += 'Date: %s\r\n' % strftime("%a, %d %b %Y %H:%M:%S GMT", gmtime())
-    # headers += 'Content-Length: %d\r\n' % file_size
-    # headers += 'Connection: close\r\n'
-    # headers += 'Status: 502\r\n'
-    # headers += 'Content-Type: text/html;charset=utf-8\r\n\r\n'
     _tcp_client_.send(headers.encode())
     _tcp_client_.send(f.read())
     _tcp_client_.close()
@@ -198,13 +171,6 @@ def send_502_handle(_config_, _response_header_, _tcp_client_):
 
 def send_redirect_data_handle(_config_, _response_header_, _tcp_client_, _redirect_url_):
     headers = dump_response_header(_response_header_) + '\r\n'
-    # headers = ''
-    # headers += 'HTTP/1.1 301 Moved Permanently\r\n'
-    # headers += 'Server: Honix\r\n'
-    # headers += 'Date: %s\r\n' % strftime("%a, %d %b %Y %H:%M:%S GMT", gmtime())
-    # headers += 'Connection: close\r\n'
-    # headers += 'Location: %s\r\n' % _redirect_url_
-    # headers += 'Content-Type: text/html;charset=utf-8\r\n\r\n'
     _tcp_client_.send(headers.encode())
     _tcp_client_.close()
 
@@ -249,13 +215,13 @@ def main():
     if 'Windows' == platform.system():
         directory_separator = '\\'
     server_configs = load_config_list(ArgvUtil.get_sys_argv('-config'))
-    tcpserver = socket(AF_INET, SOCK_STREAM)
-    tcpserver.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1)
-    tcpserver.bind(ADDR)
-    tcpserver.listen(10)
+    tcp_server = socket(AF_INET, SOCK_STREAM)
+    tcp_server.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1)
+    tcp_server.bind(ADDR)
+    tcp_server.listen(10)
     print('waiting for connection...')
     while True:
-        tcp_client, addr = tcpserver.accept()
+        tcp_client, addr = tcp_server.accept()
         threading.Thread(target=tcp_handle, args=(tcp_client,)).start()
 
 
