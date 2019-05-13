@@ -8,7 +8,6 @@ from urllib.parse import unquote
 from ismdeep_utils import ArgvUtil
 import random
 
-
 HOST = '0.0.0.0'
 PORT = 80
 BUFSIZE = 4096
@@ -21,6 +20,17 @@ PT_EMPT = 0
 server_configs = None
 
 directory_separator: str = '/'
+
+sessions = dict()
+
+
+def do_login(_username_, _password_):
+    user_list = {
+        'ismdeep': '123456',
+        'admin': 'nimda',
+        'guest': 'tseug'
+    }
+    return True if _username_ in user_list and _password_ == user_list[_username_] else False
 
 
 def generate_session_id():
@@ -100,15 +110,13 @@ def parse_file_type(_file_path_):
 
 
 def dump_response_header(_response_header_):
-    print('---- Response Header ----')
-    print(_response_header_)
     header = ''
     if _response_header_['Status'] == 200:
         header += 'HTTP/1.1 200 OK\r\n'
     elif _response_header_['Status'] == 404:
         header += 'HTTP/1.1 404 Not Found\r\n'
-    elif _response_header_['Status'] == 302:
-        header += 'HTTP/1.1 302 Moved Permantly\r\n'
+    elif _response_header_['Status'] == 301:
+        header += 'HTTP/1.1 301 Moved Permanently\r\n'
     else:
         header += 'HTTP/1.1 200 OK\r\n'
     header += 'Date: %s\r\n' % strftime("%a, %d %b %Y %H:%M:%S GMT", gmtime())
@@ -118,25 +126,44 @@ def dump_response_header(_response_header_):
         header += 'Cookie: %s\r\n' % _response_header_['Cookie']
     if 'Set-Cookie' in _response_header_:
         header += 'Set-Cookie: %s\r\n' % _response_header_['Set-Cookie']
-    try:
+    if 'Location' in _response_header_:
+        header += 'Location: %s\r\n' % _response_header_['Location']
+    if 'Content-Length' in _response_header_:
         header += 'Content-Length: %d\r\n' % _response_header_['Content-Length']
-    except:
-        pass
-    try:
-        header += 'Content-Type: %s\r\n\r\n' % _response_header_['Content-Type']
-    except:
-        pass
+    if 'Content-Type' in _response_header_:
+        header += 'Content-Type: %s\r\n' % _response_header_['Content-Type']
+    header += '\r\n'
     return header
 
 
 def send_file_data_handle(_config_, _response_header_, _tcp_client_, _file_path_):
+    print(_file_path_)
+    print(_response_header_)
+    _cookie_id_ = _response_header_['Cookie'] if 'Cookie' in _response_header_ else _response_header_['Set-Cookie']
+    print(_cookie_id_)
+    print('username: {%s}' % get_cookie_value(_cookie_id_))
+    is_html = False
+    if 'html' == _file_path_[_file_path_.rfind('.') + 1:].strip().lower():
+        is_html = True
     file_size = os.path.getsize(_file_path_)
     range_to = file_size - 1
     range_from = 0
     file = open(_file_path_, 'rb')
+    if is_html:
+        content = file.read().decode()
+        print(content)
+        content = content.replace('{$cookie}', _cookie_id_)
+        content = content.replace('{$session_value}', get_cookie_value(_cookie_id_))
+        _response_header_['Content-Length'] = len(content.encode())
+        _response_header_['Content-Type'] = parse_file_type(_file_path_)
+        headers = dump_response_header(_response_header_)
+        _tcp_client_.send(headers.encode())
+        _tcp_client_.send(content.encode())
+        _tcp_client_.close()
+        return
     _response_header_['Content-Length'] = file_size
     _response_header_['Content-Type'] = parse_file_type(_file_path_)
-    headers = dump_response_header(_response_header_) + '\r\n'
+    headers = dump_response_header(_response_header_)
     _tcp_client_.send(headers.encode())
     while range_from <= range_to:
         length = min(range_to - range_from + 1, 1024 * 1024 * 4)
@@ -144,7 +171,6 @@ def send_file_data_handle(_config_, _response_header_, _tcp_client_, _file_path_
         range_from += length
         _tcp_client_.send(data)
     _tcp_client_.close()
-    print('%s done' % _file_path_)
 
 
 def get_files(_file_path_):
@@ -174,7 +200,7 @@ def send_file_list_handle(_config_, _response_header_, _tcp_client_, _file_path_
     content = content.replace('{$dirs}', content_dirs)
     _response_header_['Content-Length'] = len(content.encode())
     _response_header_['Content-Type'] = 'text/html;charset=utf-8'
-    headers = dump_response_header(_response_header_) + '\r\n'
+    headers = dump_response_header(_response_header_)
     _tcp_client_.send(headers.encode())
     _tcp_client_.send(content.encode())
     _tcp_client_.close()
@@ -198,7 +224,7 @@ def send_502_handle(_config_, _response_header_, _tcp_client_):
     f = open(file_path, 'rb')
     _response_header_['Content-Length'] = file_size
     _response_header_['Content-Type'] = 'text/html;charset=utf-8'
-    headers = dump_response_header(_response_header_) + '\r\n'
+    headers = dump_response_header(_response_header_)
     _tcp_client_.send(headers.encode())
     _tcp_client_.send(f.read())
     _tcp_client_.close()
@@ -206,7 +232,8 @@ def send_502_handle(_config_, _response_header_, _tcp_client_):
 
 def send_redirect_data_handle(_config_, _response_header_, _tcp_client_, _redirect_url_):
     _response_header_['Content-Type'] = 'text/html;charset=utf-8'
-    headers = dump_response_header(_response_header_) + '\r\n'
+    _response_header_['Location'] = _redirect_url_
+    headers = dump_response_header(_response_header_)
     _tcp_client_.send(headers.encode())
     _tcp_client_.close()
 
@@ -214,20 +241,16 @@ def send_redirect_data_handle(_config_, _response_header_, _tcp_client_, _redire
 def tcp_handle(_tcp_client_):
     _data_ = _tcp_client_.recv(BUFSIZE)
     request_header = parse_request_header(_data_.decode().split('\r\n\r\n')[0])
-    print(request_header)
     response_header = {}
     if 'cookie' in request_header:
         response_header['Cookie'] = request_header['cookie']
     else:
         response_header['Set-Cookie'] = generate_session_id()
-    print(response_header)
     '''parse response header'''
-    print(request_header)
     host_name = request_header['host']
     config = server_configs[host_name] if host_name in server_configs else server_configs['default']
     response_header['Server'] = config['server']
     response_header['Status'] = 200
-
     file_path = parse_file_path(config, parse_header_http_2_url( request_header['http']))
     if os.path.isfile(file_path):
         send_file_data_handle(config, response_header, _tcp_client_, file_path)
@@ -235,17 +258,45 @@ def tcp_handle(_tcp_client_):
     if os.path.isdir(file_path) and os.path.isfile(file_path + directory_separator + config['default_file']):
         send_file_data_handle(config, response_header, _tcp_client_, file_path + directory_separator + config['default_file'])
         return
-    _url_ =  parse_header_http_2_url(request_header['http'])
+    _url_ = parse_header_http_2_url(request_header['http'])
     if os.path.isdir(file_path) and _url_[len(_url_)-1:] != '/':
-        response_header['Status'] = 302
-        send_redirect_data_handle(config, response_header, _tcp_client_, 'http://' + request_header['host'] + request_header['url'] + '/')
+        response_header['Status'] = 301
+        send_redirect_data_handle(config, response_header, _tcp_client_, 'http://' + request_header['host'] + parse_header_http_2_url(request_header['http']) + '/')
         return
     if os.path.isdir(file_path):
         '''send back file list'''
         send_file_list_handle(config, response_header, _tcp_client_, file_path)
         return
+    if '/api/login' == _url_:
+        cookie_id = None
+        if 'cookie' not in request_header:
+            cookie_id = response_header['Set-Cookie']
+        else:
+            cookie_id = request_header['cookie']
+        args = request_header['http'].split(' ')[1].split('?')[1]
+        obj = args_to_obj(args)
+        set_cookie_value(cookie_id, obj['username'] if 'username' in obj and do_login(obj['username'], obj['password']) else '')
     response_header['Status'] = 404
     send_404_handle(config, response_header, _tcp_client_)
+
+
+def set_cookie_value(_cookie_id_, _value_):
+    global sessions
+    sessions[_cookie_id_] = _value_
+    print(sessions)
+
+
+def get_cookie_value(_cookie_id_):
+    return sessions[_cookie_id_] if _cookie_id_ in sessions else ''
+
+
+def args_to_obj(_args_):
+    items = _args_.split('&')
+    obj = {}
+    for item in items:
+        k, v = item.split('=')
+        obj[k] = v
+    return obj
 
 
 def main():
@@ -258,7 +309,6 @@ def main():
     tcp_server.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1)
     tcp_server.bind(ADDR)
     tcp_server.listen(10)
-    print('waiting for connection...')
     while True:
         tcp_client, addr = tcp_server.accept()
         threading.Thread(target=tcp_handle, args=(tcp_client,)).start()
