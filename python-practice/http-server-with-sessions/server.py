@@ -3,6 +3,7 @@ import os
 import platform
 from socket import *
 import threading
+from time import strftime, gmtime
 from urllib.parse import unquote
 from ismdeep_utils import ArgvUtil
 import random
@@ -101,22 +102,49 @@ def parse_file_type(_file_path_):
 def dump_response_header(_response_header_):
     print('---- Response Header ----')
     print(_response_header_)
-    return ''
+    header = ''
+    if _response_header_['Status'] == 200:
+        header += 'HTTP/1.1 200 OK\r\n'
+    elif _response_header_['Status'] == 404:
+        header += 'HTTP/1.1 404 Not Found\r\n'
+    elif _response_header_['Status'] == 302:
+        header += 'HTTP/1.1 302 Moved Permantly\r\n'
+    else:
+        header += 'HTTP/1.1 200 OK\r\n'
+    header += 'Date: %s\r\n' % strftime("%a, %d %b %Y %H:%M:%S GMT", gmtime())
+    header += 'Server: %s\r\n' % _response_header_['Server']
+    header += 'Connection: close\r\n'
+    if 'Cookie' in _response_header_:
+        header += 'Cookie: %s\r\n' % _response_header_['Cookie']
+    if 'Set-Cookie' in _response_header_:
+        header += 'Set-Cookie: %s\r\n' % _response_header_['Set-Cookie']
+    try:
+        header += 'Content-Length: %d\r\n' % _response_header_['Content-Length']
+    except:
+        pass
+    try:
+        header += 'Content-Type: %s\r\n\r\n' % _response_header_['Content-Type']
+    except:
+        pass
+    return header
 
 
-def send_file_data_handle(_config_, _response_header_, _tcpclient_, _file_path_):
+def send_file_data_handle(_config_, _response_header_, _tcp_client_, _file_path_):
     file_size = os.path.getsize(_file_path_)
     range_to = file_size - 1
     range_from = 0
     file = open(_file_path_, 'rb')
+    _response_header_['Content-Length'] = file_size
+    _response_header_['Content-Type'] = parse_file_type(_file_path_)
     headers = dump_response_header(_response_header_) + '\r\n'
-    _tcpclient_.send(headers.encode())
+    _tcp_client_.send(headers.encode())
     while range_from <= range_to:
         length = min(range_to - range_from + 1, 1024 * 1024 * 4)
         data = file.read(length)
         range_from += length
-        _tcpclient_.send(data)
-    _tcpclient_.close()
+        _tcp_client_.send(data)
+    _tcp_client_.close()
+    print('%s done' % _file_path_)
 
 
 def get_files(_file_path_):
@@ -128,7 +156,7 @@ def get_files(_file_path_):
 
 def send_file_list_handle(_config_, _response_header_, _tcp_client_, _file_path_):
     dirs, files = get_files(_file_path_)
-    headers = dump_response_header(_response_header_) + '\r\n'
+
     content = open(_config_['tpl'] + directory_separator + 'file-list.html', 'r').read()
     content_file = open(_config_['tpl'] + directory_separator + 'file-list-file.html', 'r').read()
     content_dir = open(_config_['tpl'] + directory_separator + 'file-list-dir.html', 'r').read()
@@ -144,6 +172,9 @@ def send_file_list_handle(_config_, _response_header_, _tcp_client_, _file_path_
         content_dirs += tmp
     content = content.replace('{$files}', content_files)
     content = content.replace('{$dirs}', content_dirs)
+    _response_header_['Content-Length'] = len(content.encode())
+    _response_header_['Content-Type'] = 'text/html;charset=utf-8'
+    headers = dump_response_header(_response_header_) + '\r\n'
     _tcp_client_.send(headers.encode())
     _tcp_client_.send(content.encode())
     _tcp_client_.close()
@@ -153,6 +184,8 @@ def send_404_handle(_config_, _response_header_, _tcp_client_):
     file_path = _config_['tpl'] + directory_separator + '404.html'
     file_size = os.path.getsize(file_path)
     f = open(file_path, 'rb')
+    _response_header_['Content-Length'] = file_size
+    _response_header_['Content-Type'] = 'text/html;charset=utf-8'
     headers = dump_response_header(_response_header_)
     _tcp_client_.send(headers.encode())
     _tcp_client_.send(f.read())
@@ -163,6 +196,8 @@ def send_502_handle(_config_, _response_header_, _tcp_client_):
     file_path = _config_['tpl'] + directory_separator + '404.html'
     file_size = os.path.getsize(file_path)
     f = open(file_path, 'rb')
+    _response_header_['Content-Length'] = file_size
+    _response_header_['Content-Type'] = 'text/html;charset=utf-8'
     headers = dump_response_header(_response_header_) + '\r\n'
     _tcp_client_.send(headers.encode())
     _tcp_client_.send(f.read())
@@ -170,6 +205,7 @@ def send_502_handle(_config_, _response_header_, _tcp_client_):
 
 
 def send_redirect_data_handle(_config_, _response_header_, _tcp_client_, _redirect_url_):
+    _response_header_['Content-Type'] = 'text/html;charset=utf-8'
     headers = dump_response_header(_response_header_) + '\r\n'
     _tcp_client_.send(headers.encode())
     _tcp_client_.close()
@@ -190,6 +226,7 @@ def tcp_handle(_tcp_client_):
     host_name = request_header['host']
     config = server_configs[host_name] if host_name in server_configs else server_configs['default']
     response_header['Server'] = config['server']
+    response_header['Status'] = 200
 
     file_path = parse_file_path(config, parse_header_http_2_url( request_header['http']))
     if os.path.isfile(file_path):
@@ -200,12 +237,14 @@ def tcp_handle(_tcp_client_):
         return
     _url_ =  parse_header_http_2_url(request_header['http'])
     if os.path.isdir(file_path) and _url_[len(_url_)-1:] != '/':
+        response_header['Status'] = 302
         send_redirect_data_handle(config, response_header, _tcp_client_, 'http://' + request_header['host'] + request_header['url'] + '/')
         return
     if os.path.isdir(file_path):
         '''send back file list'''
         send_file_list_handle(config, response_header, _tcp_client_, file_path)
         return
+    response_header['Status'] = 404
     send_404_handle(config, response_header, _tcp_client_)
 
 
