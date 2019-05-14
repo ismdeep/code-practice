@@ -1,0 +1,7 @@
+{
+  "server_name": "default",
+  "root": "/home/ismdeep/htdocs/default",
+  "server": "Honix",
+  "default_file": "index.html",
+  "tpl": "/home/ismdeep/projects/code-practice/python-practice/http-server-with-sessions/linux-tpl/default"
+}
