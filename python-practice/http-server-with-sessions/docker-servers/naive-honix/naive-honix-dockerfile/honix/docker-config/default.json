@@ -1,0 +1,7 @@
+{
+  "server_name": "default",
+  "root": "/opt/honix/docker-htdocs/default",
+  "server": "Honix",
+  "default_file": "index.html",
+  "tpl": "/opt/honix/docker-tpl/default"
+}
