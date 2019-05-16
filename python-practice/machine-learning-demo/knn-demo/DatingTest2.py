@@ -3,13 +3,8 @@
 # dateime: 2019-05-14 10:00:59
 # filename: app.py
 # blog: https://ismdeep.com
-import numpy as np
 from numpy import *
-import operator
-from sklearn.datasets import make_blobs
 from sklearn.neighbors import KNeighborsClassifier
-import matplotlib.pyplot as plt
-from sklearn.model_selection import train_test_split
 
 
 # get dataset from file
