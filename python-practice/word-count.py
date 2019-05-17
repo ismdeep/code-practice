@@ -5,8 +5,26 @@
 # blog: https://ismdeep.com
 
 from collections import Counter
+from ismdeep_utils import ArgvUtil
 
-Text = open('/Users/ismdeep/Downloads/sss.txt', 'r').read()
+
+def show_help():
+    print('Usage: python word-count.py -exclude simple-list.txt -in article.txt')
+    exit(0)
+
+
+if '' == ArgvUtil.get_sys_argv('-exclude') or '' == ArgvUtil.get_sys_argv('-in'):
+    show_help()
+    exit(0)
+
+
+simple_words = []
+with open(ArgvUtil.get_sys_argv('-exclude'), 'r') as f:
+    for line in f.readlines():
+        simple_words.append(line.strip())
+
+
+Text = open(ArgvUtil.get_sys_argv('-in'), 'r').read()
 for char in '·~!@#$%^&*()_+=0123456789`[]{}\|:;\"\',./<>?':
     Text = Text.replace(char, ' ')
 Text = Text.lower()
@@ -21,5 +39,5 @@ for key, value in d.items():
 
 word_freq.sort(reverse=True)
 for cnt, word in word_freq:
-    if len(word) > 2:
+    if len(word) > 2 and word not in simple_words:
         print(word)

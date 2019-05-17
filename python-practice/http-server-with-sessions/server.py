@@ -7,6 +7,7 @@ from time import strftime, gmtime
 from urllib.parse import unquote
 from ismdeep_utils import ArgvUtil
 import random
+from redis import Redis
 
 HOST = '0.0.0.0'
 PORT = 80
@@ -22,6 +23,17 @@ server_configs = None
 directory_separator: str = '/'
 
 sessions = dict()
+
+
+def set_cookie_value(_cookie_id_, _value_):
+    redis_client = Redis(host='127.0.0.1', port=6379, decode_responses=True, db=0)
+    redis_client.set(_cookie_id_, _value_)
+
+
+def get_cookie_value(_cookie_id_):
+    redis_client = Redis(host='127.0.0.1', port=6379, decode_responses=True, db=0)
+    value = redis_client.get(_cookie_id_)
+    return '' if value is None else value
 
 
 def do_login(_username_, _password_):
@@ -304,14 +316,6 @@ def tcp_handle(_tcp_client_):
     send_404_handle(config, response_header, _tcp_client_)
 
 
-def set_cookie_value(_cookie_id_, _value_):
-    global sessions
-    sessions[_cookie_id_] = _value_
-    print(sessions)
-
-
-def get_cookie_value(_cookie_id_):
-    return sessions[_cookie_id_] if _cookie_id_ in sessions else ''
 
 
 def args_to_obj(_args_):

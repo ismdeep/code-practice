@@ -1,7 +1,0 @@
-{
-  "server_name": "dev.server.ismdeep.com",
-  "root": "/opt/honix/docker-htdocs/dev.server.ismdeep.com",
-  "server": "HonixD",
-  "default_file": "index.html",
-  "tpl": "/opt/honix/docker-tpl/dev.server.ismdeep.com"
-}
