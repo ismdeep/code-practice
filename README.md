@@ -15,3 +15,6 @@ Java
 
 JavaScript
 
+SBCL
+
+Guile

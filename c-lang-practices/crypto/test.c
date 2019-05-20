@@ -26,17 +26,18 @@ int main(int argc, char const *argv[])
 	start = clock();
 	mcc crypt = mceliece_init(n0, p, w, t);
 	bin_matrix msg = mat_init(1, crypt->code->k);
-	print_matrix(msg);
 	//Initializing the message a random message
 	for(int i = 0; i < crypt->code->k; i++)
 	{
 		int z = rand() % 2;
 		set_matrix_element(msg, 0, i, z);
 	}
+    print_matrix(msg);
 
 	bin_matrix v = encrypt(msg, crypt);
 	print_matrix(v);
 	bin_matrix s = decrypt(v, crypt);
+	print_matrix(s);
 	
 	if(mat_is_equal(msg, s))
 	{

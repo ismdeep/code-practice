@@ -19,8 +19,9 @@ mdpc qc_mdpc_init(int n0, int p, int w, int t)
 	code->k = (n0 - 1) * p;
 	unsigned seed;
 	code->row = (unsigned short*)calloc(n0 * p, sizeof(unsigned short));
-	printf("Input seed or -1 to use default seed: ");
-	scanf("%u", &seed);
+//	printf("Input seed or -1 to use default seed: ");
+//	scanf("%u", &seed);
+    seed = -1;
 	time_t tx;
 	if(seed == -1)
 	{
