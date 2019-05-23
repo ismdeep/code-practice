@@ -5,10 +5,6 @@
 
 using namespace std;
 
-#define TIMES(id, n) for (int id = 0; id < (n); ++id)
-#define TIMESRANGE(id, from, to) for (int id = (from); id <= (to); ++id)
-#define TIMESREVERSE(id, fromlarge, tosmall) for (int id = (fromlarge); id >= (tosmall); --id)
-
 #define THREAD_SIZE 4
 
 int running_count = 0;
@@ -21,9 +17,7 @@ int fib(int n) {
 
 
 void thread_fun(int mm) {
-//    printf("entering thread_fun(%d)\n", mm);
     printf("%d: fib(%d)\n", mm, fib(42));
-//    printf("exiting thread_fun(%d)\n", mm);
     _mutex_.lock();
     --running_count;
     _mutex_.unlock();
