@@ -8,6 +8,15 @@ from collections import Counter
 from ismdeep_utils import ArgvUtil
 
 
+char_list = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+
+def has_special_char(_str_):
+    for item in list(_str_):
+        if item not in list(char_list):
+            return True
+    return False
+
+
 def show_help():
     print('Usage: python word-count.py -exclude simple-list.txt -in article.txt')
     exit(0)
@@ -36,8 +45,7 @@ for word in word_list:
 word_freq = []
 for key, value in d.items():
     word_freq.append((value, key))
-
 word_freq.sort(reverse=True)
 for cnt, word in word_freq:
-    if len(word) > 2 and word not in simple_words:
-        print(word)
+    if cnt > 1 and len(word) > 3 and word.lower() not in simple_words and (not has_special_char(word)):
+        print(word.lower())
