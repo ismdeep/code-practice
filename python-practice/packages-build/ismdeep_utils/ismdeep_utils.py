@@ -36,6 +36,13 @@ class ArgvUtil:
         return ''
 
 
+def get_sys_argv(_key_):
+    for i in range(len(sys.argv) - 1):
+        if sys.argv[i] == _key_:
+            return sys.argv[i + 1]
+    return ''
+
+
 class ReUtil:
     @staticmethod
     def findall(content, pattern_str):
