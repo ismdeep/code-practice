@@ -34,6 +34,13 @@ def win_test(game_board):
     return False
 
 
+def full_test(game_board):
+    for item in game_board:
+        if item is 0:
+            return False
+    return True
+
+
 def end_game_test(game_board):
     for item in game_board:
         if 0 == item:
@@ -60,6 +67,8 @@ def search(game_board):
             return game_win, _id_
     rival_nodes = []
     for _id_, node in next_nodes:
+        if full_test(node):
+            return game_equal, _id_
         flag, new_id = search(inverse(node))
         rival_nodes.append((flag, new_id))
     for flag, _id_ in rival_nodes:
@@ -73,7 +82,7 @@ def search(game_board):
 
 
 def main():
-    result, _id_ = search([0, 0, 0, 0, 0, 0, 0, 0, 0])
+    result, _id_ = search([1, 0, -1, -1, 1, 0, 1, 1, -1])
     print(result, _id_)
 
 
