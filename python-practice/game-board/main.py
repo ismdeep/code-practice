@@ -73,7 +73,7 @@ def search(game_board):
 
 
 def main():
-    result, id = search([1, 1, 0, 0, 0, 0, 0, 0, 0])
+    result, id = search([0, 0, 0, 0, 0, 0, 0, 0, 0])
     print(result, id)
 
 
