@@ -55,26 +55,26 @@ def search(game_board):
     if end_game_test(game_board):
         return game_equal, None
     next_nodes = generate_next_nodes(game_board)
-    for id, node in next_nodes:
+    for _id_, node in next_nodes:
         if win_test(node):
-            return game_win, id
+            return game_win, _id_
     rival_nodes = []
-    for id, node in next_nodes:
+    for _id_, node in next_nodes:
         flag, new_id = search(inverse(node))
         rival_nodes.append((flag, new_id))
-    for flag, id in rival_nodes:
+    for flag, _id_ in rival_nodes:
         if flag == game_lose:
-            return game_win, id
-    for flag, id in rival_nodes:
+            return game_win, _id_
+    for flag, _id_ in rival_nodes:
         if flag == game_equal:
-            return game_equal, id
-    flag, id = rival_nodes[0]
-    return game_lose, id
+            return game_equal, _id_
+    flag, _id_ = rival_nodes[0]
+    return game_lose, _id_
 
 
 def main():
-    result, id = search([0, 0, 0, 0, 0, 0, 0, 0, 0])
-    print(result, id)
+    result, _id_ = search([0, 0, 0, 0, 0, 0, 0, 0, 0])
+    print(result, _id_)
 
 
 main()
