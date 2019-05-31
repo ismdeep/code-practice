@@ -1,0 +1,5 @@
+(defun random-int32 ()
+  (with-open-file (s "/dev/random" :element-type '(unsigned-byte 32))
+    (read-byte s)))
+(let ((where-to-go #("书香阁" "猪脚饭" "过桥米线" "猪脚饭" "大食头" "板尚小哥" "惠莘园" "蒸菜")))
+	(format t "~A~%" (aref where-to-go (mod (random-int32) (length where-to-go)))))
