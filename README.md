@@ -1,4 +1,5 @@
 # code-practice
+
 Code Practice
 
 C
@@ -6,8 +7,6 @@ C
 C++
 
 Python
-
-Python-Design-Pattern
 
 Common Lisp
 
