@@ -81,9 +81,34 @@ def search(game_board):
     return game_lose, _id_
 
 
-def main():
+def game_board_to_string(_game_board_):
+    ans = ''
+    ans += '%d %d %d\n%d %d %d\n%d %d %d\n' % (
+        _game_board_[0], _game_board_[1], _game_board_[2], _game_board_[3], _game_board_[4], _game_board_[5],
+        _game_board_[6], _game_board_[7], _game_board_[8])
+    return ans
+
+
+def main_demo():
     result, _id_ = search([1, 0, -1, -1, 1, 0, 1, 1, -1])
     print(result, _id_)
 
 
-main()
+def main_human_first():
+    _game_board_ = [0, 0, 0, 0, 0, 0, 0, 0, 0]
+    print(game_board_to_string(_game_board_) + '\n')
+    while True:
+        _human_id_ = int(input())
+        _game_board_[_human_id_] = 1
+        print(game_board_to_string(_game_board_) + '\n')
+        result, _robot_id_ = search(inverse(_game_board_))
+        print(result, _robot_id_)
+        _game_board_[_robot_id_] = -1
+        print(game_board_to_string(_game_board_) + '\n')
+
+
+def main_robot_first():
+    pass
+
+
+main_human_first()
