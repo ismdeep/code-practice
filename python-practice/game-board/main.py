@@ -139,5 +139,5 @@ def main_robot_first():
         print(game_board_to_string(_game_board_))
 
 
-main_human_first()
-# main_robot_first()
+# main_human_first()
+main_robot_first()
