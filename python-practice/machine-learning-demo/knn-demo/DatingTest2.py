@@ -5,7 +5,7 @@
 # blog: https://ismdeep.com
 from numpy import *
 from sklearn.neighbors import KNeighborsClassifier
-
+import numpy as np
 
 # get dataset from file
 def file2matrix(filename):
@@ -69,4 +69,6 @@ def datingClassTest():
     print(errorCount)
 
 
-datingClassTest()
+if __name__ == '__main__':
+    datingClassTest()
+
