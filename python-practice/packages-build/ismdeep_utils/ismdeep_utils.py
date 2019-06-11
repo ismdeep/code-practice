@@ -24,7 +24,7 @@ import re
 from email.mime.text import MIMEText
 from email.header import Header
 
-__version__ = '0.0.8'
+__version__ = '0.0.9'
 
 
 class ArgvUtil:
@@ -149,3 +149,34 @@ class DateTimeUtil:
     @staticmethod
     def add_minute(_datetime_):
         return DateTimeUtil.parse_from_timestamp_to_datetime(DateTimeUtil.unix_timestamp(_datetime_) + 60)
+
+
+class Config:
+    data = None
+
+    def __init__(self):
+        self.data = dict()
+
+    def load(self, fp):
+        s = fp.read()
+        self.loads(s)
+
+    def loads(self, s):
+        s_list = list(map(str.strip, s.split('\n')))
+        for item in s_list:
+            if item.find('=') >= 0:
+                key = item[:item.find('=')].strip()
+                value = item[item.find('=')+1:].strip()
+                self.data[key] = value
+
+    def put(self, _key_, _value_):
+        self.data[_key_] = _value_
+
+    def dump(self):
+        ans = ''
+        for key in self.data:
+            ans += '''%s = %s\n''' % (key, str(self.data[key]))
+        return ans
+
+    def save(self, fp):
+        fp.write(self.dump())
