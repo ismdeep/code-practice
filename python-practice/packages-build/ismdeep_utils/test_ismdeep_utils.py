@@ -6,6 +6,7 @@
 
 from ismdeep_utils import DateTime
 from ismdeep_utils import Config
+from ismdeep_utils import QQEmailSender
 import unittest
 import random
 
@@ -53,6 +54,23 @@ class ConfigTester(unittest.TestCase):
         print(s)
         config.loads(s)
         print(config.dump())
+
+
+class QQEmailSenderTester(unittest.TestCase):
+    @staticmethod
+    def testSendEmail():
+        qqEmailSender = QQEmailSender('ismdeep@qq.com', '****************')
+        print(qqEmailSender.send_email('ismdeep@icloud.com', 'Hello', "Hello world.", "text"))
+
+    @staticmethod
+    def testSendEmailByText():
+        qqEmailSender = QQEmailSender('ismdeep@qq.com', '****************')
+        print(qqEmailSender.send_text_email('ismdeep@icloud.com', 'Hello', "Hello world."))
+
+    @staticmethod
+    def testSendEmailByHtml():
+        qqEmailSender = QQEmailSender('ismdeep@qq.com', '****************')
+        print(qqEmailSender.send_html_email('ismdeep@icloud.com', 'Hello', "<h1>Hello world.</h1>"))
 
 
 if __name__ == '__main__':

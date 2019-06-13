@@ -24,7 +24,7 @@ import re
 from email.mime.text import MIMEText
 from email.header import Header
 
-__version__ = '0.0.9'
+__version__ = '0.0.10'
 
 
 class ArgvUtil:
@@ -180,3 +180,37 @@ class Config:
 
     def save(self, fp):
         fp.write(self.dump())
+
+
+class QQEmailSender:
+    email = None
+    server = "smtp.qq.com"
+    port = 25
+    password = None
+
+    def __init__(self, _email_, _password_):
+        self.email = _email_
+        self.password = _password_
+
+    def send_email(self, to_email, title, content, content_type):
+        sender = self.email
+        receivers = to_email
+        message = MIMEText(content, content_type, 'utf-8')
+        message['From'] = self.email
+        message['To'] = to_email
+        subject = title
+        message['Subject'] = Header(subject, 'utf-8')
+        try:
+            smtp_obj = smtplib.SMTP()
+            smtp_obj.connect(self.server, self.port)
+            smtp_obj.login(sender, self.password)
+            smtp_obj.sendmail(sender, receivers, message.as_string())
+            return True
+        except smtplib.SMTPException:
+            return False
+
+    def send_text_email(self, to_email, title, content):
+        self.send_email(to_email, title, content, 'text')
+
+    def send_html_email(self, to_email, title, content):
+        self.send_email(to_email, title, content, 'html')
