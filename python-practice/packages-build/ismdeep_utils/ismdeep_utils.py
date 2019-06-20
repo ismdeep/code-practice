@@ -18,13 +18,14 @@
 
 import sys
 import smtplib
+import hashlib
 import time
 import datetime
 import re
 from email.mime.text import MIMEText
 from email.header import Header
 
-__version__ = '0.0.10'
+__version__ = '0.0.12'
 
 
 class ArgvUtil:
@@ -210,7 +211,19 @@ class QQEmailSender:
             return False
 
     def send_text_email(self, to_email, title, content):
-        self.send_email(to_email, title, content, 'text')
+        return self.send_email(to_email, title, content, 'text')
 
     def send_html_email(self, to_email, title, content):
-        self.send_email(to_email, title, content, 'html')
+        return self.send_email(to_email, title, content, 'html')
+
+
+class HashLibUtil:
+    @staticmethod
+    def md5(_bytes_):
+        m = hashlib.md5()
+        m.update(_bytes_)
+        return m.hexdigest()
+
+    @staticmethod
+    def md5_text(_text_):
+        return HashLibUtil.md5(_text_.encode())

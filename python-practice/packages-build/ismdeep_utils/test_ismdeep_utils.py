@@ -7,6 +7,7 @@
 from ismdeep_utils import DateTime
 from ismdeep_utils import Config
 from ismdeep_utils import QQEmailSender
+from ismdeep_utils import HashLibUtil
 import unittest
 import random
 
@@ -71,6 +72,12 @@ class QQEmailSenderTester(unittest.TestCase):
     def testSendEmailByHtml():
         qqEmailSender = QQEmailSender('ismdeep@qq.com', '****************')
         print(qqEmailSender.send_html_email('ismdeep@icloud.com', 'Hello', "<h1>Hello world.</h1>"))
+
+
+class HashLibUtilTester(unittest.TestCase):
+    @staticmethod
+    def testMd5():
+        print(HashLibUtil.md5_text('123456'))
 
 
 if __name__ == '__main__':
