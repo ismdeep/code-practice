@@ -10,11 +10,11 @@ from ismdeep_utils import QQEmailSender
 import requests
 import logging
 
+
 iacr_archives_file_path = 'iacr-archiveids.txt'
 
-
 logging.basicConfig(
-    filename='/data/python.log',
+    filename='python.log',
     level=logging.DEBUG,
     format='[%(asctime)s][%(filename)s][line:%(lineno)d] %(message)s',
     datefmt='%Y-%m-%d %H:%M:%S'
@@ -40,12 +40,13 @@ def save_archiveids(archiveids):
 
 
 def fetch_archive_list_from_site():
-    # req = requests.get(
-    #     url='https://eprint.iacr.org/complete/'
-    # )
-    # content = req.text
-    # with open('iacr.html', 'w') as f:
-    #     f.write(content)
+    req = requests.get(
+        url='https://eprint.iacr.org/complete/'
+    )
+    content = req.text
+    with open('iacr.html', 'w') as f:
+        f.write(content)
+    exit(0)
     content = open('iacr.html', 'r').read()
     archives = ReUtil.findall(content, '''<dt>\n<a href\="(.*?)">(.*?)</a>''')
     archiveids = set()
