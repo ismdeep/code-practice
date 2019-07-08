@@ -173,21 +173,37 @@ def main():
     <tbody>'''
     courses_data = []
     for course in courses:
+        new_flag = False
+        if course[0] not in last_course_ids:
+            new_flag = True
         course_ids.append(course[0])
         # print(course[0], course[1], course[6], course[8], course[12])
         logging.info('''{"课程": "%s", "平时成绩": %s, "考试成绩": %s, "最终成绩": %s}''' % (
             course[1], course[6], course[8], course[12]))
+        tmp_text = course[5]
+        tmp_text = tmp_text[tmp_text.find('</td>'):]
+        tmp_text = StringUtil.between(tmp_text, '\"center\">', '</td>').strip()
         courses_data.append({
             'course_name': course[1],
-            'score': StringUtil.between(course[12], '>', '<')
+            'score': StringUtil.between(course[12], '>', '<'),
+            'credit': tmp_text
         })
         course_info_text += '''<tr>
+        <td%s>%s</td>
         <td>%s</td>
         <td>%s</td>
         <td>%s</td>
-        <td>%s</td>
-    </tr>''' % (course[1], course[6], course[8], course[12])
+    </tr>''' % ( " style=\"color: green;\"" if new_flag else '',course[1], course[6], course[8], course[12])
     course_info_text += '''</tbody></table>'''
+    print(courses_data)
+    score_total = 0.00
+    credit_total = 0.00
+    for course_data in courses_data:
+        score_total += float(course_data['score']) * float(course_data['credit'])
+        credit_total += float(course_data['credit'])
+        print(course_data)
+    print(score_total / credit_total)
+    course_info_text += '''<p>绩点：%f<p>''' % (score_total / credit_total)
     try:
         push_data(json.dumps(courses_data))
     except Exception as e:
