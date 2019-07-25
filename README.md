@@ -10,13 +10,13 @@ Python
 
 Common Lisp
 
-Java
-
-JavaScript
-
 SBCL
 
 Guile
+
+Java
+
+JavaScript
 
 PHP
 
