@@ -73,7 +73,7 @@ func quickSortInts(a []int, sortOrder func(int, int) bool) {
 	if !sortOrder(a[left], a[end]) {
 		a[left], a[end] = a[end], a[left]
 	}
-	quickSortInts(a[:left], sortOrder)
+	quickSortInts(a[:right+1], sortOrder)
 	quickSortInts(a[left+1:], sortOrder)
 }
 
@@ -158,8 +158,8 @@ func testQuickSortInts(testCnt int) {
 
 
 func main() {
-	//testBubbleSortInts(1000)
-	//testSelectionSortInts(1000)
-	//testInsertionSortInts(1000)
+	testBubbleSortInts(1000)
+	testSelectionSortInts(1000)
+	testInsertionSortInts(1000)
 	testQuickSortInts(1000)
 }
