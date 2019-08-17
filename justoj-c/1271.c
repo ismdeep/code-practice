@@ -10,7 +10,7 @@ int cnt[MAXN], n;
 
 int main() {
 #ifndef ONLINE_JUDGE
-    freopen("../in.txt", "r", stdin);
+    freopen("in.txt", "r", stdin);
 #endif
     int t, ans;
     scanf("%d", &t);
