@@ -42,11 +42,14 @@ int main() {
 //            printf("x, y => %d %d\n", x, y);
             printf("%d ", a[x][y]);
             visited[x][y] = true;
-            if (visited[x + dir[0][0]][y + dir[0][1]] && visited[x + dir[1][0]][y + dir[1][1]] && visited[x + dir[2][0]][y + dir[2][1]] && visited[x + dir[3][0]][y + dir[3][1]]) {
-                break;
-            }
+//            if (visited[x + dir[0][0]][y + dir[0][1]] && visited[x + dir[1][0]][y + dir[1][1]] && visited[x + dir[2][0]][y + dir[2][1]] && visited[x + dir[3][0]][y + dir[3][1]]) {
+//                break;
+//            }
             if (visited[x + dir[dir_index][0]][y + dir[dir_index][1]]) {
                 dir_index = (dir_index + 1) % 4;
+                if (visited[x + dir[dir_index][0]][y + dir[dir_index][1]]) {
+                    break;
+                }
             }
             x = x + dir[dir_index][0];
             y = y + dir[dir_index][1];
