@@ -101,4 +101,62 @@ Day 08
    }
    ```
 
-6. 。。。
+6. Goroutine 和 Channel 相结合
+
+   ```go
+   package main
+   
+   import (
+   	"fmt"
+   	"time"
+   )
+   
+   func write(ch chan int) {
+   	for i := 0; i < 100; i++ {
+   		ch <- i
+   	}
+   }
+   
+   func read(ch chan int) {
+   	for {
+   		fmt.Println(<- ch)
+   	}
+   }
+   
+   func main() {
+   	intChan := make(chan int, 10)
+   	go write(intChan)
+   	go read(intChan)
+   
+   	time.Sleep(10 * time.Second)
+   }
+   ```
+
+7. Channel 阻塞
+
+8.  带缓冲区的 Channel
+
+9. Channel 之间的同步
+
+10. for range 遍历 Channel
+
+11. Channel 的关闭
+
+12. Channel 的只读和只写
+
+13. 对 Channel 进行 select 操作
+
+14. 定时器的使用
+
+15. 一次定时器
+
+16. 超时控制
+
+17. Goroutine 中使用 recover
+
+18. 。。。
+
+### 单元测试
+
+1. 文件必须以 `_test.go` 结尾
+2. 使用 `go test` 进行测试

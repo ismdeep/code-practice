@@ -2,39 +2,55 @@ package main
 
 import (
 	"fmt"
-	"sync"
-	"time"
+	"math"
 )
 
-var (
-	m = make(map[int]uint64)
-	lock sync.Mutex
-)
-
-type task struct {
-	n int
+func isPrime(n int) bool {
+	if n <= 1 {
+		return false
+	}
+	stop := int(math.Sqrt(float64(n)))
+	for i := 2; i <= stop; i++ {
+		if n % i == 0 {
+			return false
+		}
+	}
+	return true
 }
 
-func calc(t *task) {
-	var sum uint64
-	sum = 1
-	for i := 1; i <= t.n; i++ {
-		sum *= uint64(i)
+func calc(taskChan chan int, resultChan chan int, exitChan chan bool) {
+	for v := range taskChan {
+		if isPrime(v) {
+			resultChan <- v
+		}
 	}
-	lock.Lock()
-	m[t.n] = sum
-	lock.Unlock()
+	exitChan <- true
 }
 
 func main() {
-	for i := 0; i < 10; i++ {
-		t := &task{n:i}
-		go calc(t)
-	}
-	time.Sleep(1 * time.Second)
+	intChan := make(chan int, 1000)
+	resultChan := make(chan int, 1000)
+	exitChan := make(chan bool, 8)
+	go func() {
+		for i := 0; i < 100000; i++ {
+			intChan <- i
+		}
+		close(intChan)
+	}()
 
-	lock.Lock()
-	for k, v := range m {
-		fmt.Printf("%d! = %v\n", k, v)
+	for i := 0; i < 8; i++ {
+		go calc(intChan, resultChan, exitChan)
+	}
+
+	go func() {
+		for i := 0; i < 8; i++ {
+			<-exitChan
+			fmt.Println("Goroutine", i, "exited.")
+		}
+		close(resultChan)
+	}()
+
+	for prime := range resultChan {
+		fmt.Println(prime)
 	}
 }
