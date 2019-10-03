@@ -1,0 +1,8 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Aizu0016" type="name.admitriev.jhelper.configuration.TaskConfigurationType" factoryName="Task" className="Aizu0016" cppPath="tasks/Aizu0016.cpp" inputType="STANDARD" inputFile="input.txt" outputType="STANDARD" outputFile="output.txt" testType="SINGLE">
+    <tests>
+      <test input="56,65&#10;97,54&#10;64,-4&#10;55,76&#10;42,-27&#10;43,80&#10;87,-86&#10;55,-6&#10;89,34&#10;95,5&#10;0,0" output="171&#10;-302" active="true" />
+    </tests>
+    <method v="2" />
+  </configuration>
+</component>

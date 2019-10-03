@@ -53,7 +53,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="recentsLimit" value="5" />
     <property name="restartRequiresConfirmation" value="true" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -67,7 +67,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Task.Aizu0008">
+  <component name="RunManager" selected="Task.Aizu0017">
     <configuration name="Build All" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" EXPLICIT_BUILD_TARGET_NAME="all">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -148,6 +148,8 @@
       <item itemvalue="Task.Aizu0007" />
       <item itemvalue="Task.Aizu0010" />
       <item itemvalue="Task.Aizu0008" />
+      <item itemvalue="Task.Aizu0016" />
+      <item itemvalue="Task.Aizu0017" />
     </list>
   </component>
   <component name="SvnConfiguration">
@@ -165,6 +167,8 @@
       <workItem from="1570088505003" duration="175000" />
       <workItem from="1570088973445" duration="140000" />
       <workItem from="1570089127191" duration="48000" />
+      <workItem from="1570099859584" duration="2185000" />
+      <workItem from="1570102060674" duration="132000" />
     </task>
     <servers />
   </component>

@@ -5,35 +5,59 @@
  */
 
 #include <iostream>
-#include <fstream>
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
+#include <cmath>
 
-#include <iostream>
+using namespace std;
 
-class Aizu0008 {
+
+#define TIMES(id, size) for(int id = 0; id < (size); ++id)
+#define FOR(type_id, id, from, to, step) for(type_id id = (from); id < (to); id += step)
+
+typedef unsigned long long uint64_t;
+typedef unsigned char uint8_t;
+
+
+
+char caesar_cipher_decode(char ch, int key) {
+    if ('a' <= ch && ch <= 'z') {
+        int val = ch - 'a';
+        val = (val + 26 - key) % 26;
+        return 'a' + val;
+    } else {
+        return ch;
+    }
+}
+
+string decode_string(const string& str, int key) {
+    string ans = str;
+    for(int i = 0; i < str.length(); ++i) {
+        ans[i] = caesar_cipher_decode(str[i], key);
+    }
+    return ans;
+}
+
+class Aizu0017 {
 public:
 	void solve(std::istream& in, std::ostream& out) {
-        int n;
-        while (in >> n) {
-            int cnt = 0;
-            for (int i = 0; i < 10; ++i) {
-                for (int j = 0; j < 10; ++j) {
-                    for (int k = 0; k < 10; ++k) {
-                        for (int l = 0; l < 10; ++l) {
-                            if (i + j + k + l == n) {
-                                ++cnt;
-                            }
-                        }
-                    }
-                }
-            }
-            out << cnt << std::endl;
-        }
+	    string str;
+	    while (getline(in, str)) {
+	        TIMES(key_id, 26) {
+	            string plain_text = decode_string(str, key_id);
+	            if ((int)plain_text.find("the") >= 0 || (int)plain_text.find("this") >= 0 || (int)plain_text.find("that") >= 0) {
+	                out << plain_text << endl;
+                    break;
+	            }
+	        }
+	    }
 	}
 };
 
 
 int main() {
-	Aizu0008 solver;
+	Aizu0017 solver;
 	std::istream& in(std::cin);
 	std::ostream& out(std::cout);
 	solver.solve(in, out);
