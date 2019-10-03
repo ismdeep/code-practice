@@ -1,4 +1,4 @@
-#include "/Users/ismdeep/Projects/code-practice/jhelper-example-project/tasks/Aizu0006.cpp"
+#include "/Users/ismdeep/Projects/code-practice/acm-icpc-jhelper/tasks/Aizu0015.cpp"
 
 #include <iostream>
 #include <fstream>
@@ -29,7 +29,7 @@ bool check(std::string expected, std::string actual) {
 
 int main() {
 	std::vector<jhelper::Test> tests = {
-		{"ismdeep", "peedmsi", true, true},
+		{"6\n1000\n800\n9999999999999999999999999999999999999999\n1\n99999999999999999999999999999999999999999999999999999999999999999999999999999999\n1\n99999999999999999999999999999999999999999999999999999999999999999999999999999999\n0\n100000000000000000000000000000000000000000000000000000000000000000000000000000000\n1\n100000000000000000000000000000000000000000000000000000000000000000000000000000000\n100000000000000000000000000000000000000000000000000000000000000000000000000000000", "1800\n10000000000000000000000000000000000000000\noverflow\n99999999999999999999999999999999999999999999999999999999999999999999999999999999\noverflow\noverflow", true, true},
 	};
 	bool allOK = true;
 	int testID = 0;
@@ -48,7 +48,7 @@ int main() {
 			std::stringstream in(test.input);
 			std::ostringstream out;
 			std::clock_t start = std::clock();
-			Aizu0006 solver;
+			Aizu0015 solver;
 			solver.solve(in, out);
 			std::clock_t finish = std::clock();
 			double currentTime = double(finish - start) / CLOCKS_PER_SEC;
