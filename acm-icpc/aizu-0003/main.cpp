@@ -1,4 +1,7 @@
 #include <iostream>
+#include <cstdio>
+
+using namespace std;
 
 void swap (int* a, int* b) {
     int tmp;
@@ -15,7 +18,7 @@ void sort_abc(int* a, int* b, int* c) {
 
 
 int main() {
-#ifndef ONLINE_JUDGE
+#ifdef ISMDEEP_LOCAL
     freopen("in.txt", "r", stdin);
 #endif
     int t;
