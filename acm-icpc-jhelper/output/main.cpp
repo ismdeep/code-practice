@@ -9,6 +9,16 @@
 #include <cstdlib>
 #include <cstring>
 #include <cmath>
+#include <stack>
+#include <vector>
+#include <algorithm>
+#include <list>
+#include <map>
+#include <queue>
+#include <bitset>
+#include <numeric>
+#include <sstream>
+#include <limits>
 
 using namespace std;
 
@@ -20,44 +30,36 @@ typedef unsigned long long uint64_t;
 typedef unsigned char uint8_t;
 
 
-
-char caesar_cipher_decode(char ch, int key) {
-    if ('a' <= ch && ch <= 'z') {
-        int val = ch - 'a';
-        val = (val + 26 - key) % 26;
-        return 'a' + val;
-    } else {
-        return ch;
-    }
-}
-
-string decode_string(const string& str, int key) {
-    string ans = str;
-    for(int i = 0; i < str.length(); ++i) {
-        ans[i] = caesar_cipher_decode(str[i], key);
-    }
-    return ans;
-}
-
-class Aizu0017 {
+class Aizu0011 {
 public:
 	void solve(std::istream& in, std::ostream& out) {
+	    int w;
+	    int n;
+	    int left;
+	    int right;
+	    int tmp;
 	    string str;
-	    while (getline(in, str)) {
-	        TIMES(key_id, 26) {
-	            string plain_text = decode_string(str, key_id);
-	            if ((int)plain_text.find("the") >= 0 || (int)plain_text.find("this") >= 0 || (int)plain_text.find("that") >= 0) {
-	                out << plain_text << endl;
-                    break;
-	            }
-	        }
+	    in >> w >> n;
+	    int* a = (int*) malloc(sizeof(int) * (w + 1));
+	    for (int i = 1; i <= w; ++i) {
+	        a[i] = i;
+	    }
+	    while (n--) {
+	        in >> str;
+	        sscanf(str.data(), "%d,%d", &left, &right);
+	        tmp = a[left];
+	        a[left] = a[right];
+	        a[right] = tmp;
+	    }
+	    for (int i = 1; i <= w; ++i) {
+	        out << a[i] << endl;
 	    }
 	}
 };
 
 
 int main() {
-	Aizu0017 solver;
+	Aizu0011 solver;
 	std::istream& in(std::cin);
 	std::ostream& out(std::cout);
 	solver.solve(in, out);

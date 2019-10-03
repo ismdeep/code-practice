@@ -52,7 +52,7 @@ struct Point{
         return x*x + y*y;
     }
     //返回两点的距离
-    double distance(Point p){
+    double distance(const Point p) const {
         return hypot(x-p.x,y-p.y);
     }
     Point operator +(const Point &b)const{
@@ -276,3 +276,33 @@ static Line ppline(const Point &_a,const Point &_b)
     }
     return ret;
 }
+
+struct Triangle {
+    Point p1, p2, p3;
+    Triangle(){}
+    Triangle(const Point &_p1, const Point &_p2, const Point &_p3) {
+        p1 = _p1;
+        p2 = _p2;
+        p3 = _p3;
+    }
+
+    /* 计算三点构成的三角形面积 */
+    double area() {
+        double a = p1.distance(p2);
+        double b = p1.distance(p3);
+        double c = p2.distance(p3);
+        double p = (a + b + c) / 2.0;
+        return sqrt(p * (p - a) * (p - b) * (p - c));
+    }
+
+    /* 判断点是否在三角形内部 */
+    bool point_in (const Point& p) {
+        Triangle t12p(p1, p2, p);
+        Triangle t13p(p1, p3, p);
+        Triangle t23p(p2, p3, p);
+        return fabs((t12p.area() + t13p.area() + t23p.area()) - this->area()) <= 1e-6;
+    }
+
+};
+
+

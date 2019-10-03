@@ -3,6 +3,16 @@
 #include <cstdlib>
 #include <cstring>
 #include <cmath>
+#include <stack>
+#include <vector>
+#include <algorithm>
+#include <list>
+#include <map>
+#include <queue>
+#include <bitset>
+#include <numeric>
+#include <sstream>
+#include <limits>
 
 using namespace std;
 
