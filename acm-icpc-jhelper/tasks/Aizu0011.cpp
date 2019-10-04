@@ -1,4 +1,5 @@
 #include "../library/header.hpp"
+#include "../library/array.hpp"
 
 class Aizu0011 {
 public:
@@ -10,7 +11,7 @@ public:
 	    int tmp;
 	    string str;
 	    in >> w >> n;
-	    int* a = (int*) malloc(sizeof(int) * (w + 1));
+	    int* a = (int*)create_1d_arr(w + 1, sizeof(int));
 	    for (int i = 1; i <= w; ++i) {
 	        a[i] = i;
 	    }

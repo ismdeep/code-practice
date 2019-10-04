@@ -29,6 +29,19 @@ using namespace std;
 typedef unsigned long long uint64_t;
 typedef unsigned char uint8_t;
 
+void * create_1d_arr(size_t size, size_t sizeof_item) {
+    void * arr = malloc(sizeof_item * size);
+    return arr;
+}
+
+void ** create_2d_arr(size_t rows, size_t cols, size_t sizeof_item) {
+    void ** arr = (void **)malloc(sizeof(size_t) * rows);
+    for (size_t row_id = 0; row_id < rows; ++row_id) {
+        arr[row_id] = malloc(sizeof_item * cols);
+    }
+    return arr;
+}
+
 
 class Aizu0011 {
 public:
@@ -40,7 +53,7 @@ public:
 	    int tmp;
 	    string str;
 	    in >> w >> n;
-	    int* a = (int*) malloc(sizeof(int) * (w + 1));
+	    int* a = (int*)create_1d_arr(w + 1, sizeof(int));
 	    for (int i = 1; i <= w; ++i) {
 	        a[i] = i;
 	    }
