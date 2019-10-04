@@ -3,11 +3,11 @@
 class HDU1720 {
 public:
 	void solve(std::istream& in, std::ostream& out) {
-	    string stra, strb;
+	    string str_a, str_b;
 	    int a, b;
-	    while (in >> stra >> strb) {
-	        sscanf(stra.data(), "%x", &a);
-	        sscanf(strb.data(), "%x", &b);
+	    while (in >> str_a >> str_b) {
+	        sscanf(str_a.data(), "%x", &a);
+	        sscanf(str_b.data(), "%x", &b);
 	        out << a + b << endl;
 	    }
 	}
