@@ -29,50 +29,23 @@ using namespace std;
 typedef unsigned long long uint64_t;
 typedef unsigned char uint8_t;
 
-void * create_1d_arr(size_t size, size_t sizeof_item) {
-    void * arr = malloc(sizeof_item * size);
-    return arr;
-}
 
-void ** create_2d_arr(size_t rows, size_t cols, size_t sizeof_item) {
-    void ** arr = (void **)malloc(sizeof(size_t) * rows);
-    for (size_t row_id = 0; row_id < rows; ++row_id) {
-        arr[row_id] = malloc(sizeof_item * cols);
-    }
-    return arr;
-}
-
-
-class Aizu0011 {
+class HDU1720 {
 public:
 	void solve(std::istream& in, std::ostream& out) {
-	    int w;
-	    int n;
-	    int left;
-	    int right;
-	    int tmp;
-	    string str;
-	    in >> w >> n;
-	    int* a = (int*)create_1d_arr(w + 1, sizeof(int));
-	    for (int i = 1; i <= w; ++i) {
-	        a[i] = i;
-	    }
-	    while (n--) {
-	        in >> str;
-	        sscanf(str.data(), "%d,%d", &left, &right);
-	        tmp = a[left];
-	        a[left] = a[right];
-	        a[right] = tmp;
-	    }
-	    for (int i = 1; i <= w; ++i) {
-	        out << a[i] << endl;
+	    string stra, strb;
+	    int a, b;
+	    while (in >> stra >> strb) {
+	        sscanf(stra.data(), "%x", &a);
+	        sscanf(strb.data(), "%x", &b);
+	        out << a + b << endl;
 	    }
 	}
 };
 
 
 int main() {
-	Aizu0011 solver;
+	HDU1720 solver;
 	std::istream& in(std::cin);
 	std::ostream& out(std::cout);
 	solver.solve(in, out);

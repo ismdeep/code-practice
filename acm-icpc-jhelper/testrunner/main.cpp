@@ -1,4 +1,4 @@
-#include "C:/data/projects/code-practice/acm-icpc-jhelper/tasks/Aizu0011.cpp"
+#include "C:/data/projects/code-practice/acm-icpc-jhelper/tasks/HDU1720.cpp"
 
 #include <iostream>
 #include <fstream>
@@ -29,7 +29,7 @@ bool check(std::string expected, std::string actual) {
 
 int main() {
 	std::vector<jhelper::Test> tests = {
-		{"5\n4\n2,4\n3,5\n1,2\n3,4", "4\n1\n2\n5\n3", true, true},
+		{"1 9\nA B\na b", "10\n21\n21", true, true},
 	};
 	bool allOK = true;
 	int testID = 0;
@@ -48,7 +48,7 @@ int main() {
 			std::stringstream in(test.input);
 			std::ostringstream out;
 			std::clock_t start = std::clock();
-			Aizu0011 solver;
+			HDU1720 solver;
 			solver.solve(in, out);
 			std::clock_t finish = std::clock();
 			double currentTime = double(finish - start) / CLOCKS_PER_SEC;
