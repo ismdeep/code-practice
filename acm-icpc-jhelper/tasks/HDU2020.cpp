@@ -10,7 +10,7 @@ public:
 	void solve(std::istream& in, std::ostream& out) {
 	    uint64_t n;
 	    while (in >> n, n) {
-	        int* arr = (int*) create_1d_arr(n, sizeof(int));
+	        int* arr = (int*) create_array(n, sizeof(int));
 	        TIMES(i, n) {
 	            in >> arr[i];
 	        }

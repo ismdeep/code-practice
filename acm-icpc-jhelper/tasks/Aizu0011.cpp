@@ -11,7 +11,7 @@ public:
 	    int tmp;
 	    string str;
 	    in >> w >> n;
-	    int* a = (int*)create_1d_arr(w + 1, sizeof(int));
+	    int* a = (int*)create_array(w + 1, sizeof(int));
 	    for (int i = 1; i <= w; ++i) {
 	        a[i] = i;
 	    }

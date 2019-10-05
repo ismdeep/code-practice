@@ -53,7 +53,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="recentsLimit" value="5" />
     <property name="restartRequiresConfirmation" value="true" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -67,7 +67,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Task.POJ1657">
+  <component name="RunManager" selected="Task.POJ2251">
     <configuration name="Build All" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" EXPLICIT_BUILD_TARGET_NAME="all">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -158,6 +158,7 @@
       <item itemvalue="Task.HDU2020" />
       <item itemvalue="Task.HDU1720" />
       <item itemvalue="Task.POJ1657" />
+      <item itemvalue="Task.POJ2251" />
     </list>
   </component>
   <component name="SvnConfiguration">
@@ -185,6 +186,14 @@
       <workItem from="1570200925287" duration="1293000" />
       <workItem from="1570234855454" duration="4118000" />
       <workItem from="1570262092449" duration="878000" />
+      <workItem from="1570286501446" duration="571000" />
+      <workItem from="1570287344803" duration="17000" />
+      <workItem from="1570287394018" duration="2838000" />
+      <workItem from="1570290669180" duration="36000" />
+      <workItem from="1570290722363" duration="28000" />
+      <workItem from="1570290753344" duration="90000" />
+      <workItem from="1570290860592" duration="106000" />
+      <workItem from="1570290987138" duration="730000" />
     </task>
     <servers />
   </component>

@@ -1,4 +1,4 @@
-#include <iostream>
+#include "../library/header.hpp"
 
 class Aizu0006 {
 public:
