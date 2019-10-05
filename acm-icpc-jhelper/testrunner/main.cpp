@@ -1,4 +1,4 @@
-#include "/Users/ismdeep/Projects/code-practice/acm-icpc-jhelper/tasks/POJ1657.cpp"
+#include "C:/data/projects/code-practice/acm-icpc-jhelper/tasks/POJ1657.cpp"
 
 #include <iostream>
 #include <fstream>

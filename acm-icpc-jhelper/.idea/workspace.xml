@@ -2,10 +2,10 @@
 <project version="4">
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
     <generated>
-      <config projectName="jhelper-example-project" targetName="testrunner" />
       <config projectName="jhelper-example-project" targetName="jhelper_example_project" />
-      <config projectName="jhelper-example-project" targetName="output" />
       <config projectName="jhelper-example-project" targetName="test" />
+      <config projectName="jhelper-example-project" targetName="testrunner" />
+      <config projectName="jhelper-example-project" targetName="output" />
     </generated>
   </component>
   <component name="CMakeSettings">
@@ -183,6 +183,8 @@
       <workItem from="1570149471504" duration="831000" />
       <workItem from="1570154338599" duration="3120000" />
       <workItem from="1570200925287" duration="1293000" />
+      <workItem from="1570234855454" duration="4118000" />
+      <workItem from="1570262092449" duration="878000" />
     </task>
     <servers />
   </component>
