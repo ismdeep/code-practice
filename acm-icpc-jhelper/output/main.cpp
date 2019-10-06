@@ -30,27 +30,27 @@ using namespace std;
     << ": " << #x << " = " \
     << (x) << '\n')
 
-
 typedef unsigned long long uint64_t;
 typedef unsigned char uint8_t;
 
 
-class Aizu0006 {
+class Aizu0020 {
 public:
 	void solve(std::istream& in, std::ostream& out) {
-	    std::string str;
-	    in >> str;
-	    std::string ans;
-	    for (int i = str.length() - 1; i >= 0; --i) {
-	        ans += str[i];
+	    string str;
+	    getline(in,str);
+	    TIMES(i, str.length()) {
+	        if ('a' <= str[i] && str[i] <= 'z') {
+	            str[i] -= 32;
+	        }
 	    }
-	    out << ans << std::endl;
+	    out << str << endl;
 	}
 };
 
 
 int main() {
-	Aizu0006 solver;
+	Aizu0020 solver;
 	std::istream& in(std::cin);
 	std::ostream& out(std::cout);
 	solver.solve(in, out);
