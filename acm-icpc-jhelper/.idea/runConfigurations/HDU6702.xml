@@ -1,0 +1,8 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="HDU6702" type="name.admitriev.jhelper.configuration.TaskConfigurationType" factoryName="Task" className="HDU6702" cppPath="tasks/HDU6702.cpp" inputType="STANDARD" inputFile="input.txt" outputType="STANDARD" outputFile="output.txt" testType="SINGLE">
+    <tests>
+      <test input="1&#10;3 5" output="1" active="true" />
+    </tests>
+    <method v="2" />
+  </configuration>
+</component>
