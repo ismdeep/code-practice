@@ -34,32 +34,30 @@ typedef unsigned long long uint64_t;
 typedef unsigned char uint8_t;
 
 
-class HDU2634 {
+class HDU2268 {
 public:
 	void solve(std::istream& in, std::ostream& out) {
-        int t;
-        in >> t;
-        TIMES(tid, t) {
-            int n;
-            in >> n;
-            int nn = n;
-            double tmp;
-            double sum = 0.00;
-            while (nn--) {
-                in >> tmp;
-                sum += tmp;
+	    int a, b, c;
+	    while (in >> a >> b >> c) {
+            double t;
+            double s1;
+            if (b > a) {
+                s1 = ((b + a) * 1.0 / (b + 3 * a)) * c;
+                t = s1 / b + (c - s1) / a;
+            } else {
+                t = c * 1.0 / a;
             }
             char ch[1024];
-            sprintf(ch, "The average M = %.10llf.", sum / n);
+            sprintf(ch, "%.3f", t);
             string str = ch;
             out << str << endl;
-        }
+	    }
 	}
 };
 
 
 int main() {
-	HDU2634 solver;
+	HDU2268 solver;
 	std::istream& in(std::cin);
 	std::ostream& out(std::cout);
 	solver.solve(in, out);
