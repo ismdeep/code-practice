@@ -16,7 +16,10 @@ public:
 	        }
 	        sort(arr, arr + n, abs_cmp);
 	        TIMES(i, n) {
-	            out << arr[i] << " ";
+	            out << arr[i];
+	            if (i + 1 < n) {
+	                out << " ";
+	            }
 	        }
 	        out << endl;
 	    }

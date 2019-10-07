@@ -34,23 +34,39 @@ typedef unsigned long long uint64_t;
 typedef unsigned char uint8_t;
 
 
-class Aizu0020 {
+class HDU2019 {
 public:
-	void solve(std::istream& in, std::ostream& out) {
-	    string str;
-	    getline(in,str);
-	    TIMES(i, str.length()) {
-	        if ('a' <= str[i] && str[i] <= 'z') {
-	            str[i] -= 32;
-	        }
-	    }
-	    out << str << endl;
-	}
+    void solve(std::istream& in, std::ostream& out) {
+        int n, x, tmp;
+        bool flag = true;
+        bool is_first = true;
+        while (in >> n >> x, n + x) {
+            flag = true;
+            is_first = true;
+            while (n--) {
+                in >> tmp;
+                if (tmp >= x && flag) {
+                    if (!is_first) {
+                        out << " ";
+                    }
+                    is_first = false;
+                    out << x;
+                    flag = false;
+                }
+                if (!is_first) {
+                    out << " ";
+                }
+                is_first = false;
+                out << tmp;
+            }
+            out << endl;
+        }
+    }
 };
 
 
 int main() {
-	Aizu0020 solver;
+	HDU2019 solver;
 	std::istream& in(std::cin);
 	std::ostream& out(std::cout);
 	solver.solve(in, out);
