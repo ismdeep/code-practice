@@ -59,7 +59,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Task.HDU6702">
+  <component name="RunManager" selected="Task.HDU2634">
     <configuration name="Build All" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" EXPLICIT_BUILD_TARGET_NAME="all">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -156,6 +156,9 @@
       <item itemvalue="Task.Aizu0003" />
       <item itemvalue="Task.Aizu0004" />
       <item itemvalue="Task.HDU6702" />
+      <item itemvalue="Task.HDU1073" />
+      <item itemvalue="Task.HDU6536" />
+      <item itemvalue="Task.HDU2634" />
     </list>
   </component>
   <component name="SvnConfiguration">
@@ -204,6 +207,7 @@
       <workItem from="1570444997646" duration="163000" />
       <workItem from="1570445180104" duration="235000" />
       <workItem from="1570450688660" duration="508000" />
+      <workItem from="1570451292672" duration="1791000" />
     </task>
     <servers />
   </component>

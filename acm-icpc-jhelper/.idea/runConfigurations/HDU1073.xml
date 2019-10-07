@@ -1,0 +1,8 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="HDU1073" type="name.admitriev.jhelper.configuration.TaskConfigurationType" factoryName="Task" className="HDU1073" cppPath="tasks/HDU1073.cpp" inputType="STANDARD" inputFile="input.txt" outputType="STANDARD" outputFile="output.txt" testType="SINGLE">
+    <tests>
+      <test input="4&#10;START&#10;1 + 2 = 3&#10;END&#10;START&#10;1+2=3&#10;END&#10;START&#10;1 + 2 = 3&#10;END&#10;START&#10;1 + 2 = 3&#10;&#10;END&#10;START&#10;1 + 2 = 3&#10;END&#10;START&#10;1 + 2 = 4&#10;END&#10;START&#10;1 + 2 = 3&#10;END&#10;START&#10;1&#9;+&#9;2&#9;=&#9;3&#10;END" output="Presentation Error&#10;Presentation Error&#10;Wrong Answer&#10;Presentation Error" active="true" />
+    </tests>
+    <method v="2" />
+  </configuration>
+</component>
