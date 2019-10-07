@@ -84,130 +84,129 @@ struct Point3D {
 };
 
 
-void* create_array(size_t size, size_t sizeof_item) {
-    void * arr = malloc(sizeof_item * size);
-    return arr;
+
+/* 王：横、直、斜都可以走，但每步限走一格。 */
+int dir_king[][2] = {
+        {1,0},{-1,0},{0,1},{0,-1},{1,1},{1,-1},{-1,1},{-1,-1}
+};
+
+/* 后：横、直、斜都可以走，每步格数不受限制。 */
+int dir_queue[][2] = {
+        {1,0},{-1,0},{0,1},{0,-1},{1,1},{1,-1},{-1,1},{-1,-1},
+        {2,0},{-2,0},{0,2},{0,-2},{2,2},{2,-2},{-2,2},{-2,-2},
+        {3,0},{-3,0},{0,3},{0,-3},{3,3},{3,-3},{-3,3},{-3,-3},
+        {4,0},{-4,0},{0,4},{0,-4},{4,4},{4,-4},{-4,4},{-4,-4},
+        {5,0},{-5,0},{0,5},{0,-5},{5,5},{5,-5},{-5,5},{-5,-5},
+        {6,0},{-6,0},{0,6},{0,-6},{6,6},{6,-6},{-6,6},{-6,-6},
+        {7,0},{-7,0},{0,7},{0,-7},{7,7},{7,-7},{-7,7},{-7,-7},
+        {8,0},{-8,0},{0,8},{0,-8},{8,8},{8,-8},{-8,8},{-8,-8}
+};
+
+/* 车：横、竖均可以走，不能斜走，格数不限。 */
+int dir_castle[][2] = {
+        {1,0},{-1,0},{0,1},{0,-1},
+        {2,0},{-2,0},{0,2},{0,-2},
+        {3,0},{-3,0},{0,3},{0,-3},
+        {4,0},{-4,0},{0,4},{0,-4},
+        {5,0},{-5,0},{0,5},{0,-5},
+        {6,0},{-6,0},{0,6},{0,-6},
+        {7,0},{-7,0},{0,7},{0,-7},
+        {8,0},{-8,0},{0,8},{0,-8}
+};
+
+/* 象：只能斜走，格数不限。 */
+int dir_jumbo[][2] = {
+        {1,1},{1,-1},{-1,1},{-1,-1},
+        {2,2},{2,-2},{-2,2},{-2,-2},
+        {3,3},{3,-3},{-3,3},{-3,-3},
+        {4,4},{4,-4},{-4,4},{-4,-4},
+        {5,5},{5,-5},{-5,5},{-5,-5},
+        {6,6},{6,-6},{-6,6},{-6,-6},
+        {7,7},{7,-7},{-7,7},{-7,-7},
+        {8,8},{8,-8},{-8,8},{-8,-8}
+};
+
+void parse_position(string str, int *x, int *y) {
+    *x = str[0] - 'a' + 1;
+    *y = str[1] - '0';
 }
 
-void** create_matrix(size_t rows, size_t cols, size_t sizeof_item) {
-    void ** arr = (void **)malloc(sizeof(size_t) * rows);
-    for (size_t row_id = 0; row_id < rows; ++row_id) {
-        arr[row_id] = malloc(sizeof_item * cols);
-    }
-    return arr;
-}
-
-void*** create_cube(size_t x, size_t y, size_t z, size_t sizeof_item) {
-    void*** arr = (void ***) malloc(sizeof(void**) * x);
-    for (size_t x_id = 0; x_id < x; ++x_id) {
-        arr[x_id] = (void **) malloc(sizeof(void*) * y);
-        for (size_t y_id = 0; y_id < y; ++y_id) {
-            arr[x_id][y_id] = malloc(sizeof_item * z);
+void init_visited(bool visited[10][10]) {
+    TIMES(i, 10) {
+        TIMES(j,10) {
+            visited[i][j] = false;
         }
     }
-    return arr;
+    TIMES(j, 10) {
+        visited[0][j] = true;
+        visited[9][j] = true;
+    }
+    TIMES(i, 10) {
+        visited[i][0] = true;
+        visited[i][9] = true;
+    }
 }
 
-
-int dir[4][2] = {{0,1},{0,-1},{1,0},{-1,0}};
-
-
-void bfs_map(bool **visited, Point2D *start, bool **is_kfc, int** step_count) {
-    visited[start->x][start->y] = true;
-    queue<Point2D> q;
-    q.push(*start);
+int walk_count(Point2D start, Point2D target, int dir[][2], int dir_count) {
+    queue< Point2D > q;
+    q.push(start);
+    bool visited[10][10];
+    init_visited(visited);
+    visited[start.x][start.y] = true;
     while (!q.empty()) {
-        Point2D cur = q.front(); q.pop();
-        step_count[cur.x][cur.y] = cur.step;
-        TIMES(dir_id, 4) {
+        Point2D cur = q.front();
+        q.pop();
+        if (cur == target) {
+            return cur.step;
+        }
+        TIMES(dir_id, dir_count) {
             Point2D next(cur.x + dir[dir_id][0], cur.y + dir[dir_id][1], cur.step + 1);
-            if (!visited[next.x][next.y]) {
+            if (next.in_map(1,8,1,8) && !visited[next.x][next.y]) {
                 q.push(next);
                 visited[next.x][next.y] = true;
             }
         }
     }
+    return -1;
 }
 
-void init(std::istream &in, bool **visited_y, bool **visited_m, int **step_count_y, int **step_count_m, int n, int m, bool **is_kfc, Point2D &point_y, Point2D &point_m) {
-    TIMES(i, n + 2) {
-        TIMES(j, m + 2) {
-            visited_y[i][j] = true;
-            visited_m[i][j] = true;
-            is_kfc[i][j] = false;
-        }
+
+string step_dump(int step) {
+    if (-1 == step) {
+        return "Inf";
     }
-    /* Input START */
+    stringstream ss;
+    ss << step << endl;
     string str;
-    FOR (int, i, 1, n, 1) {
-        in >> str;
-        FOR (int, j, 1, m, 1) {
-            step_count_y[i][j] = 0x3fffffff;
-            step_count_m[i][j] = 0x3fffffff;
-            if ('Y' == str[j - 1]) {
-                point_y.x = i;
-                point_y.y = j;
-                point_y.step = 0;
-                visited_y[i][j] = true;
-                visited_m[i][j] = false;
-            } else if ('M' == str[j - 1]) {
-                point_m.x = i;
-                point_m.y = j;
-                point_m.step = 0;
-                visited_y[i][j] = false;
-                visited_m[i][j] = true;
-            } else if ('@' == str[j-1]) {
-                is_kfc[i][j] = true;
-                visited_y[i][j] = false;
-                visited_m[i][j] = false;
-            } else if ('#' == str[j-1]) {
-                visited_y[i][j] = true;
-                visited_m[i][j] = true;
-            } else {
-                visited_y[i][j] = false;
-                visited_m[i][j] = false;
-            }
-        }
-    }
-    /* Input END */
+    ss >> str;
+    return str;
 }
 
 
-class HDU2612 {
+class POJ1657 {
 public:
-    void solve(std::istream &in, std::ostream &out) {
-        int n, m;
-        string str;
-        while (in >> n >> m) {
-            bool **visited_y = (bool **) create_matrix(n + 2, m + 2, sizeof(bool));
-            bool **visited_m = (bool **) create_matrix(n + 2, m + 2, sizeof(bool));
-            bool **is_kfc    = (bool **) create_matrix(n + 2, m + 2, sizeof(bool));
-            int **step_count_y = (int **) create_matrix(n + 2, m + 2, sizeof(int));
-            int **step_count_m = (int **) create_matrix(n + 2, m + 2, sizeof(int));
-            Point2D point_y;
-            Point2D point_m;
-
-            init(in, visited_y, visited_m, step_count_y, step_count_m, n, m, is_kfc, point_y, point_m);
-
-            bfs_map(visited_y, &point_y, is_kfc, step_count_y);
-            bfs_map(visited_m, &point_m, is_kfc, step_count_m);
-
-            int ans = 0x3fffffff;
-            FOR (int, i, 1, n, 1) {
-                FOR (int, j, 1, m, 1) {
-                    if (is_kfc[i][j]) {
-                        ans = min(ans, step_count_m[i][j] + step_count_y[i][j]);
-                    }
-                }
-            }
-            out << ans * 11 << endl;
-        }
-    }
+	void solve(std::istream& in, std::ostream& out) {
+	    int t;
+	    in >> t;
+        string str_start, str_target;
+        int start_x, start_y, target_x, target_y;
+	    while (t--) {
+	        in >> str_start >> str_target;
+	        parse_position(str_start, &start_x, &start_y);
+	        parse_position(str_target, &target_x, &target_y);
+            Point2D start(start_x, start_y, 0);
+            Point2D target(target_x, target_y, -1);
+	        out     << step_dump(walk_count(start, target, dir_king, 8)) << " "
+                    << step_dump(walk_count(start, target, dir_queue, 64)) << " "
+                    << step_dump(walk_count(start, target, dir_castle, 32)) << " "
+                    << step_dump(walk_count(start, target, dir_jumbo, 32)) << endl;
+	    }
+	}
 };
 
 
 int main() {
-	HDU2612 solver;
+	POJ1657 solver;
 	std::istream& in(std::cin);
 	std::ostream& out(std::cout);
 	solver.solve(in, out);

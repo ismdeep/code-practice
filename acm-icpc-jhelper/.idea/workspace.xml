@@ -45,7 +45,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="recentsLimit" value="5" />
     <property name="restartRequiresConfirmation" value="true" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="terminal" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -59,7 +59,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Task.HDU2612">
+  <component name="RunManager" selected="Task.POJ1657">
     <configuration name="Build All" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" EXPLICIT_BUILD_TARGET_NAME="all">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -197,6 +197,9 @@
       <workItem from="1570438644657" duration="288000" />
       <workItem from="1570438954778" duration="319000" />
       <workItem from="1570439310773" duration="620000" />
+      <workItem from="1570444892046" duration="18000" />
+      <workItem from="1570444997646" duration="163000" />
+      <workItem from="1570445180104" duration="113000" />
     </task>
     <servers />
   </component>

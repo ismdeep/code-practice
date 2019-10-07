@@ -42,8 +42,6 @@ int dir_jumbo[][2] = {
         {8,8},{8,-8},{-8,8},{-8,-8}
 };
 
-
-
 void parse_position(string str, int *x, int *y) {
     *x = str[0] - 'a' + 1;
     *y = str[1] - '0';
