@@ -30,34 +30,140 @@ using namespace std;
     << ": " << #x << " = " \
     << (x) << '\n')
 
+#ifndef _BITS_STDINT_UINTN_H
 typedef unsigned long long uint64_t;
+#endif
 typedef unsigned char uint8_t;
 
+struct Point2D {
+    int x, y, step;
 
-class HDU2268 {
+    Point2D(){}
+
+    Point2D(int _x, int _y, int _step) {
+        this->x = _x;
+        this->y = _y;
+        this->step = _step;
+    }
+    bool operator == (Point2D p) {
+        return this->x == p.x && this->y == p.y;
+    }
+
+    bool in_map (int x_min, int x_max, int y_min, int y_max) {
+        return x_min <= this->x && this->x <= x_max && y_min <= this->y && this->y <= y_max;
+    }
+
+    string ToString() {
+        char ch[1024];
+        sprintf(ch, "{x:%d, y:%d, step:%d}", this->x, this->y, this->step);
+        string str = ch;
+        return str;
+    }
+};
+
+struct Point3D {
+    int x, y, z, step;
+
+    Point3D() {}
+
+    Point3D(int _x, int _y, int _z, int _step) {
+        this->x = _x;
+        this->y = _y;
+        this->z = _z;
+        this->step = _step;
+    }
+
+    bool operator==(Point3D p) {
+        return this->x == p.x && this->y == p.y && this->z == p.z;
+    }
+
+    string ToString() {
+        char ch[1024];
+        sprintf(ch, "{x:%d, y:%d, z:%d, step:%d}", this->x, this->y, this->z, this->step);
+        string str = ch;
+        return str;
+    }
+};
+
+
+void* create_array(size_t size, size_t sizeof_item) {
+    void * arr = malloc(sizeof_item * size);
+    return arr;
+}
+
+void** create_matrix(size_t rows, size_t cols, size_t sizeof_item) {
+    void ** arr = (void **)malloc(sizeof(size_t) * rows);
+    for (size_t row_id = 0; row_id < rows; ++row_id) {
+        arr[row_id] = malloc(sizeof_item * cols);
+    }
+    return arr;
+}
+
+void*** create_cube(size_t x, size_t y, size_t z, size_t sizeof_item) {
+    void*** arr = (void ***) malloc(sizeof(void**) * x);
+    for (size_t x_id = 0; x_id < x; ++x_id) {
+        arr[x_id] = (void **) malloc(sizeof(void*) * y);
+        for (size_t y_id = 0; y_id < y; ++y_id) {
+            arr[x_id][y_id] = malloc(sizeof_item * z);
+        }
+    }
+    return arr;
+}
+
+
+
+int dir[4][2] = {
+        {1,  0},
+        {-1, 0},
+        {0,  1},
+        {0,  -1}
+};
+
+void init_visited(bool **visited) {
+    TIMES(i, 7) {
+        TIMES(j, 7) {
+            visited[i][j] = true;
+        }
+    }
+}
+
+class POJ3984 {
 public:
-	void solve(std::istream& in, std::ostream& out) {
-	    int a, b, c;
-	    while (in >> a >> b >> c) {
-            double t;
-            double s1;
-            if (b > a) {
-                s1 = ((b + a) * 1.0 / (b + 3 * a)) * c;
-                t = s1 / b + (c - s1) / a;
-            } else {
-                t = c * 1.0 / a;
+    void solve(std::istream &in, std::ostream &out) {
+        bool **visited = (bool **) create_matrix(7, 7, sizeof(bool));
+        Point2D **prev = (Point2D **) create_matrix(7, 7, sizeof(Point2D));
+        prev[0][0].x = 0;
+        prev[0][0].y = 0;
+        FOR(int, i, 1, 5, 1) {
+            FOR(int, j, 1, 5, 1) {
+                in >> visited[i][j];
             }
-            char ch[1024];
-            sprintf(ch, "%.3f", t);
-            string str = ch;
-            out << str << endl;
-	    }
-	}
+        }
+        visited[1][1] = true;
+        queue<Point2D> q;
+        q.push(Point2D(1, 1, 0));
+        while (!q.empty()) {
+            Point2D cur = q.front();
+            q.pop();
+            cout << "Hello" << endl;
+            TIMES(dir_id, 4) {
+                Point2D next(cur.x + dir[dir_id][0], cur.y + dir[dir_id][1], cur.step + 1);
+                if (!visited[next.x][next.y]) {
+                    q.push(next);
+                    prev[next.x][next.y].x = cur.x;
+                    prev[next.x][next.y].y = cur.y;
+                    // visited[next.x][next.y] = true;
+                }
+            }
+        }
+        out << "Hello" << endl;
+        out << prev[5][5].x << " " << prev[5][5].y << endl;
+    }
 };
 
 
 int main() {
-	HDU2268 solver;
+	POJ3984 solver;
 	std::istream& in(std::cin);
 	std::ostream& out(std::cout);
 	solver.solve(in, out);
