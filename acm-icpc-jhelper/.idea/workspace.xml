@@ -2,10 +2,10 @@
 <project version="4">
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
     <generated>
-      <config projectName="jhelper-example-project" targetName="testrunner" />
       <config projectName="jhelper-example-project" targetName="jhelper_example_project" />
-      <config projectName="jhelper-example-project" targetName="output" />
       <config projectName="jhelper-example-project" targetName="test" />
+      <config projectName="jhelper-example-project" targetName="testrunner" />
+      <config projectName="jhelper-example-project" targetName="output" />
     </generated>
   </component>
   <component name="CMakeSettings">
@@ -59,7 +59,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Task.POJ3984">
+  <component name="RunManager" selected="Task.JustOJ1015">
     <configuration name="Build All" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" EXPLICIT_BUILD_TARGET_NAME="all">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -160,7 +160,7 @@
       <item itemvalue="Task.HDU6536" />
       <item itemvalue="Task.HDU2634" />
       <item itemvalue="Task.HDU2268" />
-      <item itemvalue="Task.POJ3984" />
+      <item itemvalue="Task.JustOJ1015" />
     </list>
   </component>
   <component name="SvnConfiguration">
@@ -214,6 +214,10 @@
       <workItem from="1570454034682" duration="17000" />
       <workItem from="1570611813336" duration="35000" />
       <workItem from="1570611864569" duration="2456000" />
+      <workItem from="1570623600384" duration="1109000" />
+      <workItem from="1570631073763" duration="65000" />
+      <workItem from="1570631214270" duration="666000" />
+      <workItem from="1570671422344" duration="39000" />
     </task>
     <servers />
   </component>

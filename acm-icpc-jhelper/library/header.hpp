@@ -13,7 +13,8 @@
 #include <numeric>
 #include <sstream>
 #include <limits>
-
+#include <string.h>
+#include <string>
 using namespace std;
 
 
