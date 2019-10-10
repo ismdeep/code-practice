@@ -5,22 +5,22 @@
  */
 
 #include <iostream>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
+#include <cmath>
+#include <stack>
+#include <vector>
+#include <algorithm>
+#include <list>
+#include <map>
+#include <queue>
+#include <bitset>
+#include <numeric>
+#include <sstream>
+#include <limits>
+#include <string.h>
+#include <string>
 using namespace std;
 
 
@@ -36,160 +36,155 @@ typedef unsigned long long uint64_t;
 #endif
 typedef unsigned char uint8_t;
 
+void* create_array(size_t size, size_t sizeof_item) {
+    void * arr = malloc(sizeof_item * size);
+    return arr;
+}
 
-#define INF 0x3fffffff
+void** create_matrix(size_t rows, size_t cols, size_t sizeof_item) {
+    void ** arr = (void **)malloc(sizeof(size_t) * rows);
+    for (size_t row_id = 0; row_id < rows; ++row_id) {
+        arr[row_id] = malloc(sizeof_item * cols);
+    }
+    return arr;
+}
 
-char g[5][5];
-int mark[5][5];
-int n,m;
-int mi=INF;
-int up[4]={1,-1,0,0};
-int rl[4]={0,0,1,-1};
-
-void dfs1(int x,int y,char tmp)
-{
-    mark[x][y]=1;
-    for(int i=0;i<4;i++)
-    {
-        int tx=x+up[i];
-        int ty=y+rl[i];
-        if((tx>=0&&tx<n)&&(ty>=0&&ty<m)&&mark[tx][ty]==0&&g[x][y]==g[tx][ty])
-        {
-            dfs1(tx,ty,g[x][y]);
+void*** create_cube(size_t x, size_t y, size_t z, size_t sizeof_item) {
+    void*** arr = (void ***) malloc(sizeof(void**) * x);
+    for (size_t x_id = 0; x_id < x; ++x_id) {
+        arr[x_id] = (void **) malloc(sizeof(void*) * y);
+        for (size_t y_id = 0; y_id < y; ++y_id) {
+            arr[x_id][y_id] = malloc(sizeof_item * z);
         }
     }
+    return arr;
 }
 
-int min(int a, int b) {
-    return a < b ? a : b;
-}
+struct Point2D {
+    int x, y, step;
 
-void print()
-{
-    for(int i=0;i<n;i++)
-    {
-        for(int j=0;j<n;j++)
-            printf("%c",g[i][j]);
-        printf("\n");
+    Point2D(){}
+
+    Point2D(int _x, int _y, int _step) {
+        this->x = _x;
+        this->y = _y;
+        this->step = _step;
     }
-    printf("\n");
-}
-
-void dfs()
-{
-    int mark1[5][5];
-    memset(mark1,0,sizeof(mark1));
-    char tg[5][5];
-    for(int i=0;i<n;i++)
-        for(int j=0;j<m;j++)
-        {
-            tg[i][j]=g[i][j]; //记录这层的状态!
-        }
-
-    int flag,sign=0;
-    for(int i=0;i<n;i++)
-    {
-        for(int j=0;j<m;j++)
-        {
-            flag=0;
-            if(g[i][j]=='#') continue;
-            memset(mark,0,sizeof(mark));
-            if(i+1<n&&g[i][j]==g[i+1][j]&&mark1[i][j]==0)
-            {
-                dfs1(i,j,g[i][j]);
-                flag=1;
-                sign=1;
-            }else
-            if(i-1>=0&&g[i][j]==g[i-1][j]&&mark1[i][j]==0)
-            {
-                dfs1(i,j,g[i][j]);
-                flag=1;
-                sign=1;
-            }else
-            if(j+1<n&&g[i][j]==g[i][j+1]&&mark1[i][j]==0)
-            {
-                dfs1(i,j,g[i][j]);
-                flag=1;
-                sign=1;
-            }else
-            if(j-1>=0&&g[i][j]==g[i][j-1]&&mark1[i][j]==0)
-            {
-                dfs1(i,j,g[i][j]);
-                flag=1;
-                sign=1;
-            }
-            if(flag==1)
-            {
-                for(int i1=0;i1<n;i1++)
-                    for(int j1=0;j1<m;j1++)
-                        if(mark[i1][j1]==1)
-                            mark1[i1][j1]=1; //代表这个区域搜索过。
-
-                for(int i1=0;i1<n;i1++)
-                {
-                    for(int j1=0;j1<m;j1++)
-                    {
-                        if(mark[i1][j1]==1)
-                        {
-                            for(int k=i1-1;k>=0;k--)
-                                g[k+1][j1] = g[k][j1];
-                            g[0][j1]='#';
-                        }
-                    }
-                }
-
-                //print();
-
-                dfs();
-                //回溯
-                for(int i1=0;i1<n;i1++)
-                    for(int j1=0;j1<m;j1++)
-                        g[i1][j1]=tg[i1][j1];
-
-                flag=0;
-
-                //print();
-            }
-        }
+    bool operator == (Point2D p) {
+        return this->x == p.x && this->y == p.y;
     }
 
-    if(sign==0) //找不到解的情况！
-    {
-        int cnt=0;
-        for(int i=0;i<n;i++)
-            for(int j=0;j<m;j++)
-            {
-                if(g[i][j]!='#')
-                {
-                    cnt++;
-                }
-            }
-        mi=min(cnt,mi);
-        return ;
+    bool in_map (int x_min, int x_max, int y_min, int y_max) {
+        return x_min <= this->x && this->x <= x_max && y_min <= this->y && this->y <= y_max;
     }
 
-}
+    string ToString() {
+        char ch[1024];
+        sprintf(ch, "{x:%d, y:%d, step:%d}", this->x, this->y, this->step);
+        string str = ch;
+        return str;
+    }
+};
 
-class JustOJ1015 {
+struct Point3D {
+    int x, y, z, step;
+
+    Point3D() {}
+
+    Point3D(int _x, int _y, int _z, int _step) {
+        this->x = _x;
+        this->y = _y;
+        this->z = _z;
+        this->step = _step;
+    }
+
+    bool operator==(Point3D p) {
+        return this->x == p.x && this->y == p.y && this->z == p.z;
+    }
+
+    string ToString() {
+        char ch[1024];
+        sprintf(ch, "{x:%d, y:%d, z:%d, step:%d}", this->x, this->y, this->z, this->step);
+        string str = ch;
+        return str;
+    }
+};
+
+
+
+int dir[4][2] = {
+        {1,  0},
+        {-1, 0},
+        {0,  1},
+        {0,  -1}
+};
+
+class POJ3984 {
 public:
-	void solve(std::istream& in, std::ostream& out) {
-        int T;
-        in >> T;
-        TIMES(tid, T) {
-            mi=INF;
-            in >> n >> m;
-            for(int i=0;i<n;i++) {
-                in >> g[i];
+    void solve(std::istream &in, std::ostream &out) {
+        bool visited[7][7];
+        Point2D prev[7][7];
+        TIMES(i, 7) {
+            TIMES(j, 7) {
+                visited[i][j] = true;
             }
-            dfs();
-            out << mi << endl;
         }
-	}
+
+        FOR(int, i, 1, 5, 1) {
+            FOR(int, j, 1, 5, 1) {
+                int tmp;
+                in >> tmp;
+                visited[i][j] = tmp == 1;
+            }
+        }
+
+        prev[1][1].x = 0;
+        prev[1][1].y = 0;
+        visited[1][1] = true;
+
+        queue<Point2D> q;
+        q.push(Point2D(1, 1, 0));
+        while (!q.empty()) {
+            Point2D cur = q.front();
+            q.pop();
+            TIMES(dir_id, 4) {
+                Point2D next(
+                        cur.x + dir[dir_id][0],
+                        cur.y + dir[dir_id][1],
+                        cur.step + 1
+                );
+                if (!visited[next.x][next.y]) {
+                    visited[next.x][next.y] = true;
+                    q.push(next);
+                    prev[next.x][next.y].x = cur.x;
+                    prev[next.x][next.y].y = cur.y;
+                    prev[next.x][next.y].step = cur.step + 1;
+                }
+            }
+        }
+
+        stack<Point2D> ans_stack;
+        Point2D current(5, 5, prev[5][5].step);
+        while (current.x + current.y > 0) {
+            ans_stack.push(current);
+            Point2D prev_node(prev[current.x][current.y].x, prev[current.x][current.y].y,
+                         prev[current.x][current.y].step - 1);
+            current.x = prev_node.x;
+            current.y = prev_node.y;
+            current.step = prev_node.step;
+        }
+
+        while (!ans_stack.empty()) {
+            Point2D current = ans_stack.top();
+            ans_stack.pop();
+            out << "(" << current.x - 1 << ", " << current.y - 1 << ")" << endl;
+        }
+    }
 };
 
 
 int main() {
-	JustOJ1015 solver;
+	POJ3984 solver;
 	std::istream& in(std::cin);
 	std::ostream& out(std::cout);
 	solver.solve(in, out);

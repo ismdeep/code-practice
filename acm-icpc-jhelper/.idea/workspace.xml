@@ -2,10 +2,10 @@
 <project version="4">
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
     <generated>
-      <config projectName="jhelper-example-project" targetName="jhelper_example_project" />
-      <config projectName="jhelper-example-project" targetName="test" />
       <config projectName="jhelper-example-project" targetName="testrunner" />
+      <config projectName="jhelper-example-project" targetName="jhelper_example_project" />
       <config projectName="jhelper-example-project" targetName="output" />
+      <config projectName="jhelper-example-project" targetName="test" />
     </generated>
   </component>
   <component name="CMakeSettings">
@@ -45,7 +45,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="recentsLimit" value="5" />
     <property name="restartRequiresConfirmation" value="true" />
-    <property name="settings.editor.selected.configurable" value="preferences.sourceCode" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Color Scheme Font" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -59,7 +59,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Task.JustOJ1015">
+  <component name="RunManager" selected="Task.POJ3984">
     <configuration name="Build All" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" EXPLICIT_BUILD_TARGET_NAME="all">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -161,6 +161,7 @@
       <item itemvalue="Task.HDU2634" />
       <item itemvalue="Task.HDU2268" />
       <item itemvalue="Task.JustOJ1015" />
+      <item itemvalue="Task.POJ3984" />
     </list>
   </component>
   <component name="SvnConfiguration">
@@ -218,6 +219,7 @@
       <workItem from="1570631073763" duration="65000" />
       <workItem from="1570631214270" duration="666000" />
       <workItem from="1570671422344" duration="39000" />
+      <workItem from="1570706109803" duration="1906000" />
     </task>
     <servers />
   </component>
