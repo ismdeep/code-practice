@@ -24,8 +24,3 @@ using namespace std;
     (void)(cout << "L" << __LINE__ \
     << ": " << #x << " = " \
     << (x) << '\n')
-
-#ifndef _BITS_STDINT_UINTN_H
-typedef unsigned long long uint64_t;
-#endif
-typedef unsigned char uint8_t;

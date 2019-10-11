@@ -31,160 +31,41 @@ using namespace std;
     << ": " << #x << " = " \
     << (x) << '\n')
 
-#ifndef _BITS_STDINT_UINTN_H
-typedef unsigned long long uint64_t;
-#endif
-typedef unsigned char uint8_t;
 
-void* create_array(size_t size, size_t sizeof_item) {
-    void * arr = malloc(sizeof_item * size);
-    return arr;
-}
-
-void** create_matrix(size_t rows, size_t cols, size_t sizeof_item) {
-    void ** arr = (void **)malloc(sizeof(size_t) * rows);
-    for (size_t row_id = 0; row_id < rows; ++row_id) {
-        arr[row_id] = malloc(sizeof_item * cols);
-    }
-    return arr;
-}
-
-void*** create_cube(size_t x, size_t y, size_t z, size_t sizeof_item) {
-    void*** arr = (void ***) malloc(sizeof(void**) * x);
-    for (size_t x_id = 0; x_id < x; ++x_id) {
-        arr[x_id] = (void **) malloc(sizeof(void*) * y);
-        for (size_t y_id = 0; y_id < y; ++y_id) {
-            arr[x_id][y_id] = malloc(sizeof_item * z);
-        }
-    }
-    return arr;
-}
-
-struct Point2D {
-    int x, y, step;
-
-    Point2D(){}
-
-    Point2D(int _x, int _y, int _step) {
-        this->x = _x;
-        this->y = _y;
-        this->step = _step;
-    }
-    bool operator == (Point2D p) {
-        return this->x == p.x && this->y == p.y;
-    }
-
-    bool in_map (int x_min, int x_max, int y_min, int y_max) {
-        return x_min <= this->x && this->x <= x_max && y_min <= this->y && this->y <= y_max;
-    }
-
-    string ToString() {
-        char ch[1024];
-        sprintf(ch, "{x:%d, y:%d, step:%d}", this->x, this->y, this->step);
-        string str = ch;
-        return str;
-    }
+string dict[] = {
+        "ling", "yi", "er", "san", "si", "wu", "liu", "qi", "ba", "jiu"
 };
 
-struct Point3D {
-    int x, y, z, step;
-
-    Point3D() {}
-
-    Point3D(int _x, int _y, int _z, int _step) {
-        this->x = _x;
-        this->y = _y;
-        this->z = _z;
-        this->step = _step;
-    }
-
-    bool operator==(Point3D p) {
-        return this->x == p.x && this->y == p.y && this->z == p.z;
-    }
-
-    string ToString() {
-        char ch[1024];
-        sprintf(ch, "{x:%d, y:%d, z:%d, step:%d}", this->x, this->y, this->z, this->step);
-        string str = ch;
-        return str;
-    }
-};
-
-
-
-int dir[4][2] = {
-        {1,  0},
-        {-1, 0},
-        {0,  1},
-        {0,  -1}
-};
-
-class POJ3984 {
+class PAT1002 {
 public:
     void solve(std::istream &in, std::ostream &out) {
-        bool visited[7][7];
-        Point2D prev[7][7];
-        TIMES(i, 7) {
-            TIMES(j, 7) {
-                visited[i][j] = true;
+        string str;
+        in >> str;
+        int ans = 0;
+        for (int i = 0; i < str.length(); ++i) {
+            ans += str[i] - '0';
+        }
+        stack<int> s;
+        while (ans != 0) {
+            s.push(ans % 10);
+            ans /= 10;
+        }
+        bool flag = false;
+        while (!s.empty()) {
+            if (flag) {
+                out << " ";
             }
+            flag = true;
+            out << dict[s.top()];
+            s.pop();
         }
-
-        FOR(int, i, 1, 5, 1) {
-            FOR(int, j, 1, 5, 1) {
-                int tmp;
-                in >> tmp;
-                visited[i][j] = tmp == 1;
-            }
-        }
-
-        prev[1][1].x = 0;
-        prev[1][1].y = 0;
-        visited[1][1] = true;
-
-        queue<Point2D> q;
-        q.push(Point2D(1, 1, 0));
-        while (!q.empty()) {
-            Point2D cur = q.front();
-            q.pop();
-            TIMES(dir_id, 4) {
-                Point2D next(
-                        cur.x + dir[dir_id][0],
-                        cur.y + dir[dir_id][1],
-                        cur.step + 1
-                );
-                if (!visited[next.x][next.y]) {
-                    visited[next.x][next.y] = true;
-                    q.push(next);
-                    prev[next.x][next.y].x = cur.x;
-                    prev[next.x][next.y].y = cur.y;
-                    prev[next.x][next.y].step = cur.step + 1;
-                }
-            }
-        }
-
-        stack<Point2D> ans_stack;
-        Point2D current(5, 5, prev[5][5].step);
-        while (current.x + current.y > 0) {
-            ans_stack.push(current);
-            Point2D prev_node(prev[current.x][current.y].x, prev[current.x][current.y].y,
-                         prev[current.x][current.y].step - 1);
-            current.x = prev_node.x;
-            current.y = prev_node.y;
-            current.step = prev_node.step;
-        }
-
-        while (!ans_stack.empty()) {
-            Point2D current = ans_stack.top();
-            ans_stack.pop();
-            out << "(" << current.x - 1 << ", " << current.y - 1 << ")" << endl;
-        }
+        out << endl;
     }
 };
 
 
 int main() {
-	POJ3984 solver;
+	PAT1002 solver;
 	std::istream& in(std::cin);
 	std::ostream& out(std::cout);
 	solver.solve(in, out);
