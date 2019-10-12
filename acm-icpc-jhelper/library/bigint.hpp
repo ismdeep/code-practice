@@ -34,6 +34,8 @@ public:
 
     //(2)除法
     int operator/=(int bnum); //返回值为mod bnum的值。
+
+    int mod(int bnum);
 };
 
 //操作符重载
@@ -204,6 +206,15 @@ int BigInt::operator/=(int bnum) {
         x = tmp % bnum;
     }
     trim();
+    return x;
+}
+
+int BigInt::mod(int bnum) {
+    int x = 0;
+    for (int i = n; i >= 1; i--) {
+        int tmp = x * BIGINTMOD + a[i];
+        x = tmp % bnum;
+    }
     return x;
 }
 

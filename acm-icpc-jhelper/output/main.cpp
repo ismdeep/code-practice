@@ -31,139 +31,510 @@ using namespace std;
     << ": " << #x << " = " \
     << (x) << '\n')
 
-void* create_array(size_t size, size_t sizeof_item) {
-    void * arr = malloc(sizeof_item * size);
-    return arr;
-}
+class BigInt { //无符号整数高精度
+#define MAXDIGIT 10000 //最大为10^MAXDIGIT
+#define BIGINTMOD 10000 //压4位
+private:
+public:
+    int n;        //a中n位有效
+    int a[MAXDIGIT / 4 + 10]; //压4位，下标从1开始（且高位不一定为0）
+    //初始化
+    BigInt();      //默认设置为0
+    BigInt(long long x); //设置为x
+    BigInt(char *s);   //数字字符串
+    BigInt(std::string str); // 数字字符串
+    ~BigInt() {}
 
-void** create_matrix(size_t rows, size_t cols, size_t sizeof_item) {
-    void ** arr = (void **)malloc(sizeof(size_t) * rows);
-    for (size_t row_id = 0; row_id < rows; ++row_id) {
-        arr[row_id] = malloc(sizeof_item * cols);
-    }
-    return arr;
-}
+    //初始化
+    int set(long long x);
 
-void*** create_cube(size_t x, size_t y, size_t z, size_t sizeof_item) {
-    void*** arr = (void ***) malloc(sizeof(void**) * x);
-    for (size_t x_id = 0; x_id < x; ++x_id) {
-        arr[x_id] = (void **) malloc(sizeof(void*) * y);
-        for (size_t y_id = 0; y_id < y; ++y_id) {
-            arr[x_id][y_id] = malloc(sizeof_item * z);
-        }
-    }
-    return arr;
-}
+    int set(char *s);
+
+    // 显示
+    int Display();   //输出,没有换行
+    int trim();     //去除前缀0
+
+    // ToString
+    std::string ToString(); // ToString()
 
 
-bool is_prime(int val) {
-    int stop = sqrt(val);
-    FOR(int, m, 2, stop, 1) {
-        if (val % m == 0) {
-            return false;
-        }
-    }
-    return true;
-}
+    BigInt &operator=(BigInt &bnum);
 
-int *generate_neighbor(int value) {
-    int *vals = (int *) create_array(36, sizeof(int));
-    int index = -1;
-    int a, b, c, d;
-    int tmp = value;
-    d = tmp % 10; tmp /= 10;
-    c = tmp % 10; tmp /= 10;
-    b = tmp % 10; tmp /= 10;
-    a = tmp % 10; tmp /= 10;
+    //(1)单目加法
+    int operator+=(BigInt &bnum);
 
-    FOR(int, a_id, 1, 9, 1) {
-        tmp = a_id * 1000 + b * 100 + c * 10 + d;
-        if (tmp != value) { index++; vals[index] = tmp; }
-    }
+    int operator+=(int bnum);
 
-    TIMES(b_id, 10) {
-        tmp = a * 1000 + b_id * 100 + c * 10 + d;
-        if (tmp != value) { index++; vals[index] = tmp; }
-    }
+    //(2)除法
+    int operator/=(int bnum); //返回值为mod bnum的值。
 
-    TIMES(c_id, 10) {
-        tmp = a * 1000 + b * 100 + c_id * 10 + d;
-        if (tmp != value) { index++; vals[index] = tmp; }
-    }
-
-    TIMES(d_id, 10) {
-        tmp = a * 1000 + b * 100 + c * 10 + d_id;
-        if (tmp != value) { index++; vals[index] = tmp; }
-    }
-
-    return vals;
-}
-
-struct PointOnLine {
-    int x;
-    int step;
-
-    PointOnLine() {}
-
-    PointOnLine(int _x, int _step) {
-        this->x = _x;
-        this->step = _step;
-    }
-
+    int mod(int bnum);
 };
 
-int count_step(int source_val, int target_val) {
-    bool *visited = (bool *) create_array(10000, sizeof(bool));
-    TIMES(visited_id, 10000) {
-        visited[visited_id] = false;
-    }
+//操作符重载
+// (3)乘法
+int operator*=(BigInt &anum, BigInt &bnum);
 
-    queue<PointOnLine> q;
-    q.push(PointOnLine(source_val, 0));
-    visited[source_val] = true;
+BigInt &operator*(BigInt &anum, BigInt &bnum);
 
-    while (!q.empty()) {
-        PointOnLine cur = q.front();
-        q.pop();
-        if (cur.x == target_val) {
-            free(visited);
-            return cur.step;
-        }
-        int *next = generate_neighbor(cur.x);
-        TIMES(next_id, 35) {
-            if (!visited[next[next_id]] && is_prime(next[next_id])) {
-                q.push(PointOnLine(next[next_id], cur.step + 1));
-                visited[next[next_id]] = true;
-            }
-        }
-        free(next);
+// (4)取模
+int operator%(BigInt &anum, int bnum);
+
+// (5)双目加法
+BigInt &operator+(BigInt &anum, BigInt &bnum); //中间变量使用静态变量
+// (6)比较
+bool operator<(BigInt &anum, BigInt &bnum);
+
+bool operator>(BigInt &anum, BigInt &bnum);
+
+bool operator==(BigInt &anum, BigInt &bnum);
+
+
+//implementation
+BigInt::BigInt() {
+    set(0ll);
+}
+
+BigInt::BigInt(long long x) {
+    set(x);
+}
+
+BigInt::BigInt(char *s) {
+    set(s);
+}
+
+BigInt::BigInt(std::string str) {
+    char *s = (char *) malloc(sizeof(char) * str.length() + 1);
+    s[str.length()] = '\0';
+    for (int i = 0; i < str.length(); i++) {
+        s[i] = str[i];
     }
-    free(visited);
-    return -1;
+    set(s);
+}
+
+int BigInt::set(long long x) {
+    n = 0;
+    do {
+        a[++n] = x % BIGINTMOD;
+        x /= BIGINTMOD;
+    } while (x);
+    return 0;
+}
+
+int BigInt::set(char *s) {
+    n = 0;
+    int len = strlen(s) - 1;
+    while (len >= 0) {
+        int digits = len + 1 > 4 ? 4 : len + 1; //最多选择4位
+        int num = 0;
+        for (int i = len - digits + 1; i <= len; i++)
+            num = num * 10 + s[i] - '0';
+        a[++n] = num;
+        len -= digits;
+    }
+    trim(); //前缀0删去
+    return 0;
+}
+
+int BigInt::Display() {
+    printf("%d", a[n]);
+    for (int i = n - 1; i >= 1; i--) printf("%04d", a[i]);
+    return 0;
+}
+
+int BigInt::trim() {
+    while (n > 1 && a[n] == 0) {
+        n--;
+    }
+    return 0;
+}
+
+std::string BigInt::ToString() {
+    std::string ans;
+    char ch[10];
+    sprintf(ch, "%d", a[n]);
+    ans += ch;
+    for (int i = n - 1; i >= 1; i--) {
+        sprintf(ch, "%04d", a[i]);
+        ans += ch;
+    }
+    return ans;
 }
 
 
-class POJ3126 {
+BigInt &BigInt::operator=(BigInt &bnum) {
+    n = bnum.n;
+    for (int i = 1; i <= n; i++)a[i] = bnum.a[i];
+    return bnum;
+}
+
+int BigInt::operator+=(BigInt &bnum) {
+    n = std::max(n, bnum.n);
+    int x = 0;
+    for (int i = 1; i <= n; i++) {
+        a[i] = a[i] + bnum.a[i] + x;
+        x = a[i] / BIGINTMOD;
+        a[i] %= BIGINTMOD;
+    }
+    a[++n] = x;
+    trim();
+    return 0;
+}
+
+int BigInt::operator+=(int bnum) {
+    a[1] += bnum;
+    int idx = 1;
+    while (a[idx] >= BIGINTMOD) {
+        a[idx + 1] += a[idx] / BIGINTMOD;
+        a[idx] %= BIGINTMOD;
+        idx++;
+    }
+    n = std::max(n, idx);
+    return 0;
+}
+
+int operator*=(BigInt &cnum, BigInt &bnum) {     //cnum*=bnum
+    static BigInt anum;
+    anum = cnum;
+    //cnum=anum*bnum
+    for (int i = anum.n + 1; i <= bnum.n; i++) anum.a[i] = 0;
+    for (int i = bnum.n + 1; i <= anum.n; i++) bnum.a[i] = 0;
+    cnum.n = anum.n + bnum.n;
+    for (int i = 1; i <= cnum.n; i++) cnum.a[i] = 0;
+    //
+    for (int i = 1; i <= anum.n; i++) {
+        int x = 0;
+        for (int j = 1; j <= bnum.n; j++) {
+            cnum.a[i + j - 1] += anum.a[i] * bnum.a[j] + x;
+            x = cnum.a[i + j - 1] / BIGINTMOD;
+            cnum.a[i + j - 1] %= BIGINTMOD;
+        }
+        cnum.a[i + bnum.n] += x;
+    }
+    cnum.trim();
+    return 0;
+}
+
+BigInt &operator*(BigInt &anum, BigInt &bnum) { //cnum=anum*bnum
+    static BigInt cnum;
+    cnum = anum;
+    cnum *= bnum;
+    return cnum;
+}
+
+//操作符重载
+int operator%(BigInt &anum, int bnum) { //a%b
+    int x = 0;
+    for (int i = anum.n; i >= 1; i--) {
+        x = (x * BIGINTMOD + anum.a[i]) % bnum;
+    }
+    return x;
+}
+
+int BigInt::operator/=(int bnum) {
+    int x = 0;
+    for (int i = n; i >= 1; i--) {
+        int tmp = x * BIGINTMOD + a[i];
+        a[i] = tmp / bnum;
+        x = tmp % bnum;
+    }
+    trim();
+    return x;
+}
+
+int BigInt::mod(int bnum) {
+    int x = 0;
+    for (int i = n; i >= 1; i--) {
+        int tmp = x * BIGINTMOD + a[i];
+        x = tmp % bnum;
+    }
+    return x;
+}
+
+
+BigInt &operator+(BigInt &anum, BigInt &bnum) {
+    static BigInt cnum;                //静态函数加速
+    cnum.n = std::max(anum.n, bnum.n);
+    for (int i = anum.n + 1; i <= cnum.n; i++)anum.a[i] = 0;
+    for (int i = bnum.n + 1; i <= cnum.n; i++)bnum.a[i] = 0;
+    int x = 0;
+    for (int i = 1; i <= cnum.n; i++) {
+        cnum.a[i] = anum.a[i] + bnum.a[i] + x;
+        x = cnum.a[i] / BIGINTMOD;
+        cnum.a[i] %= BIGINTMOD;
+    }
+    cnum.a[++cnum.n] = x;
+    cnum.trim();
+    return cnum;
+}
+
+bool operator<(BigInt &anum, BigInt &bnum) { //实现<
+    anum.trim();
+    bnum.trim();
+    if (anum.n > bnum.n) return false;
+    if (anum.n < bnum.n) return true;
+    for (int i = anum.n; i >= 1; i--) {
+        if (anum.a[i] > bnum.a[i]) return false;
+        if (anum.a[i] < bnum.a[i]) return true;
+    }
+    return false;
+}
+
+bool operator>(BigInt &anum, BigInt &bnum) { // anum>bnum 等价于 bnum<anum
+    return bnum < anum;
+}
+
+bool operator==(BigInt &anum, BigInt &bnum) { // anum==bnum 等价于 anum<>bnum
+    return (!(anum < bnum) && !(anum > bnum));
+}
+
+
+string _map_[201];
+
+void init() {
+    _map_[1] = "1";
+    _map_[2] = "10";
+    _map_[3] = "111";
+    _map_[4] = "100";
+    _map_[5] = "10";
+    _map_[6] = "1110";
+    _map_[7] = "1001";
+    _map_[8] = "1000";
+    _map_[9] = "111111111";
+    _map_[10] = "10";
+    _map_[11] = "11";
+    _map_[12] = "11100";
+    _map_[13] = "1001";
+    _map_[14] = "10010";
+    _map_[15] = "1110";
+    _map_[16] = "10000";
+    _map_[17] = "11101";
+    _map_[18] = "1111111110";
+    _map_[19] = "11001";
+    _map_[20] = "100";
+    _map_[21] = "10101";
+    _map_[22] = "110";
+    _map_[23] = "110101";
+    _map_[24] = "111000";
+    _map_[25] = "100";
+    _map_[26] = "10010";
+    _map_[27] = "1111111101";
+    _map_[28] = "100100";
+    _map_[29] = "1101101";
+    _map_[30] = "1110";
+    _map_[31] = "111011";
+    _map_[32] = "100000";
+    _map_[33] = "111111";
+    _map_[34] = "111010";
+    _map_[35] = "10010";
+    _map_[36] = "11111111100";
+    _map_[37] = "111";
+    _map_[38] = "110010";
+    _map_[39] = "10101";
+    _map_[40] = "1000";
+    _map_[41] = "11111";
+    _map_[42] = "101010";
+    _map_[43] = "1101101";
+    _map_[44] = "1100";
+    _map_[45] = "1111111110";
+    _map_[46] = "1101010";
+    _map_[47] = "10011";
+    _map_[48] = "1110000";
+    _map_[49] = "1100001";
+    _map_[50] = "100";
+    _map_[51] = "100011";
+    _map_[52] = "100100";
+    _map_[53] = "100011";
+    _map_[54] = "11111111010";
+    _map_[55] = "110";
+    _map_[56] = "1001000";
+    _map_[57] = "11001";
+    _map_[58] = "11011010";
+    _map_[59] = "11011111";
+    _map_[60] = "11100";
+    _map_[61] = "100101";
+    _map_[62] = "1110110";
+    _map_[63] = "1111011111";
+    _map_[64] = "1000000";
+    _map_[65] = "10010";
+    _map_[66] = "1111110";
+    _map_[67] = "1101011";
+    _map_[68] = "1110100";
+    _map_[69] = "11111001";
+    _map_[70] = "10010";
+    _map_[71] = "10011";
+    _map_[72] = "111111111000";
+    _map_[73] = "10001";
+    _map_[74] = "1110";
+    _map_[75] = "11100";
+    _map_[76] = "1100100";
+    _map_[77] = "1001";
+    _map_[78] = "101010";
+    _map_[79] = "11101001";
+    _map_[80] = "10000";
+    _map_[81] = "1111111101";
+    _map_[82] = "111110";
+    _map_[83] = "101011";
+    _map_[84] = "1010100";
+    _map_[85] = "111010";
+    _map_[86] = "11011010";
+    _map_[87] = "11010111";
+    _map_[88] = "11000";
+    _map_[89] = "11010101";
+    _map_[90] = "1111111110";
+    _map_[91] = "1001";
+    _map_[92] = "11010100";
+    _map_[93] = "10000011";
+    _map_[94] = "100110";
+    _map_[95] = "110010";
+    _map_[96] = "11100000";
+    _map_[97] = "11100001";
+    _map_[98] = "11000010";
+    _map_[99] = "111111111111111111";
+    _map_[100] = "100";
+    _map_[101] = "101";
+    _map_[102] = "1000110";
+    _map_[103] = "11100001";
+    _map_[104] = "1001000";
+    _map_[105] = "101010";
+    _map_[106] = "1000110";
+    _map_[107] = "100010011";
+    _map_[108] = "111111110100";
+    _map_[109] = "1111111011";
+    _map_[110] = "110";
+    _map_[111] = "111";
+    _map_[112] = "10010000";
+    _map_[113] = "1011011";
+    _map_[114] = "110010";
+    _map_[115] = "1101010";
+    _map_[116] = "110110100";
+    _map_[117] = "11111110101";
+    _map_[118] = "110111110";
+    _map_[119] = "110001101";
+    _map_[120] = "111000";
+    _map_[121] = "11011";
+    _map_[122] = "1001010";
+    _map_[123] = "10011100011";
+    _map_[124] = "11101100";
+    _map_[125] = "1000";
+    _map_[126] = "11110111110";
+    _map_[127] = "11010011";
+    _map_[128] = "10000000";
+    _map_[129] = "100100001";
+    _map_[130] = "10010";
+    _map_[131] = "101001";
+    _map_[132] = "11111100";
+    _map_[133] = "11101111";
+    _map_[134] = "11010110";
+    _map_[135] = "11111111010";
+    _map_[136] = "11101000";
+    _map_[137] = "10001";
+    _map_[138] = "111110010";
+    _map_[139] = "110110101";
+    _map_[140] = "100100";
+    _map_[141] = "10011";
+    _map_[142] = "100110";
+    _map_[143] = "1001";
+    _map_[144] = "1111111110000";
+    _map_[145] = "11011010";
+    _map_[146] = "100010";
+    _map_[147] = "1100001";
+    _map_[148] = "11100";
+    _map_[149] = "110111";
+    _map_[150] = "11100";
+    _map_[151] = "1110001";
+    _map_[152] = "11001000";
+    _map_[153] = "11111011011";
+    _map_[154] = "10010";
+    _map_[155] = "1110110";
+    _map_[156] = "1010100";
+    _map_[157] = "10101101011";
+    _map_[158] = "111010010";
+    _map_[159] = "100011";
+    _map_[160] = "100000";
+    _map_[161] = "11101111";
+    _map_[162] = "11111111010";
+    _map_[163] = "1010111";
+    _map_[164] = "1111100";
+    _map_[165] = "1111110";
+    _map_[166] = "1010110";
+    _map_[167] = "11111011";
+    _map_[168] = "10101000";
+    _map_[169] = "10111101";
+    _map_[170] = "111010";
+    _map_[171] = "1111011111";
+    _map_[172] = "110110100";
+    _map_[173] = "1011001101";
+    _map_[174] = "110101110";
+    _map_[175] = "100100";
+    _map_[176] = "110000";
+    _map_[177] = "101110011";
+    _map_[178] = "110101010";
+    _map_[179] = "11010111";
+    _map_[180] = "11111111100";
+    _map_[181] = "1001111";
+    _map_[182] = "10010";
+    _map_[183] = "100101";
+    _map_[184] = "110101000";
+    _map_[185] = "1110";
+    _map_[186] = "100000110";
+    _map_[187] = "1001011";
+    _map_[188] = "1001100";
+    _map_[189] = "1111111100001";
+    _map_[190] = "110010";
+    _map_[191] = "11101111";
+    _map_[192] = "111000000";
+    _map_[193] = "11001";
+    _map_[194] = "111000010";
+    _map_[195] = "101010";
+    _map_[196] = "110000100";
+    _map_[197] = "1101000101";
+    _map_[198] = "1111111111111111110";
+    _map_[199] = "111000011";
+    _map_[200] = "1000";
+}
+
+unsigned long long int string_to_ulli (string str) {
+    stringstream ss;
+    ss << str << endl;
+    unsigned long long int val;
+    ss >> val;
+    return val;
+}
+
+string find_the_multiple(int val) {
+    queue<string> q;
+    unsigned long long int a;
+    q.push("1");
+    q.push("0");
+    while (!q.empty()) {
+        string current = q.front();
+        q.pop();
+        if ('1' == current[0]) {
+            a = string_to_ulli(current);
+            if (a % val == 0) {
+                return current;
+            }
+        }
+        q.push("0" + current);
+        q.push("1" + current);
+    }
+}
+
+class POJ1426 {
 public:
 	void solve(std::istream& in, std::ostream& out) {
-	    int t;
-	    in >> t;
-	    TIMES(t_id, t) {
-	        int source_val, target_val;
-	        in >> source_val >> target_val;
-	        int step_count = count_step(source_val, target_val);
-	        if (-1 == step_count) {
-	            out << "Impossible" << endl;
-	        }else {
-	            out << step_count << endl;
-	        }
+	    init();
+	    int n;
+	    while (in >> n, n) {
+	        out << _map_[n] << endl;
 	    }
 	}
 };
 
 
 int main() {
-	POJ3126 solver;
+	POJ1426 solver;
 	std::istream& in(std::cin);
 	std::ostream& out(std::cout);
 	solver.solve(in, out);

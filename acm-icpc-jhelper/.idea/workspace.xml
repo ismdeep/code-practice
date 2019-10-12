@@ -59,7 +59,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Task.POJ3126">
+  <component name="RunManager" selected="Task.POJ1426">
     <configuration name="Build All" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" EXPLICIT_BUILD_TARGET_NAME="all">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -165,6 +165,7 @@
       <item itemvalue="Task.PAT1001" />
       <item itemvalue="Task.PAT1002" />
       <item itemvalue="Task.POJ3126" />
+      <item itemvalue="Task.POJ1426" />
     </list>
   </component>
   <component name="SvnConfiguration">
@@ -225,6 +226,7 @@
       <workItem from="1570706109803" duration="1906000" />
       <workItem from="1570709989301" duration="1142000" />
       <workItem from="1570779193116" duration="1588000" />
+      <workItem from="1570842122333" duration="1535000" />
     </task>
     <servers />
   </component>
