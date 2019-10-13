@@ -1,0 +1,9 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="TZOJ2755" type="name.admitriev.jhelper.configuration.TaskConfigurationType" factoryName="Task" className="TZOJ2755" cppPath="tasks/TZOJ2755.cpp" inputType="STANDARD" inputFile="input.txt" outputType="STANDARD" outputFile="output.txt" testType="SINGLE">
+    <tests>
+      <test input="8 2&#10;3 5&#10;7 4" output="Knight cannot reach Queen within 2 moves!" active="true" />
+      <test input="8 2&#10;3 5&#10;1 6" output="Knight can reach Queen within 2 moves!" active="true" />
+    </tests>
+    <method v="2" />
+  </configuration>
+</component>
