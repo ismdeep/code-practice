@@ -28,108 +28,36 @@ using namespace std;
 #define FOR(type_id, id, from, to, step) for(type_id id = (from); id <= (to); id += step)
 #define DBG(x) (void)(cout << "L" << __LINE__ << ": " << #x << " = " << (x) << '\n')
 
-struct Point2D {
-    int x, y, step;
 
-    Point2D(){}
-
-    Point2D(int _x, int _y, int _step) {
-        this->x = _x;
-        this->y = _y;
-        this->step = _step;
+bool is_ok(int val) {
+    if (val < 100) {
+        return false;
     }
-    bool operator == (Point2D p) {
-        return this->x == p.x && this->y == p.y;
+    if (val > 999) {
+        return false;
     }
+    int a, b, c, t;
+    t = val;
+    c = t % 10; t /= 10;
+    b = t % 10; t /= 10;
+    a = t % 10;
+    return val == a*a*a + b*b*b + c*c*c;
+}
 
-    bool in_map (int x_min, int x_max, int y_min, int y_max) {
-        return x_min <= this->x && this->x <= x_max && y_min <= this->y && this->y <= y_max;
-    }
-
-    string ToString() {
-        char ch[1024];
-        sprintf(ch, "{x:%d, y:%d, step:%d}", this->x, this->y, this->step);
-        string str = ch;
-        return str;
-    }
-};
-
-struct Point3D {
-    int x, y, z, step;
-
-    Point3D() {}
-
-    Point3D(int _x, int _y, int _z, int _step) {
-        this->x = _x;
-        this->y = _y;
-        this->z = _z;
-        this->step = _step;
-    }
-
-    bool operator==(Point3D p) {
-        return this->x == p.x && this->y == p.y && this->z == p.z;
-    }
-
-    string ToString() {
-        char ch[1024];
-        sprintf(ch, "{x:%d, y:%d, z:%d, step:%d}", this->x, this->y, this->z, this->step);
-        string str = ch;
-        return str;
-    }
-};
-
-
-
-int dir[8][2] = {
-        {1,2},{1,-2},
-        {-1,2},{-1,-2},
-        {2,1},{2,-1},
-        {-2,1},{-2,-1}
-};
-
-
-
-class TZOJ2755 {
+class DOTCPP1016 {
 public:
 	void solve(std::istream& in, std::ostream& out) {
-	    int n, m;
-	    in >> n >> m;
-	    map<pair<int,int>, bool> visited;
-	    Point2D start;
-	    in >> start.x >> start.y;
-	    start.step = 0;
-	    Point2D target;
-	    in >> target.x >> target.y;
-
-	    queue<Point2D> q;
-	    q.push(start);
-	    visited[make_pair(start.x,start.y)] = true;
-
-	    while (!q.empty()) {
-	        Point2D cur = q.front(); q.pop();
-	        if (cur.step > m) {
-	            out << "Knight cannot reach Queen within " << m << " moves!" << endl;
-	            break;
-	        }
-	        if (cur == target) {
-	            out << "Knight can reach Queen within " << m << " moves!" << endl;
-	            return;
-	        }
-	        TIMES(dir_id, 8) {
-	            Point2D next( cur.x + dir[dir_id][0], cur.y + dir[dir_id][1], cur.step + 1 );
-	            if (next.in_map(1, n, 1, n) && !visited[make_pair(next.x, next.y)]) {
-                    q.push(next);
-                    visited[make_pair(next.x, next.y)] = true;
-	            }
+	    FOR(int, val, 100, 999, 1) {
+	        if (is_ok(val)) {
+	            out << val << endl;
 	        }
 	    }
-
 	}
 };
 
 
 int main() {
-	TZOJ2755 solver;
+	DOTCPP1016 solver;
 	std::istream& in(std::cin);
 	std::ostream& out(std::cout);
 	solver.solve(in, out);
