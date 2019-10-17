@@ -29,35 +29,115 @@ using namespace std;
 #define DBG(x) (void)(cout << "L" << __LINE__ << ": " << #x << " = " << (x) << '\n')
 
 
-bool is_ok(int val) {
-    if (val < 100) {
-        return false;
-    }
-    if (val > 999) {
-        return false;
-    }
-    int a, b, c, t;
-    t = val;
-    c = t % 10; t /= 10;
-    b = t % 10; t /= 10;
-    a = t % 10;
-    return val == a*a*a + b*b*b + c*c*c;
+void* create_array(size_t size, size_t sizeof_item) {
+    void * arr = malloc(sizeof_item * size);
+    return arr;
 }
 
-class DOTCPP1016 {
+void** create_matrix(size_t rows, size_t cols, size_t sizeof_item) {
+    void ** arr = (void **)malloc(sizeof(size_t) * rows);
+    for (size_t row_id = 0; row_id < rows; ++row_id) {
+        arr[row_id] = malloc(sizeof_item * cols);
+    }
+    return arr;
+}
+
+void*** create_cube(size_t x, size_t y, size_t z, size_t sizeof_item) {
+    void*** arr = (void ***) malloc(sizeof(void**) * x);
+    for (size_t x_id = 0; x_id < x; ++x_id) {
+        arr[x_id] = (void **) malloc(sizeof(void*) * y);
+        for (size_t y_id = 0; y_id < y; ++y_id) {
+            arr[x_id][y_id] = malloc(sizeof_item * z);
+        }
+    }
+    return arr;
+}
+
+
+bool *generate_is_prime_table(uint64_t top_value) {
+    uint64_t size = top_value + 1;
+    bool *is_prime = (bool *) malloc(sizeof(bool) * size);
+    TIMES(i, size) {
+        is_prime[i] = true;
+    }
+    is_prime[0] = false;
+    is_prime[1] = false;
+    FOR(uint64_t, i, 0, size, 1) {
+        if (is_prime[i]) {
+            FOR(uint64_t, j, i * i, size, i) {
+                is_prime[j] = false;
+            }
+        }
+    }
+    return is_prime;
+}
+
+class PrimeTable {
+public:
+    uint64_t size;
+    uint64_t top_value;
+    uint64_t *data;
+
+    PrimeTable();
+
+    PrimeTable(uint64_t);
+
+    static PrimeTable generate(uint64_t);
+};
+
+PrimeTable::PrimeTable() {}
+
+PrimeTable::PrimeTable(uint64_t top_value) {
+    this->top_value = top_value;
+    this->data = (uint64_t *) create_array(top_value, sizeof(uint64_t));
+}
+
+PrimeTable PrimeTable::generate(uint64_t top_value) {
+    PrimeTable prime_table(top_value);
+    bool *is_prime = (bool *) generate_is_prime_table(top_value);
+    prime_table.size = 0;
+    for (uint64_t i = 0; i < top_value; i++) {
+        if (is_prime[i]) {
+            prime_table.data[prime_table.size] = i;
+            ++prime_table.size;
+        }
+    }
+    return prime_table;
+}
+
+
+
+
+class PAT1013 {
 public:
 	void solve(std::istream& in, std::ostream& out) {
-	    FOR(int, val, 100, 999, 1) {
-	        if (is_ok(val)) {
-	            out << val << endl;
-	        }
-	    }
+        PrimeTable prime_table = PrimeTable::generate(200000);
+
+	    size_t m, n;
+        in >> m >> n;
+        bool flag = false;
+
+        FOR(size_t, prime_id, 0, n - m, 1) {
+            if (flag) {
+                out << " ";
+            }
+            flag = true;
+            out << prime_table.data[prime_id + m - 1];
+            if ((prime_id + 1) % 10 == 0) {
+                out << endl;
+                flag = false;
+            }
+        }
+        if (flag) {
+            out << endl;
+        }
+
 	}
 };
 
 
 int main() {
-	DOTCPP1016 solver;
+	PAT1013 solver;
 	std::istream& in(std::cin);
 	std::ostream& out(std::cout);
 	solver.solve(in, out);
