@@ -1,4 +1,4 @@
-#include "/Users/ismdeep/Projects/code-practice/acm-icpc-jhelper/tasks/PAT1013.cpp"
+#include "/Users/ismdeep/Projects/code-practice/acm-icpc-jhelper/tasks/DOTCPP1009.cpp"
 
 #include <iostream>
 #include <fstream>
@@ -29,7 +29,7 @@ bool check(std::string expected, std::string actual) {
 
 int main() {
 	std::vector<jhelper::Test> tests = {
-		{"5 27", "11 13 17 19 23 29 31 37 41 43\n47 53 59 61 67 71 73 79 83 89\n97 101 103", true, true},
+		{"12345", "5\n1 2 3 4 5\n54321", true, true},
 	};
 	bool allOK = true;
 	int testID = 0;
@@ -48,7 +48,7 @@ int main() {
 			std::stringstream in(test.input);
 			std::ostringstream out;
 			std::clock_t start = std::clock();
-			PAT1013 solver;
+			DOTCPP1009 solver;
 			solver.solve(in, out);
 			std::clock_t finish = std::clock();
 			double currentTime = double(finish - start) / CLOCKS_PER_SEC;
