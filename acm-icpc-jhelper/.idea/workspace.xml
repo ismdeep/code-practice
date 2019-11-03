@@ -59,7 +59,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Task.DOTCPP1009">
+  <component name="RunManager" selected="Task.DOTCPP1030">
     <configuration name="Build All" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" EXPLICIT_BUILD_TARGET_NAME="all">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -172,6 +172,11 @@
       <item itemvalue="Task.DOTCPP1003" />
       <item itemvalue="Task.DOTCPP1004" />
       <item itemvalue="Task.DOTCPP1009" />
+      <item itemvalue="Task.DOTCPP1010" />
+      <item itemvalue="Task.DOTCPP1012" />
+      <item itemvalue="Task.DOTCPP1018" />
+      <item itemvalue="Task.DOTCPP1026" />
+      <item itemvalue="Task.DOTCPP1030" />
     </list>
   </component>
   <component name="SvnConfiguration">
@@ -238,6 +243,7 @@
       <workItem from="1571298648191" duration="40000" />
       <workItem from="1571298799755" duration="1766000" />
       <workItem from="1571300815937" duration="1416000" />
+      <workItem from="1572742615017" duration="1641000" />
     </task>
     <servers />
   </component>
