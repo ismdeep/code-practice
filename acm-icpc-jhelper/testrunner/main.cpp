@@ -1,4 +1,4 @@
-#include "/Users/ismdeep/Projects/code-practice/acm-icpc-jhelper/tasks/DOTCPP1030.cpp"
+#include "/Users/ismdeep/Projects/code-practice/acm-icpc-jhelper/tasks/TZOJ2755.cpp"
 
 #include <iostream>
 #include <fstream>
@@ -29,7 +29,7 @@ bool check(std::string expected, std::string actual) {
 
 int main() {
 	std::vector<jhelper::Test> tests = {
-		{"1 2 3\n4 5 6\n7 8 9", "1 4 7 \n2 5 8 \n3 6 9 ", true, true},
+		{"8 2\n3 5\n7 4", "Knight cannot reach Queen within 2 moves!", true, true},{"8 2\n3 5\n1 6", "Knight can reach Queen within 2 moves!", true, true},
 	};
 	bool allOK = true;
 	int testID = 0;
@@ -48,7 +48,7 @@ int main() {
 			std::stringstream in(test.input);
 			std::ostringstream out;
 			std::clock_t start = std::clock();
-			DOTCPP1030 solver;
+			TZOJ2755 solver;
 			solver.solve(in, out);
 			std::clock_t finish = std::clock();
 			double currentTime = double(finish - start) / CLOCKS_PER_SEC;
