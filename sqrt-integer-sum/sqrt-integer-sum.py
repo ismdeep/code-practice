@@ -23,7 +23,7 @@ def naive_algo(__n__):
 
 
 if __name__ == '__main__':
-    n = 29374923749234802384
+    n = 20000
     start_1 = int(time.time() * 1000)
     print(fast_algo(n))
     print("cost: {%d}ms", int(time.time() * 1000) - start_1)

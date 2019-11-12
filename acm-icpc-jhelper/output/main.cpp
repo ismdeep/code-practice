@@ -28,108 +28,64 @@ using namespace std;
 #define FOR(type_id, id, from, to, step) for(type_id id = (from); id <= (to); id += step)
 #define DBG(x) (void)(cout << "L" << __LINE__ << ": " << #x << " = " << (x) << '\n')
 
-struct Point2D {
-    int x, y, step;
+#ifndef _UINT8_T
+#define _UINT8_T
+typedef unsigned char uint8_t;
+#endif /* _UINT8_T */
 
-    Point2D(){}
+#ifndef _UINT16_T
+#define _UINT16_T
+typedef unsigned short uint16_t;
+#endif /* _UINT16_T */
 
-    Point2D(int _x, int _y, int _step) {
-        this->x = _x;
-        this->y = _y;
-        this->step = _step;
-    }
-    bool operator == (Point2D p) {
-        return this->x == p.x && this->y == p.y;
-    }
+#ifndef _UINT32_T
+#define _UINT32_T
+typedef unsigned int uint32_t;
+#endif /* _UINT32_T */
 
-    bool in_map (int x_min, int x_max, int y_min, int y_max) {
-        return x_min <= this->x && this->x <= x_max && y_min <= this->y && this->y <= y_max;
-    }
+#ifndef _UINT64_T
+#define _UINT64_T
+typedef unsigned long long uint64_t;
+#endif /* _UINT64_T */
 
-    string ToString() {
-        char ch[1024];
-        sprintf(ch, "{x:%d, y:%d, step:%d}", this->x, this->y, this->step);
-        string str = ch;
-        return str;
-    }
-};
+#ifndef _INT8_T
+#define _INT8_T
+typedef signed char           int8_t;
+#endif /* _INT8_T */
 
-struct Point3D {
-    int x, y, z, step;
+#ifndef _INT16_T
+#define _INT16_T
+typedef short                   int16_t;
+#endif /* _INT16_T */
 
-    Point3D() {}
+#ifndef _INT32_T
+#define _INT32_T
+typedef int                     int32_t;
+#endif /* _INT32_T */
 
-    Point3D(int _x, int _y, int _z, int _step) {
-        this->x = _x;
-        this->y = _y;
-        this->z = _z;
-        this->step = _step;
-    }
-
-    bool operator==(Point3D p) {
-        return this->x == p.x && this->y == p.y && this->z == p.z;
-    }
-
-    string ToString() {
-        char ch[1024];
-        sprintf(ch, "{x:%d, y:%d, z:%d, step:%d}", this->x, this->y, this->z, this->step);
-        string str = ch;
-        return str;
-    }
-};
+#ifndef _INT64_T
+#define _INT64_T
+typedef long long               int64_t;
+#endif /* _INT64_T */
 
 
-
-int dir[8][2] = {
-        {1,2},{1,-2},
-        {-1,2},{-1,-2},
-        {2,1},{2,-1},
-        {-2,1},{-2,-1}
-};
-
-
-
-class TZOJ2755 {
+class JxustC2019ProSqrtIntegerSum {
 public:
 	void solve(std::istream& in, std::ostream& out) {
-	    int n, m;
-	    in >> n >> m;
-	    map<pair<int,int>, bool> visited;
-	    Point2D start;
-	    in >> start.x >> start.y;
-	    start.step = 0;
-	    Point2D target;
-	    in >> target.x >> target.y;
-
-	    queue<Point2D> q;
-	    q.push(start);
-	    visited[make_pair(start.x,start.y)] = true;
-
-	    while (!q.empty()) {
-	        Point2D cur = q.front(); q.pop();
-	        if (cur.step > m) {
-	            out << "Knight cannot reach Queen within " << m << " moves!" << endl;
-	            break;
-	        }
-	        if (cur == target) {
-	            out << "Knight can reach Queen within " << m << " moves!" << endl;
-	            return;
-	        }
-	        TIMES(dir_id, 8) {
-	            Point2D next( cur.x + dir[dir_id][0], cur.y + dir[dir_id][1], cur.step + 1 );
-	            if (next.in_map(1, n, 1, n) && !visited[make_pair(next.x, next.y)]) {
-                    q.push(next);
-                    visited[make_pair(next.x, next.y)] = true;
-	            }
-	        }
-	    }
-
+	    uint64_t n;
+	    uint64_t sqrt_n_1;
+	    in >> n;
+        sqrt_n_1 = sqrt(n);
+        uint64_t sum_val = (sqrt_n_1 - 1) * sqrt_n_1 * (2 * sqrt_n_1 - 1) / 3 + sqrt_n_1 * (sqrt_n_1 - 1) / 2;
+        sum_val += (n + 1) * sqrt_n_1;
+        sum_val -= sqrt_n_1 * sqrt_n_1 * sqrt_n_1;
+        out << sum_val << endl;
 	}
 };
 
 
 int main() {
-	TZOJ2755 solver;
+	JxustC2019ProSqrtIntegerSum solver;
 	std::istream& in(std::cin);
 	std::ostream& out(std::cout);
 	solver.solve(in, out);
