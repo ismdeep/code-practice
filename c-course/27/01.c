@@ -47,7 +47,15 @@ void select_sort(int *a, int n)
     for (left = 0; left <= n - 2; left++)
     {
         /* 找出 [left ~ n - 1] 最大值的位置 */
-        m = max_value_postion(a + left, n - left);
+        // m = max_value_postion(a + left, n - left);
+        m = left;
+        for (i = left + 1; i <= n - 1; i++)
+        {
+            if (a[i] > a[m])
+            {
+                m = i;
+            }
+        }
 
         /* 交换最左边 和 最大值位置的值 */
         swap(&a[left], &a[m]);

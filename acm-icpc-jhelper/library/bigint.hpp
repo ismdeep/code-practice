@@ -1,6 +1,7 @@
-class BigInt { //无符号整数高精度
 #define MAXDIGIT 10000 //最大为10^MAXDIGIT
 #define BIGINTMOD 10000 //压4位
+
+class BigInt { //无符号整数高精度
 private:
 public:
     int n;        //a中n位有效
