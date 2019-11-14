@@ -59,7 +59,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Task.Aizu0003">
+  <component name="RunManager" selected="Task.JxustC2019ProACounterProblem">
     <configuration name="Build All" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" EXPLICIT_BUILD_TARGET_NAME="all">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -251,6 +251,7 @@
       <workItem from="1572747049031" duration="34000" />
       <workItem from="1573476075625" duration="4653000" />
       <workItem from="1573553101125" duration="954000" />
+      <workItem from="1573656520833" duration="662000" />
     </task>
     <servers />
   </component>

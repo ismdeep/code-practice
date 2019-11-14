@@ -9,7 +9,7 @@
 
 int main()
 {
-	char str[2000];
+	char str[2000000];
 	bool is_pd;/* 是否是回文串 */
 
 	/* 1. 输入字符串 */
@@ -17,6 +17,7 @@ int main()
 
 	/* 2. 判断是否是回文串 */
 	is_pd = true;
+	//int len = strlen(str);
 	for (int i = 0; i < strlen(str) / 2; i++)
 	{
 		if(str[i] != str[strlen(str) - 1 - i])

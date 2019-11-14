@@ -10,11 +10,6 @@
 
 int main()
 {
-	int a[MAXN];
-	int n = MUL(2,3+4);
-	for (int i = 0; i < n; i++){
-	}
-	TIMES(i, n){
-	}
+	printf("%d\n", MUL(2,3+4) );
 	return 0;
 }
