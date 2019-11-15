@@ -1,4 +1,4 @@
-#include "/Users/ismdeep/Projects/code-practice/acm-icpc-jhelper/tasks/JxustC2019ProSqrtIntegerSum.cpp"
+#include "/Users/ismdeep/Projects/code-practice/acm-icpc-jhelper/tasks/JxustC2019ProACounterProblem.cpp"
 
 #include <iostream>
 #include <fstream>
@@ -29,7 +29,7 @@ bool check(std::string expected, std::string actual) {
 
 int main() {
 	std::vector<jhelper::Test> tests = {
-		{"29374923749234802384", "106138724140021312258872599044", true, true},{"2", "2", true, true},{"200", "1799", true, true},{"20000", "1875770", true, true},
+		{"273 8\n", "38\n", true, true},
 	};
 	bool allOK = true;
 	int testID = 0;
@@ -48,7 +48,7 @@ int main() {
 			std::stringstream in(test.input);
 			std::ostringstream out;
 			std::clock_t start = std::clock();
-			JxustC2019ProSqrtIntegerSum solver;
+			JxustC2019ProACounterProblem solver;
 			solver.solve(in, out);
 			std::clock_t finish = std::clock();
 			double currentTime = double(finish - start) / CLOCKS_PER_SEC;

@@ -28,6 +28,9 @@ using namespace std;
 #define FOR(type_id, id, from, to, step) for(type_id id = (from); id <= (to); id += step)
 #define DBG(x) (void)(cout << "L" << __LINE__ << ": " << #x << " = " << (x) << '\n')
 
+#ifndef _STDINT_H
+#define _STDINT_H	1
+
 #ifndef _UINT8_T
 #define _UINT8_T
 typedef unsigned char uint8_t;
@@ -68,24 +71,26 @@ typedef int                     int32_t;
 typedef long long               int64_t;
 #endif /* _INT64_T */
 
+#endif
 
-class JxustC2019ProSqrtIntegerSum {
+class JxustC2019ProACounterProblem {
 public:
 	void solve(std::istream& in, std::ostream& out) {
-	    uint64_t n;
-	    uint64_t sqrt_n_1;
-	    in >> n;
-        sqrt_n_1 = sqrt(n);
-        uint64_t sum_val = (sqrt_n_1 - 1) * sqrt_n_1 * (2 * sqrt_n_1 - 1) / 3 + sqrt_n_1 * (sqrt_n_1 - 1) / 2;
-        sum_val += (n + 1) * sqrt_n_1;
-        sum_val -= sqrt_n_1 * sqrt_n_1 * sqrt_n_1;
-        out << sum_val << endl;
+	    uint64_t n, p;
+	    in >> n >> p;
+	    uint64_t current = p;
+	    uint64_t cnt = 0;
+	    while (current <= n) {
+	        cnt += (n / current);
+	        current *= p;
+	    }
+	    out << cnt << endl;
 	}
 };
 
 
 int main() {
-	JxustC2019ProSqrtIntegerSum solver;
+	JxustC2019ProACounterProblem solver;
 	std::istream& in(std::cin);
 	std::ostream& out(std::cout);
 	solver.solve(in, out);

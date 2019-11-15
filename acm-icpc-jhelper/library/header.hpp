@@ -22,6 +22,9 @@ using namespace std;
 #define FOR(type_id, id, from, to, step) for(type_id id = (from); id <= (to); id += step)
 #define DBG(x) (void)(cout << "L" << __LINE__ << ": " << #x << " = " << (x) << '\n')
 
+#ifndef _STDINT_H
+#define _STDINT_H	1
+
 #ifndef _UINT8_T
 #define _UINT8_T
 typedef unsigned char uint8_t;
@@ -61,3 +64,5 @@ typedef int                     int32_t;
 #define _INT64_T
 typedef long long               int64_t;
 #endif /* _INT64_T */
+
+#endif

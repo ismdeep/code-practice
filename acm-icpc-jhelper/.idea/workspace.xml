@@ -59,7 +59,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Task.JxustC2019ProACounterProblem">
+  <component name="RunManager" selected="Task.JxustC2019BeginnerComeToRome">
     <configuration name="Build All" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" EXPLICIT_BUILD_TARGET_NAME="all">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -181,6 +181,8 @@
       <item itemvalue="Task.JxustC2019ProACounterProblem" />
       <item itemvalue="Task.JxustC2019ProComeToRome" />
       <item itemvalue="Task.JxustC2019ProSqrtIntegerSum" />
+      <item itemvalue="Task.JxustC2019BeginnerStringSearch" />
+      <item itemvalue="Task.JxustC2019BeginnerComeToRome" />
     </list>
   </component>
   <component name="SvnConfiguration">
@@ -252,6 +254,9 @@
       <workItem from="1573476075625" duration="4653000" />
       <workItem from="1573553101125" duration="954000" />
       <workItem from="1573656520833" duration="662000" />
+      <workItem from="1573731985979" duration="926000" />
+      <workItem from="1573733898907" duration="1260000" />
+      <workItem from="1573743308636" duration="733000" />
     </task>
     <servers />
   </component>
