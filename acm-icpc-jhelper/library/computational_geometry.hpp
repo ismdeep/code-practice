@@ -302,7 +302,21 @@ struct Triangle {
         Triangle t23p(p2, p3, p);
         return fabs((t12p.area() + t13p.area() + t23p.area()) - this->area()) <= 1e-6;
     }
-
 };
 
+/**
+ * 根据三点求圆心
+ * @param pa
+ * @param pb
+ * @param pc
+ * @return
+ */
+Point center_of_3_points(const Point pa, const Point pb, const Point pc) {
+    Point center;
+    center.x = (pa.x*pa.x-pb.y*pb.y-pb.x*pb.x+pa.y*pa.y)*(pa.y-pc.y)-(pa.x*pa.x-pc.y*pc.y-pc.x*pc.x+pa.y*pa.y)*(pa.y-pb.y);
+    center.x /= 2*(pa.y-pc.y)*(pa.x-pb.x)-2*(pa.y-pb.y)*(pa.x-pc.x);
+    center.y = (pa.x*pa.x-pb.y*pb.y-pb.x*pb.x+pa.y*pa.y)*(pa.x-pc.x)-(pa.x*pa.x-pc.y*pc.y-pc.x*pc.x+pa.y*pa.y)*(pa.x-pb.x);
+    center.y /= 2*(pa.y-pb.y)*(pa.x-pc.x)-2*(pa.y-pc.y)*(pa.x-pb.x);
+    return center;
+}
 

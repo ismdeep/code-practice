@@ -1,14 +1,6 @@
 #include "../library/header.hpp"
 #include "../library/point_int.hpp"
-
-int dir[8][2] = {
-        {1,2},{1,-2},
-        {-1,2},{-1,-2},
-        {2,1},{2,-1},
-        {-2,1},{-2,-1}
-};
-
-
+#include "../library/direction.hpp"
 
 class TZOJ2755 {
 public:
@@ -37,13 +29,12 @@ public:
 	            return;
 	        }
 	        TIMES(dir_id, 8) {
-	            Point2D next( cur.x + dir[dir_id][0], cur.y + dir[dir_id][1], cur.step + 1 );
+	            Point2D next( cur.x + dir_horse[dir_id][0], cur.y + dir_horse[dir_id][1], cur.step + 1 );
 	            if (next.in_map(1, n, 1, n) && !visited[make_pair(next.x, next.y)]) {
                     q.push(next);
                     visited[make_pair(next.x, next.y)] = true;
 	            }
 	        }
 	    }
-
 	}
 };

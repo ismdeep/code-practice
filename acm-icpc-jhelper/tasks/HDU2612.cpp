@@ -1,9 +1,7 @@
 #include "../library/header.hpp"
 #include "../library/point_int.hpp"
 #include "../library/array.hpp"
-
-int dir[4][2] = {{0,1},{0,-1},{1,0},{-1,0}};
-
+#include "../library/direction.hpp"
 
 void bfs_map(bool **visited, Point2D *start, bool **is_kfc, int** step_count) {
     visited[start->x][start->y] = true;
@@ -13,7 +11,7 @@ void bfs_map(bool **visited, Point2D *start, bool **is_kfc, int** step_count) {
         Point2D cur = q.front(); q.pop();
         step_count[cur.x][cur.y] = cur.step;
         TIMES(dir_id, 4) {
-            Point2D next(cur.x + dir[dir_id][0], cur.y + dir[dir_id][1], cur.step + 1);
+            Point2D next(cur.x + dir4[dir_id][0], cur.y + dir4[dir_id][1], cur.step + 1);
             if (!visited[next.x][next.y]) {
                 q.push(next);
                 visited[next.x][next.y] = true;

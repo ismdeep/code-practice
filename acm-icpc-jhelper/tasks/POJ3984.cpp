@@ -1,13 +1,8 @@
 #include "../library/header.hpp"
 #include "../library/array.hpp"
 #include "../library/point_int.hpp"
+#include "../library/direction.hpp"
 
-int dir[4][2] = {
-        {1,  0},
-        {-1, 0},
-        {0,  1},
-        {0,  -1}
-};
 
 class POJ3984 {
 public:
@@ -39,8 +34,8 @@ public:
             q.pop();
             TIMES(dir_id, 4) {
                 Point2D next(
-                        cur.x + dir[dir_id][0],
-                        cur.y + dir[dir_id][1],
+                        cur.x + dir4[dir_id][0],
+                        cur.y + dir4[dir_id][1],
                         cur.step + 1
                 );
                 if (!visited[next.x][next.y]) {

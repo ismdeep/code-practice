@@ -1,0 +1,13 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="JxustC2019BeginnerCounter" type="name.admitriev.jhelper.configuration.TaskConfigurationType" factoryName="Task" className="JxustC2019BeginnerCounter" cppPath="tasks/JxustC2019BeginnerCounter.cpp" inputType="STANDARD" inputFile="input.txt" outputType="STANDARD" outputFile="output.txt" testType="SINGLE">
+    <tests>
+      <test input="1" output="1" active="true" />
+      <test input="20" output="5&#10;" active="true" />
+      <test input="2132" output="8&#10;" active="true" />
+      <test input="506&#10;" output="2" active="true" />
+      <test input="999999999999999999&#10;" output="4&#10;" active="true" />
+      <test input="1000000000000000000" output="1&#10;" active="true" />
+    </tests>
+    <method v="2" />
+  </configuration>
+</component>
