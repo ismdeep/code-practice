@@ -1,5 +1,5 @@
 /*
-gcc 01-gendata.c -o 01-gendata && 01-gendata > in.txt && gcc -fexec-charset=GBK 01.c -o main && main < in.txt
+gcc 01-gendata.c -o 01-gendata && 01-gendata > in.txt && type in.txt && gcc -fexec-charset=GBK 01.c -o main && main < in.txt
 */
 #include <stdio.h>
 
