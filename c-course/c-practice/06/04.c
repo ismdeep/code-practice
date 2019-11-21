@@ -7,13 +7,13 @@ int main()
 {
     int a[10];
 
-    /* 输入 */
+    /* 1. 输入 */
     for (int i = 0; i < N; ++i)
     {
         scanf("%d", &a[i]);
     }
 
-    /* 排序 */
+    /* 2. 排序 */
     for (int left = 0; left <= N - 2; left++)
     {
         int min_id = left;
@@ -29,7 +29,7 @@ int main()
         a[min_id] = t;
     }
 
-    /* 输出 */
+    /* 3. 输出 */
     for (int i = 0; i < N; ++i)
     {
         printf("%d ", a[i]);
