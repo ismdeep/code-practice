@@ -8,3 +8,8 @@ for (( i = 1; i < 7; i++ )); do
     cat ${id}.c >> README.md
     echo \`\`\` >> README.md
 done
+
+echo >> README.md
+echo >> README.md
+echo >> README.md
+echo >> README.md
