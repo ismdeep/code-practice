@@ -1,6 +1,3 @@
-/*
-任意输入一行字符，分别统计字母、数字、空格和其它字符的个数。
-*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
