@@ -1,9 +1,10 @@
 #!/bin/bash
-
-gcc 06-gendata.c -o 06-gendata
-./06-gendata > 06-in.txt
-cat 06-in.txt
+mkdir -p bin
+mkdir -p data
+gcc 06-gendata.c -o ./bin/06-gendata
+./bin/06-gendata > ./data/06-in.txt
+cat ./data/06-in.txt
 echo -------------------------------
-gcc -fexec-charset=UTF-8 06.c -o 06
-time ./06 < 06-in.txt
+gcc 06.c -o ./bin/06
+./bin/06 < ./data/06-in.txt
 
