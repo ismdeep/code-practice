@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 int max_in_arr(int *a, int n)
 {
@@ -23,7 +24,7 @@ int main()
 	{
 		scanf("%d", &a[i]);
 	}
-	print("最大数字为：%d\n", max_in_arr(a, n));
+	printf("最大数字为：%d\n", max_in_arr(a, n));
 	return 0;
 }
 
