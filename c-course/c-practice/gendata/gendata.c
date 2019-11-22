@@ -102,7 +102,7 @@ int main(int argc, const char *argv[]) {
     }
 
     /* 随机产生随机数量 */
-    int count = rand() % (count-max - count-min + 1) + count-min;
+    int count = rand() % (count_max - count_min + 1) + count_min;
 
     /* 根据output-count标记判定是否需要输出变量count的值 */
     if (1 == output_count) {
