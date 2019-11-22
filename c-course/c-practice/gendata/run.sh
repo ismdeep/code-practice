@@ -4,5 +4,5 @@ mkdir -p build
 cd build
 cmake ..
 make
-./gendata
+./gendata min=1 max=100 seed=1 count=10 ouput-count=1
 
