@@ -1,0 +1,20 @@
+@startuml
+package P {
+    Shape <|-- "implements" Circle
+    Shape <|-- "implements" Square
+    Shape <|-- "implements" Rectangle
+
+    Shape : +draw(): void
+
+    Circle : +draw(): void
+    Square : +draw(): void
+    Rectangle : +draw(): void
+}
+
+P <|-- "create" ShapeFactory
+ShapeFactory <|-- "asks" FactoryPatternDemo
+
+
+ShapeFactory : +getShape(): Shape
+FactoryPatternDemo : +main(): void
+@enduml
