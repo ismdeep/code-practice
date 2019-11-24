@@ -1,0 +1,29 @@
+@startuml
+运算类 : +NumberA : double
+运算类 : +NumberB : double
+运算类 : +GetResult() : double
+
+加法类 : +GetResult() : double
+减法类 : +GetResult() : double
+乘法类 : +GetResult() : double
+除法类 : +GetResult() : double
+
+运算类 <|-- 加法类
+运算类 <|-- 减法类
+运算类 <|-- 乘法类
+运算类 <|-- 除法类
+
+工厂类 : +CreateOperation() 运算类
+
+加法类 <|.. 加法工厂
+减法类 <|.. 减法工厂
+乘法类 <|.. 乘法工厂
+除法类 <|.. 除法工厂
+
+运算类 <|.. 工厂类
+
+工厂类 <|-- 加法工厂
+工厂类 <|-- 减法工厂
+工厂类 <|-- 乘法工厂
+工厂类 <|-- 除法工厂
+@enduml
