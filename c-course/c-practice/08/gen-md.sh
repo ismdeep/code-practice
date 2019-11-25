@@ -12,6 +12,3 @@ done
 
 echo >> README.md
 echo >> README.md
-echo >> README.md
-echo >> README.md
-
