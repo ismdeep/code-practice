@@ -1,0 +1,11 @@
+@startuml
+Mail <|.. EventTemplate
+SendMail <|.. Mail
+
+Mail : setReceiver()
+Mail : setObject()
+Mail : setContent()
+
+EventTemplate : EventSubject
+EventTemplate : EventContent
+@enduml

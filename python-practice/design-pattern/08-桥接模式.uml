@@ -1,0 +1,12 @@
+@startuml
+AbstractRoad : Car
+AbstractRoad : Run()
+
+SpeedWay : Run()
+
+Street : Run()
+
+AbstractRoad <|-- SpeedWay
+AbstractRoad <|-- Street
+
+@enduml
