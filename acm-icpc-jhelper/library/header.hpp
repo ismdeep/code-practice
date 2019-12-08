@@ -1,4 +1,5 @@
 #include <iostream>
+#include <climits>
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
@@ -15,6 +16,7 @@
 #include <limits>
 #include <string.h>
 #include <string>
+#include <tuple>
 using namespace std;
 
 

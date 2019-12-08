@@ -1,6 +1,9 @@
 #include "../library/header.hpp"
 #include "../library/computational_geometry.hpp"
 
+/**
+ * http://oj.jxust.edu.cn/problem?id=2482
+ */
 class JxustC2019ProTriangleCircle {
 public:
 	void solve(std::istream& in, std::ostream& out) {

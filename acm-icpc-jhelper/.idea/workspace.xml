@@ -59,7 +59,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Task.JxustC2019BeginnerComeToRome">
+  <component name="RunManager" selected="Task.JxustC2019ProTriangleCircle">
     <configuration name="Build All" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" EXPLICIT_BUILD_TARGET_NAME="all">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -185,6 +185,7 @@
       <item itemvalue="Task.JxustC2019BeginnerComeToRome" />
       <item itemvalue="Task.JxustC2019ProTriangleCircle" />
       <item itemvalue="Task.JxustC2019ProInfinitePro" />
+      <item itemvalue="Task.JustOJ2472" />
     </list>
   </component>
   <component name="SvnConfiguration">
@@ -268,6 +269,8 @@
       <workItem from="1573958894019" duration="363000" />
       <workItem from="1573978185137" duration="13000" />
       <workItem from="1574046973541" duration="204000" />
+      <workItem from="1575089932192" duration="1082000" />
+      <workItem from="1575638577295" duration="965000" />
     </task>
     <servers />
   </component>
