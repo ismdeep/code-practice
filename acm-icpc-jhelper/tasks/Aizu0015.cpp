@@ -1,6 +1,8 @@
 #include <iostream>
+#include <cmath>
 #include <cstdlib>
 #include <cstring>
+#include <string>
 #include "../library/bigint.hpp"
 
 class Aizu0015 {
@@ -14,10 +16,10 @@ public:
             BigInt bigint_a(a);
             BigInt bigint_b(b);
             BigInt sum = bigint_a + bigint_b;
-            if (sum.ToString().length() > 80) {
+            if (sum.to_string().length() > 80) {
                 out << "overflow" << std::endl;
             } else {
-                out << sum.ToString() << std::endl;
+                out << sum.to_string() << std::endl;
             }
 
 	    }

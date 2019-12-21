@@ -15,7 +15,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e173ed55-e541-424a-82e1-b5da979c74d7" name="Default" comment="" />
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -35,31 +34,25 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="OCResolveContextSettings">
-    <option name="configuration" value="0-test" />
+    <option name="configuration" value="0-Debug-test" />
   </component>
   <component name="ProjectId" id="1Rfuxo87Wi0ahmcoixDK7fbQ1zq" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
     <property name="CMAKE.AUTO_RELOAD_ENABLED" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="recentsLimit" value="5" />
     <property name="restartRequiresConfirmation" value="true" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
-  <component name="RunManager" selected="Task.JxustC2019ProTriangleCircle">
+  <component name="RunManager" selected="Task.JxustC2019ProACounterProblem">
     <configuration name="Build All" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" EXPLICIT_BUILD_TARGET_NAME="all">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -186,7 +179,22 @@
       <item itemvalue="Task.JxustC2019ProTriangleCircle" />
       <item itemvalue="Task.JxustC2019ProInfinitePro" />
       <item itemvalue="Task.JustOJ2472" />
+      <item itemvalue="Task.TestKMP" />
+      <item itemvalue="Task.JustOJ1946" />
+      <item itemvalue="Task.JustOJ1000MemTest" />
     </list>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -271,6 +279,12 @@
       <workItem from="1574046973541" duration="204000" />
       <workItem from="1575089932192" duration="1082000" />
       <workItem from="1575638577295" duration="965000" />
+      <workItem from="1576136690590" duration="2153000" />
+      <workItem from="1576409804762" duration="65000" />
+      <workItem from="1576544958542" duration="20000" />
+      <workItem from="1576551168733" duration="662000" />
+      <workItem from="1576584857181" duration="413000" />
+      <workItem from="1576843553392" duration="59000" />
     </task>
     <servers />
   </component>
@@ -297,5 +311,27 @@
     <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
       <collection />
     </option>
+  </component>
+  <component name="WindowStateProjectService">
+    <state width="1200" height="266" key="GridCell.Tab.0.bottom" timestamp="1576843612055">
+      <screen x="38" y="23" width="1242" height="777" />
+    </state>
+    <state width="1238" height="278" key="GridCell.Tab.0.bottom/0.0.1280.800@0.0.1280.800" timestamp="1576585270684" />
+    <state width="1200" height="266" key="GridCell.Tab.0.bottom/38.23.1242.777@38.23.1242.777" timestamp="1576843612055" />
+    <state width="1200" height="266" key="GridCell.Tab.0.center" timestamp="1576843612054">
+      <screen x="38" y="23" width="1242" height="777" />
+    </state>
+    <state width="1238" height="278" key="GridCell.Tab.0.center/0.0.1280.800@0.0.1280.800" timestamp="1576585270683" />
+    <state width="1200" height="266" key="GridCell.Tab.0.center/38.23.1242.777@38.23.1242.777" timestamp="1576843612054" />
+    <state width="1200" height="266" key="GridCell.Tab.0.left" timestamp="1576843612053">
+      <screen x="38" y="23" width="1242" height="777" />
+    </state>
+    <state width="1238" height="278" key="GridCell.Tab.0.left/0.0.1280.800@0.0.1280.800" timestamp="1576585270681" />
+    <state width="1200" height="266" key="GridCell.Tab.0.left/38.23.1242.777@38.23.1242.777" timestamp="1576843612053" />
+    <state width="1200" height="266" key="GridCell.Tab.0.right" timestamp="1576843612054">
+      <screen x="38" y="23" width="1242" height="777" />
+    </state>
+    <state width="1238" height="278" key="GridCell.Tab.0.right/0.0.1280.800@0.0.1280.800" timestamp="1576585270683" />
+    <state width="1200" height="266" key="GridCell.Tab.0.right/38.23.1242.777@38.23.1242.777" timestamp="1576843612054" />
   </component>
 </project>
