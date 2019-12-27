@@ -4,39 +4,14 @@
 # filename: tsgd.py
 # blog: https://ismdeep.com
 
-import sys
 import time
 import urllib
 import http.cookiejar
 import re
-import json
-import requests
+import syslog
 from ismdeep_utils import ArgvUtil
+from ismdeep_utils import StringUtil
 
-
-def push_data(_keyid_, _data_):
-    data = {
-        'keyid': _keyid_,
-        'data': _data_,
-        'token': ArgvUtil.get_sys_argv('-token')
-    }
-    req = requests.post(
-        url='https://info.ismdeep.com/api/info/push_data',
-        data=data,
-        timeout=3
-    )
-    print(req.text)
-
-
-class StringUtil:
-    def __init__(self):
-        pass
-
-    @staticmethod
-    def between(_content_, _begin_, _end_):
-        _content_ = _content_[_content_.find(_begin_) + len(_begin_) : ]
-        _content_ = _content_[:_content_.find(_end_)]
-        return _content_
 
 
 class JxustTSG:
@@ -72,7 +47,7 @@ class JxustTSG:
         opener = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(self.cj))
         r = opener.open(req)
         try:
-            content = r.read().decode('gb2312','ignore')
+            content = r.read().decode('gb2312', 'ignore')
         except:
             return ""
         if content.find('欢迎您登录') >= 0:
@@ -93,7 +68,9 @@ class JxustTSG:
         opener = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(self.cj))
         r = opener.open(req)
         content = r.read().decode('gb2312', errors='ignore')
-        pattern = re.compile('''<td  class=tdborder4  >(.*?)&nbsp;</td><td  class=tdborder4  >(.*?)&nbsp;</td><td  class=tdborder4  >(.*?)</td><td  class=tdborder4  >(.*?)</td><td  class=tdborder4  >(.*?)&nbsp;</td><td  class=tdborder4  >(.*?)&nbsp;</td><td class=tdborder4  align=center  ><a href = '(.*?)' target=_blank >(.*?)</a></td>''', re.S)
+        pattern = re.compile(
+            '''<td  class=tdborder4  >(.*?)&nbsp;</td><td  class=tdborder4  >(.*?)&nbsp;</td><td  class=tdborder4  >(.*?)</td><td  class=tdborder4  >(.*?)</td><td  class=tdborder4  >(.*?)&nbsp;</td><td  class=tdborder4  >(.*?)&nbsp;</td><td class=tdborder4  align=center  ><a href = '(.*?)' target=_blank >(.*?)</a></td>''',
+            re.S)
         rents = re.findall(pattern, content)
         return rents
 
@@ -101,7 +78,7 @@ class JxustTSG:
         req = urllib.request.Request(self.home_site + '/dzxj/dzxj.asp?nbsl=' + xj_id, None, self.header)
         opener = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(self.cj))
         r = opener.open(req)
-        content = r.read().decode('gb2312',errors='ignore')
+        content = r.read().decode('gb2312', errors='ignore')
         content = content[content.find('window.alert ("') + len('window.alert ("'):]
         content = content[:content.find('");')]
 
@@ -117,16 +94,10 @@ class JxustTSG:
                 'to_date': item[3],
                 'book_name': item[0]
             })
-            print("%s => %s (%s - %s) %s " % (time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()), self.fullname, from_date, to_date, "《" + book_name + "》"))
-            self.xj(item[6][item[6].find('nbsl=')+5:])
-        try:
-            push_data('tsgd-%s'%self.username, json.dumps({
-                'fullname': self.fullname,
-                'data': rents_data
-            }))
-        except Exception as e:
-            print(e)
-            pass
+            syslog.syslog(syslog.LOG_INFO, "%s => %s (%s - %s) %s " % (
+                time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()), self.fullname, from_date, to_date,
+                "《" + book_name + "》"))
+            self.xj(item[6][item[6].find('nbsl=') + 5:])
 
     def logout(self):
         req = urllib.request.Request(self.home_site + '/share/Exit.asp', None, self.header)
