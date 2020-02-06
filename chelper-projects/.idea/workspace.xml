@@ -4,8 +4,6 @@
     <list default="true" id="84a22948-5a03-4625-a70f-dd7284ea8432" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/CHelperReport.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CHelperReport.txt" afterDir="false" />
     </list>
-    <ignored path="$PROJECT_DIR$/out/" />
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,62 +12,8 @@
   <component name="DefaultGradleProjectSettings">
     <option name="isMigrated" value="true" />
   </component>
-  <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/codes/JustOJ1970.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="114">
-              <caret line="6" selection-start-line="6" selection-end-line="6" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/codes/JustOJ2400.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="251">
-              <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/codes/JustOJ2399.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="14" column="35" selection-start-line="14" selection-start-column="35" selection-end-line="14" selection-end-column="35" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>out.write</find>
-      <find>add</find>
-      <find>multi</find>
-    </findStrings>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
-  </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/src/codes/HDU2687.java" />
-        <option value="$PROJECT_DIR$/src/codes/HDU2268.java" />
-        <option value="$PROJECT_DIR$/src/codes/JustOJ2405.java" />
-        <option value="$PROJECT_DIR$/output/Main.java" />
-        <option value="$PROJECT_DIR$/src/codes/JustOJ1970.java" />
-        <option value="$PROJECT_DIR$/src/codes/JustOJ2400.java" />
-        <option value="$PROJECT_DIR$/src/codes/JustOJ2399.java" />
-      </list>
-    </option>
   </component>
   <component name="ProjectConfigurationFiles">
     <option name="files">
@@ -84,64 +28,26 @@
     <option name="width" value="1236" />
     <option name="height" value="777" />
   </component>
+  <component name="ProjectId" id="1XN6IpEK230wr3Gpdf0DDx3Fldo" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
-  <component name="ProjectView">
-    <navigator proportions="" version="1">
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes>
-      <pane id="Scope" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="chelper-projects" type="b2602c69:ProjectViewProjectNode" />
-              <item name="chelper-projects" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="chelper-projects" type="b2602c69:ProjectViewProjectNode" />
-              <item name="chelper-projects" type="462c0819:PsiDirectoryNode" />
-              <item name="output" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="chelper-projects" type="b2602c69:ProjectViewProjectNode" />
-              <item name="chelper-projects" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="chelper-projects" type="b2602c69:ProjectViewProjectNode" />
-              <item name="chelper-projects" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="codes" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="PackagesPane" />
-    </panes>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="/usr/local/bin/node" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="settings.editor.selected.configurable" value="http.proxy" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
-  <component name="RunManager" selected="Task.JustOJ2399">
+  <component name="RunManager" selected="Task.ECUSTACM1256">
     <configuration default="true" type="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
       <method v="2">
@@ -161,9 +67,52 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="HDU2268" type="Task" factoryName="Task">
-      <taskConf>src/codes/HDU2268.json</taskConf>
+    <configuration name="ECUSTACM1250" type="Task" factoryName="Task">
+      <taskConf>src/codes/ECUSTACM1250.json</taskConf>
       <method v="2">
+        <option name="MakeProject" enabled="false" />
+      </method>
+    </configuration>
+    <configuration name="ECUSTACM1251" type="Task" factoryName="Task">
+      <taskConf>src/codes/ECUSTACM1251.json</taskConf>
+      <method v="2">
+        <option name="MakeProject" enabled="false" />
+      </method>
+    </configuration>
+    <configuration name="ECUSTACM1252" type="Task" factoryName="Task">
+      <taskConf>src/codes/ECUSTACM1252.json</taskConf>
+      <method v="2">
+        <option name="MakeProject" enabled="false" />
+      </method>
+    </configuration>
+    <configuration name="ECUSTACM1253" type="Task" factoryName="Task">
+      <taskConf>src/codes/ECUSTACM1253.json</taskConf>
+      <method v="2">
+        <option name="MakeProject" enabled="false" />
+      </method>
+    </configuration>
+    <configuration name="ECUSTACM1254" type="Task" factoryName="Task">
+      <taskConf>src/codes/ECUSTACM1254.json</taskConf>
+      <method v="2">
+        <option name="MakeProject" enabled="false" />
+      </method>
+    </configuration>
+    <configuration name="ECUSTACM1255" type="Task" factoryName="Task">
+      <taskConf>src/codes/ECUSTACM1255.json</taskConf>
+      <method v="2">
+        <option name="MakeProject" enabled="false" />
+      </method>
+    </configuration>
+    <configuration name="ECUSTACM1256" type="Task" factoryName="Task">
+      <taskConf>src/codes/ECUSTACM1256.json</taskConf>
+      <method v="2">
+        <option name="MakeProject" enabled="false" />
+      </method>
+    </configuration>
+    <configuration name="HDU2268" type="Task" factoryName="Task">
+      <taskConf />
+      <method v="2">
+        <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
@@ -183,11 +132,13 @@
         <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
       </method>
     </configuration>
     <configuration name="JustOJ1970" type="Task" factoryName="Task">
       <taskConf>src/codes/JustOJ1970.json</taskConf>
       <method v="2">
+        <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
@@ -199,17 +150,20 @@
       <taskConf>src/codes/JustOJ2399.json</taskConf>
       <method v="2">
         <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
       </method>
     </configuration>
     <configuration name="JustOJ2400" type="Task" factoryName="Task">
       <taskConf>src/codes/JustOJ2400.json</taskConf>
       <method v="2">
         <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
       </method>
     </configuration>
     <configuration name="JustOJ2405" type="Task" factoryName="Task">
       <taskConf>src/codes/JustOJ2405.json</taskConf>
       <method v="2">
+        <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
@@ -254,80 +208,76 @@
       <workItem from="1555157897722" duration="770000" />
       <workItem from="1555211572678" duration="75000" />
       <workItem from="1555937764931" duration="1032000" />
+      <workItem from="1580874134586" duration="46000" />
+      <workItem from="1580874199574" duration="144000" />
+      <workItem from="1580874361941" duration="6438000" />
     </task>
     <servers />
   </component>
-  <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="13164000" />
-  </component>
-  <component name="ToolWindowManager">
-    <frame x="44" y="23" width="1236" height="777" extended-state="0" />
-    <editor active="true" />
-    <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.28308207" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Image Layers" order="2" />
-      <window_info id="Designer" order="3" />
-      <window_info id="UI Designer" order="4" />
-      <window_info id="Capture Tool" order="5" />
-      <window_info id="Favorites" order="6" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.45166162" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.25528702" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" weight="0.32930514" />
-      <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" />
-      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" order="12" />
-      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="right" id="Theme Preview" order="4" />
-      <window_info anchor="right" id="Maven" order="5" />
-      <window_info anchor="right" id="Capture Analysis" order="6" />
-      <window_info anchor="right" id="Palette&#9;" order="7" />
-      <window_info anchor="right" id="Database" order="8" />
-    </layout>
-    <layout-to-restore>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25376883" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Image Layers" order="2" />
-      <window_info id="Designer" order="3" />
-      <window_info id="UI Designer" order="4" />
-      <window_info id="Capture Tool" order="5" />
-      <window_info id="Favorites" order="6" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" order="0" />
-      <window_info anchor="bottom" id="Message" order="1" />
-      <window_info anchor="bottom" id="Find" order="2" />
-      <window_info active="true" anchor="bottom" id="Run" order="3" visible="true" weight="0.41993958" />
-      <window_info anchor="bottom" id="Debug" order="4" weight="0.25528702" />
-      <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="7" />
-      <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="9" weight="0.32930514" />
-      <window_info anchor="bottom" id="Database Changes" order="10" />
-      <window_info anchor="bottom" id="Terminal" order="11" />
-      <window_info anchor="bottom" id="Event Log" order="12" side_tool="true" />
-      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="right" id="Theme Preview" order="4" />
-      <window_info anchor="right" id="Maven" order="5" />
-      <window_info anchor="right" id="Capture Analysis" order="6" />
-      <window_info anchor="right" id="Palette&#9;" order="7" />
-      <window_info anchor="right" id="Database" order="8" />
-    </layout-to-restore>
-  </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="240" y="67" key="#Menus_and_Toolbars" timestamp="1580874332423">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state x="240" y="67" key="#Menus_and_Toolbars/0.0.1280.800@0.0.1280.800" timestamp="1580874332423" />
+    <state x="240" y="67" key="#Plugins" timestamp="1580874278359">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state x="240" y="67" key="#Plugins/0.0.1280.800@0.0.1280.800" timestamp="1580874278359" />
+    <state x="468" y="127" key="#com.intellij.ide.ui.customization.CustomizableActionsPanel.FindAvailableActionsDialog" timestamp="1580874332036">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state x="468" y="127" key="#com.intellij.ide.ui.customization.CustomizableActionsPanel.FindAvailableActionsDialog/0.0.1280.800@0.0.1280.800" timestamp="1580874332036" />
+    <state x="453" y="112" key="#com.intellij.ide.util.MemberChooser" timestamp="1580877040640">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state x="453" y="112" key="#com.intellij.ide.util.MemberChooser/0.0.1280.800@0.0.1280.800" timestamp="1580877040640" />
+    <state x="473" y="297" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1580874147439">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state x="473" y="297" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.0.1280.800@0.0.1280.800" timestamp="1580874147439" />
+    <state width="1280" height="157" key="GridCell.Tab.0.bottom" timestamp="1580889507313">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state width="1280" height="157" key="GridCell.Tab.0.bottom/0.0.1280.800@0.0.1280.800" timestamp="1580889507313" />
+    <state width="1280" height="229" key="GridCell.Tab.0.bottom/0.23.1280.710@0.23.1280.710" timestamp="1580879945621" />
+    <state width="1280" height="157" key="GridCell.Tab.0.center" timestamp="1580889507312">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state width="1280" height="157" key="GridCell.Tab.0.center/0.0.1280.800@0.0.1280.800" timestamp="1580889507312" />
+    <state width="1280" height="229" key="GridCell.Tab.0.center/0.23.1280.710@0.23.1280.710" timestamp="1580879945617" />
+    <state width="1280" height="157" key="GridCell.Tab.0.left" timestamp="1580889507312">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state width="1280" height="157" key="GridCell.Tab.0.left/0.0.1280.800@0.0.1280.800" timestamp="1580889507312" />
+    <state width="1280" height="229" key="GridCell.Tab.0.left/0.23.1280.710@0.23.1280.710" timestamp="1580879945616" />
+    <state width="1280" height="157" key="GridCell.Tab.0.right" timestamp="1580889507313">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state width="1280" height="157" key="GridCell.Tab.0.right/0.0.1280.800@0.0.1280.800" timestamp="1580889507313" />
+    <state width="1280" height="229" key="GridCell.Tab.0.right/0.23.1280.710@0.23.1280.710" timestamp="1580879945619" />
+    <state width="1280" height="157" key="GridCell.Tab.1.bottom" timestamp="1580889507315">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state width="1280" height="157" key="GridCell.Tab.1.bottom/0.0.1280.800@0.0.1280.800" timestamp="1580889507315" />
+    <state width="1280" height="157" key="GridCell.Tab.1.center" timestamp="1580889507314">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state width="1280" height="157" key="GridCell.Tab.1.center/0.0.1280.800@0.0.1280.800" timestamp="1580889507314" />
+    <state width="1280" height="157" key="GridCell.Tab.1.left" timestamp="1580889507314">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state width="1280" height="157" key="GridCell.Tab.1.left/0.0.1280.800@0.0.1280.800" timestamp="1580889507314" />
+    <state width="1280" height="157" key="GridCell.Tab.1.right" timestamp="1580889507315">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state width="1280" height="157" key="GridCell.Tab.1.right/0.0.1280.800@0.0.1280.800" timestamp="1580889507315" />
+    <state x="141" y="0" key="SettingsEditor" timestamp="1580874340457">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state x="141" y="0" key="SettingsEditor/0.0.1280.800@0.0.1280.800" timestamp="1580874340457" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -335,77 +285,9 @@
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/codes/HDU2687.java</url>
           <line>28</line>
-          <properties />
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
-  </component>
-  <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/codes/HDU2687.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="232">
-          <caret line="63" lean-forward="true" selection-start-line="63" selection-end-line="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/codes/HDU2268.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="11" column="29" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/codes/JustOJ2405.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="25" column="9" selection-start-line="25" selection-start-column="9" selection-end-line="25" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/output/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="13" column="44" selection-start-line="13" selection-start-column="44" selection-end-line="13" selection-end-column="44" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_111.jdk/Contents/Home/src.zip!/java/math/BigInteger.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="223">
-          <caret line="565" column="12" selection-start-line="565" selection-start-column="7" selection-end-line="565" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/codes/JustOJ1970.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="6" selection-start-line="6" selection-end-line="6" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/codes/JustOJ2400.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="251">
-          <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/codes/JustOJ2399.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="14" column="35" selection-start-line="14" selection-start-column="35" selection-end-line="14" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
   </component>
 </project>
