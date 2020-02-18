@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData">
+    <serverData>
+      <paths name="JustOJ (ec1645f2-7732-4437-b5e8-db49026dc762)">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/tmp/acm-icpc-jhelper" local="$PROJECT_DIR$" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+  </component>
+</project>
