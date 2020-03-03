@@ -5,13 +5,69 @@
 # blog: https://ismdeep.com
 
 import time
+import datetime
 import urllib
 import http.cookiejar
 import re
-import syslog
-from ismdeep_utils import ArgvUtil
+import os
 from ismdeep_utils import StringUtil
+import argparse
+import logging
+import logging.config
+import platform
+import redis
 
+
+################## Configuration START ##################
+redis_host = '127.0.0.1'
+redis_port = 6379
+redis_rent_id_key = 'notify_rent_ids'
+redis_email_username_key = 'email_username'
+redis_email_password_key = 'email_password'
+
+log_file_path = os.environ['HOME']
+if 'Windows' == platform.system():
+    log_file_path += '\\'
+else:
+    log_file_path += '/'
+log_file_path += 'tsgd.log'
+
+logging.basicConfig(
+    filename=log_file_path,
+    level=logging.DEBUG,
+    format='%(asctime)s %(filename)s[%(levelname)s][line:%(lineno)d] %(message)s',
+    datefmt='%Y-%m-%d %H:%M:%S')
+################## Configuration END   ##################
+
+
+
+
+def date_need_notify(__to_date__):
+    tmp = time.strptime(__to_date__, '%Y/%m/%d')
+    obj = datetime.datetime(tmp.tm_year, tmp.tm_mon, tmp.tm_mday)
+    time_now = datetime.datetime.now()
+    if (obj - time_now).days <= 7:
+        return True
+    return False
+
+
+# 从 Redis 数据库查询 __rent_id__ 是否存在
+def query_notify_rent_id(__rent_id__):
+    conn = redis.Redis(host=redis_host, port=redis_port)
+    return conn.sismember(redis_rent_id_key, __rent_id__)
+
+
+# 往 Redis 数据库写入 __rent_id__
+def push_notify_rent_id(__rent_id__):
+    import redis
+    conn = redis.Redis(host=redis_host, port=redis_port)
+    conn.sadd(redis_rent_id_key, __rent_id__)
+
+
+# TODO
+# 发送邮件同志
+def send_email_notify(__book_name__, __from_date__, __to_date__, __fullname__):
+    pass
 
 
 class JxustTSG:
@@ -86,6 +142,7 @@ class JxustTSG:
         rents = self.rent_list()
         rents_data = []
         for item in rents:
+            rent_id = item[1]
             from_date = item[2]
             to_date = item[3]
             book_name = item[0]
@@ -94,10 +151,16 @@ class JxustTSG:
                 'to_date': item[3],
                 'book_name': item[0]
             })
-            syslog.syslog(syslog.LOG_INFO, "%s => %s (%s - %s) %s " % (
-                time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()), self.fullname, from_date, to_date,
-                "《" + book_name + "》"))
+            logging.info("%s (%s - %s) 《%s》" % (
+                self.fullname,
+                from_date,
+                to_date,
+                book_name))
             self.xj(item[6][item[6].find('nbsl=') + 5:])
+            rent_id = item[1] + '//' + from_date + '-' + to_date
+            if date_need_notify(to_date) and not query_notify_rent_id(rent_id):
+                send_email_notify(book_name, from_date, to_date, self.fullname)
+                push_notify_rent_id(rent_id)
 
     def logout(self):
         req = urllib.request.Request(self.home_site + '/share/Exit.asp', None, self.header)
@@ -114,4 +177,8 @@ def tsg_xj(username, password):
 
 
 if __name__ == '__main__':
-    tsg_xj(ArgvUtil.get_sys_argv('-username'), ArgvUtil.get_sys_argv('-password'))
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-u', '--username', required=True, help='Username')
+    parser.add_argument('-p', '--password', required=True, help='Password')
+    args = parser.parse_args()
+    tsg_xj(args.username, args.password)
