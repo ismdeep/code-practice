@@ -109,3 +109,6 @@ c-lang-practices/memory-reader/.idea
 c-lang-practices/memory-reader/cmake-build-debug
 python-practice/argparse-demo/.idea
 python-practice/crawlers-practice/tsgd/.idea
+python-practice/code-generator/.idea
+db.json
+python-practice/code-generator/templates
