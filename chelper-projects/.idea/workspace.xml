@@ -36,6 +36,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
@@ -47,7 +48,7 @@
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
-  <component name="RunManager" selected="Task.ECUSTACM1256">
+  <component name="RunManager" selected="Task.T5">
     <configuration default="true" type="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
       <method v="2">
@@ -71,11 +72,19 @@
       <taskConf>src/codes/ECUSTACM1250.json</taskConf>
       <method v="2">
         <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
       </method>
     </configuration>
     <configuration name="ECUSTACM1251" type="Task" factoryName="Task">
       <taskConf>src/codes/ECUSTACM1251.json</taskConf>
       <method v="2">
+        <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
       </method>
     </configuration>
@@ -83,11 +92,19 @@
       <taskConf>src/codes/ECUSTACM1252.json</taskConf>
       <method v="2">
         <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
       </method>
     </configuration>
     <configuration name="ECUSTACM1253" type="Task" factoryName="Task">
       <taskConf>src/codes/ECUSTACM1253.json</taskConf>
       <method v="2">
+        <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
       </method>
     </configuration>
@@ -95,11 +112,19 @@
       <taskConf>src/codes/ECUSTACM1254.json</taskConf>
       <method v="2">
         <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
       </method>
     </configuration>
     <configuration name="ECUSTACM1255" type="Task" factoryName="Task">
       <taskConf>src/codes/ECUSTACM1255.json</taskConf>
       <method v="2">
+        <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
       </method>
     </configuration>
@@ -107,11 +132,19 @@
       <taskConf>src/codes/ECUSTACM1256.json</taskConf>
       <method v="2">
         <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
       </method>
     </configuration>
     <configuration name="HDU2268" type="Task" factoryName="Task">
       <taskConf />
       <method v="2">
+        <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
@@ -133,11 +166,19 @@
         <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
       </method>
     </configuration>
     <configuration name="JustOJ1970" type="Task" factoryName="Task">
       <taskConf>src/codes/JustOJ1970.json</taskConf>
       <method v="2">
+        <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
@@ -151,11 +192,19 @@
       <method v="2">
         <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
       </method>
     </configuration>
     <configuration name="JustOJ2400" type="Task" factoryName="Task">
       <taskConf>src/codes/JustOJ2400.json</taskConf>
       <method v="2">
+        <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
       </method>
@@ -167,6 +216,22 @@
         <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
+      </method>
+    </configuration>
+    <configuration name="T5" type="Task" factoryName="Task">
+      <taskConf>src/codes/T5.json</taskConf>
+      <method v="2">
+        <option name="MakeProject" enabled="false" />
+      </method>
+    </configuration>
+    <configuration name="T71" type="Task" factoryName="Task">
+      <taskConf>src/codes/T71.json</taskConf>
+      <method v="2">
         <option name="MakeProject" enabled="false" />
       </method>
     </configuration>
@@ -211,6 +276,10 @@
       <workItem from="1580874134586" duration="46000" />
       <workItem from="1580874199574" duration="144000" />
       <workItem from="1580874361941" duration="6438000" />
+      <workItem from="1585875704170" duration="35000" />
+      <workItem from="1585875815535" duration="70000" />
+      <workItem from="1585875962641" duration="68000" />
+      <workItem from="1585983162350" duration="409000" />
     </task>
     <servers />
   </component>
@@ -238,25 +307,25 @@
       <screen x="0" y="0" width="1280" height="800" />
     </state>
     <state x="473" y="297" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.0.1280.800@0.0.1280.800" timestamp="1580874147439" />
-    <state width="1280" height="157" key="GridCell.Tab.0.bottom" timestamp="1580889507313">
+    <state width="1280" height="229" key="GridCell.Tab.0.bottom" timestamp="1585985965509">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1280" height="157" key="GridCell.Tab.0.bottom/0.0.1280.800@0.0.1280.800" timestamp="1580889507313" />
+    <state width="1280" height="229" key="GridCell.Tab.0.bottom/0.0.1280.800@0.0.1280.800" timestamp="1585985965509" />
     <state width="1280" height="229" key="GridCell.Tab.0.bottom/0.23.1280.710@0.23.1280.710" timestamp="1580879945621" />
-    <state width="1280" height="157" key="GridCell.Tab.0.center" timestamp="1580889507312">
+    <state width="1280" height="229" key="GridCell.Tab.0.center" timestamp="1585985965505">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1280" height="157" key="GridCell.Tab.0.center/0.0.1280.800@0.0.1280.800" timestamp="1580889507312" />
+    <state width="1280" height="229" key="GridCell.Tab.0.center/0.0.1280.800@0.0.1280.800" timestamp="1585985965505" />
     <state width="1280" height="229" key="GridCell.Tab.0.center/0.23.1280.710@0.23.1280.710" timestamp="1580879945617" />
-    <state width="1280" height="157" key="GridCell.Tab.0.left" timestamp="1580889507312">
+    <state width="1280" height="229" key="GridCell.Tab.0.left" timestamp="1585985965504">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1280" height="157" key="GridCell.Tab.0.left/0.0.1280.800@0.0.1280.800" timestamp="1580889507312" />
+    <state width="1280" height="229" key="GridCell.Tab.0.left/0.0.1280.800@0.0.1280.800" timestamp="1585985965504" />
     <state width="1280" height="229" key="GridCell.Tab.0.left/0.23.1280.710@0.23.1280.710" timestamp="1580879945616" />
-    <state width="1280" height="157" key="GridCell.Tab.0.right" timestamp="1580889507313">
+    <state width="1280" height="229" key="GridCell.Tab.0.right" timestamp="1585985965508">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1280" height="157" key="GridCell.Tab.0.right/0.0.1280.800@0.0.1280.800" timestamp="1580889507313" />
+    <state width="1280" height="229" key="GridCell.Tab.0.right/0.0.1280.800@0.0.1280.800" timestamp="1585985965508" />
     <state width="1280" height="229" key="GridCell.Tab.0.right/0.23.1280.710@0.23.1280.710" timestamp="1580879945619" />
     <state width="1280" height="157" key="GridCell.Tab.1.bottom" timestamp="1580889507315">
       <screen x="0" y="0" width="1280" height="800" />
