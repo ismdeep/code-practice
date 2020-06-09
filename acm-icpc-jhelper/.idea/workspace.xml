@@ -2,10 +2,10 @@
 <project version="4">
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
     <generated>
-      <config projectName="jhelper-example-project" targetName="jhelper_example_project" />
-      <config projectName="jhelper-example-project" targetName="test" />
       <config projectName="jhelper-example-project" targetName="testrunner" />
+      <config projectName="jhelper-example-project" targetName="jhelper_example_project" />
       <config projectName="jhelper-example-project" targetName="output" />
+      <config projectName="jhelper-example-project" targetName="test" />
     </generated>
   </component>
   <component name="CMakeSettings">
@@ -27,9 +27,6 @@
     <option name="PATCH_PATH" value="" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="name.admitriev.jhelper.configuration.TaskConfigurationExecutionTargetCMakeBuildProfile:Debug" />
-  <component name="FavoritesManager">
-    <favorites_list name="jhelper-example-project" />
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
@@ -40,40 +37,41 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
     <property name="CMAKE.AUTO_RELOAD_ENABLED" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="cf.first.check.clang-format" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="recentsLimit" value="5" />
     <property name="restartRequiresConfirmation" value="true" />
     <property name="settings.editor.selected.configurable" value="CPPToolchains" />
   </component>
-  <component name="RunManager" selected="Task.JustOJ1444">
-    <configuration name="Build All" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" EXPLICIT_BUILD_TARGET_NAME="all">
+  <component name="RunManager" selected="Task.JustOJ1914">
+    <configuration name="Build All" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" EXPLICIT_BUILD_TARGET_NAME="all">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="jhelper-example-project" TARGET_NAME="jhelper_example_project" CONFIG_NAME="Debug">
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="jhelper-example-project" TARGET_NAME="jhelper_example_project" CONFIG_NAME="Debug">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="output" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="jhelper-example-project" TARGET_NAME="output" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="jhelper-example-project" RUN_TARGET_NAME="output">
+    <configuration name="output" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="jhelper-example-project" TARGET_NAME="output" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="jhelper-example-project" RUN_TARGET_NAME="output">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="test" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="jhelper-example-project" TARGET_NAME="test" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="jhelper-example-project" RUN_TARGET_NAME="test">
+    <configuration name="test" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="jhelper-example-project" TARGET_NAME="test" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="jhelper-example-project" RUN_TARGET_NAME="test">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="testrunner" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="jhelper-example-project" TARGET_NAME="testrunner" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="jhelper-example-project" RUN_TARGET_NAME="testrunner">
+    <configuration name="testrunner" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="jhelper-example-project" TARGET_NAME="testrunner" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="jhelper-example-project" RUN_TARGET_NAME="testrunner">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -117,6 +115,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
       <option name="_new_target" value="&quot;.&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
@@ -186,19 +185,8 @@
       <item itemvalue="Task.JustOJ1502" />
       <item itemvalue="Task.JustOJ1503" />
       <item itemvalue="Task.JustOJ1444" />
+      <item itemvalue="Task.JustOJ1914" />
     </list>
-  </component>
-  <component name="ServiceViewManager">
-    <option name="viewStates">
-      <list>
-        <serviceView>
-          <treeState>
-            <expand />
-            <select />
-          </treeState>
-        </serviceView>
-      </list>
-    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -296,24 +284,24 @@
       <workItem from="1581650147348" duration="4181000" />
       <workItem from="1581841474209" duration="448000" />
       <workItem from="1581988936390" duration="457000" />
+      <workItem from="1591717053437" duration="608000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="2" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
+            <State />
           </value>
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="Vcs.Log.UiProperties">
     <option name="RECENTLY_FILTERED_USER_GROUPS">
@@ -324,49 +312,29 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
-    <state width="1238" height="176" key="GridCell.Tab.0.bottom" timestamp="1581841924145">
-      <screen x="0" y="23" width="1280" height="777" />
+    <state x="451" y="127" key="#Menus_and_Toolbars" timestamp="1591717409650">
+      <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="278" key="GridCell.Tab.0.bottom/0.0.1280.800@0.0.1280.800" timestamp="1576585270684" />
-    <state width="1238" height="176" key="GridCell.Tab.0.bottom/0.23.1280.777@0.23.1280.777" timestamp="1581841924145" />
-    <state width="1200" height="266" key="GridCell.Tab.0.bottom/38.23.1242.777@38.23.1242.777" timestamp="1576843612055" />
-    <state width="1238" height="176" key="GridCell.Tab.0.center" timestamp="1581841924145">
-      <screen x="0" y="23" width="1280" height="777" />
+    <state x="451" y="127" key="#Menus_and_Toolbars/0.0.1280.800@0.0.1280.800" timestamp="1591717409650" />
+    <state x="469" y="122" key="#com.intellij.ide.ui.customization.CustomizableActionsPanel.FindAvailableActionsDialog" timestamp="1591717407951">
+      <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="278" key="GridCell.Tab.0.center/0.0.1280.800@0.0.1280.800" timestamp="1576585270683" />
-    <state width="1238" height="176" key="GridCell.Tab.0.center/0.23.1280.777@0.23.1280.777" timestamp="1581841924145" />
-    <state width="1200" height="266" key="GridCell.Tab.0.center/38.23.1242.777@38.23.1242.777" timestamp="1576843612054" />
-    <state width="1238" height="176" key="GridCell.Tab.0.left" timestamp="1581841924144">
-      <screen x="0" y="23" width="1280" height="777" />
+    <state x="469" y="122" key="#com.intellij.ide.ui.customization.CustomizableActionsPanel.FindAvailableActionsDialog/0.0.1280.800@0.0.1280.800" timestamp="1591717407951" />
+    <state width="1238" height="434" key="GridCell.Tab.0.bottom" timestamp="1591717777308">
+      <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="278" key="GridCell.Tab.0.left/0.0.1280.800@0.0.1280.800" timestamp="1576585270681" />
-    <state width="1238" height="176" key="GridCell.Tab.0.left/0.23.1280.777@0.23.1280.777" timestamp="1581841924144" />
-    <state width="1200" height="266" key="GridCell.Tab.0.left/38.23.1242.777@38.23.1242.777" timestamp="1576843612053" />
-    <state width="1238" height="176" key="GridCell.Tab.0.right" timestamp="1581841924145">
-      <screen x="0" y="23" width="1280" height="777" />
+    <state width="1238" height="434" key="GridCell.Tab.0.bottom/0.0.1280.800@0.0.1280.800" timestamp="1591717777308" />
+    <state width="1238" height="434" key="GridCell.Tab.0.center" timestamp="1591717777307">
+      <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="278" key="GridCell.Tab.0.right/0.0.1280.800@0.0.1280.800" timestamp="1576585270683" />
-    <state width="1238" height="176" key="GridCell.Tab.0.right/0.23.1280.777@0.23.1280.777" timestamp="1581841924145" />
-    <state width="1200" height="266" key="GridCell.Tab.0.right/38.23.1242.777@38.23.1242.777" timestamp="1576843612054" />
-    <state width="1238" height="198" key="GridCell.Tab.1.bottom" timestamp="1581497241447">
-      <screen x="0" y="23" width="1280" height="777" />
+    <state width="1238" height="434" key="GridCell.Tab.0.center/0.0.1280.800@0.0.1280.800" timestamp="1591717777307" />
+    <state width="1238" height="434" key="GridCell.Tab.0.left" timestamp="1591717777307">
+      <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="198" key="GridCell.Tab.1.bottom/0.23.1280.777@0.23.1280.777" timestamp="1581497241447" />
-    <state width="1238" height="198" key="GridCell.Tab.1.center" timestamp="1581497241446">
-      <screen x="0" y="23" width="1280" height="777" />
+    <state width="1238" height="434" key="GridCell.Tab.0.left/0.0.1280.800@0.0.1280.800" timestamp="1591717777307" />
+    <state width="1238" height="434" key="GridCell.Tab.0.right" timestamp="1591717777307">
+      <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="198" key="GridCell.Tab.1.center/0.23.1280.777@0.23.1280.777" timestamp="1581497241446" />
-    <state width="1238" height="198" key="GridCell.Tab.1.left" timestamp="1581497241446">
-      <screen x="0" y="23" width="1280" height="777" />
-    </state>
-    <state width="1238" height="198" key="GridCell.Tab.1.left/0.23.1280.777@0.23.1280.777" timestamp="1581497241446" />
-    <state width="1238" height="198" key="GridCell.Tab.1.right" timestamp="1581497241447">
-      <screen x="0" y="23" width="1280" height="777" />
-    </state>
-    <state width="1238" height="198" key="GridCell.Tab.1.right/0.23.1280.777@0.23.1280.777" timestamp="1581497241447" />
-    <state x="141" y="50" key="SettingsEditor" timestamp="1581841496589">
-      <screen x="0" y="23" width="1280" height="777" />
-    </state>
-    <state x="141" y="50" key="SettingsEditor/0.23.1280.777@0.23.1280.777" timestamp="1581841496589" />
+    <state width="1238" height="434" key="GridCell.Tab.0.right/0.0.1280.800@0.0.1280.800" timestamp="1591717777307" />
   </component>
 </project>

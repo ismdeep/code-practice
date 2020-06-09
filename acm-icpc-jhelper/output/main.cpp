@@ -75,33 +75,20 @@ typedef long long               int64_t;
 #endif /* _INT64_T */
 
 #endif
-uint64_t pow_mod(uint64_t a, uint64_t n, uint64_t mod_val) {
-    if (n <= 0) {
-        return 1;
-    }
-    if (n == 1) {
-        return a % mod_val;
-    }
-    uint64_t tmp = pow_mod(a, n / 2, mod_val);
-    tmp *= tmp;
-    tmp %= mod_val;
-    tmp *= pow_mod(a, n % 2, mod_val);
-    tmp %= mod_val;
-    return tmp;
-}
 
-class JustOJ1444 {
+class JustOJ1914 {
 public:
 	void solve(std::istream& in, std::ostream& out) {
-	    size_t n;
-	    in >> n;
-	    out << pow_mod(5438, n, 10) % 10 << endl;
+	    int n;
+	    while (in >> n, n) {
+	        out << ceil(log(n) / log(3)) << endl;
+	    }
 	}
 };
 
 
 int main() {
-	JustOJ1444 solver;
+	JustOJ1914 solver;
 	std::istream& in(std::cin);
 	std::ostream& out(std::cout);
 	solver.solve(in, out);

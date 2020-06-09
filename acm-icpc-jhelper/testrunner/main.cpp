@@ -1,4 +1,4 @@
-#include "/Users/ismdeep/Projects/code-practice/acm-icpc-jhelper/tasks/JustOJ1444.cpp"
+#include "../tasks/JustOJ1914.cpp"
 
 #include <iostream>
 #include <fstream>
@@ -29,7 +29,7 @@ bool check(std::string expected, std::string actual) {
 
 int main() {
 	std::vector<jhelper::Test> tests = {
-		{"1", "8", true, true},
+		{"3\n12\n0", "1\n3", true, true},{"1\n2\n3\n5\n9\n1162261466\n1162261467\n1162261468\n1162261469\n0", "0\n1\n1\n2\n2\n19\n19\n20\n20\n", true, true},
 	};
 	bool allOK = true;
 	int testID = 0;
@@ -48,7 +48,7 @@ int main() {
 			std::stringstream in(test.input);
 			std::ostringstream out;
 			std::clock_t start = std::clock();
-			JustOJ1444 solver;
+			JustOJ1914 solver;
 			solver.solve(in, out);
 			std::clock_t finish = std::clock();
 			double currentTime = double(finish - start) / CLOCKS_PER_SEC;

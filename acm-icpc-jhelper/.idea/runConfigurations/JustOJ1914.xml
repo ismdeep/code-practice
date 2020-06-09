@@ -1,0 +1,9 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="JustOJ1914" type="name.admitriev.jhelper.configuration.TaskConfigurationType" className="JustOJ1914" cppPath="tasks/JustOJ1914.cpp" inputType="STANDARD" inputFile="input.txt" outputType="STANDARD" outputFile="output.txt" testType="SINGLE">
+    <tests>
+      <test input="3&#10;12&#10;0" output="1&#10;3" active="true" />
+      <test input="1&#10;2&#10;3&#10;5&#10;9&#10;1162261466&#10;1162261467&#10;1162261468&#10;1162261469&#10;0" output="0&#10;1&#10;1&#10;2&#10;2&#10;19&#10;19&#10;20&#10;20&#10;" active="true" />
+    </tests>
+    <method v="2" />
+  </configuration>
+</component>
