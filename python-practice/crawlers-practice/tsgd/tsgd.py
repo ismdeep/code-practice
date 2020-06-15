@@ -1,8 +1,11 @@
 # coding: utf-8
 # author: ismdeep
-# dateime: 2018-08-17 13:42:01
+# datetime: 2018-08-17 13:42:01
 # filename: tsgd.py
 # blog: https://ismdeep.com
+import os
+import sys
+import json
 import smtplib
 import time
 import datetime
@@ -134,7 +137,8 @@ class JxustTSG:
     username = ''
     password = ''
     header = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36'
+        'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) '
+                      'Chrome/67.0.3396.99 Safari/537.36 '
     }
 
     def __init__(self, _username_, _password_):
@@ -169,6 +173,7 @@ class JxustTSG:
         else:
             return ""
 
+    @property
     def rent_list(self):
         post_data = {
             'nCxfs': '1',
@@ -182,7 +187,10 @@ class JxustTSG:
         r = opener.open(req)
         content = r.read().decode('gb2312', errors='ignore')
         pattern = re.compile(
-            '''<td  class=tdborder4  >(.*?)&nbsp;</td><td  class=tdborder4  >(.*?)&nbsp;</td><td  class=tdborder4  >(.*?)</td><td  class=tdborder4  >(.*?)</td><td  class=tdborder4  >(.*?)&nbsp;</td><td  class=tdborder4  >(.*?)&nbsp;</td><td class=tdborder4  align=center  ><a href = '(.*?)' target=_blank >(.*?)</a></td>''',
+            '''<td  class=tdborder4  >(.*?)&nbsp;</td><td  class=tdborder4  >(.*?)&nbsp;'''
+            '''</td><td  class=tdborder4  >(.*?)</td><td  class=tdborder4  >(.*?)</td><td  class='''
+            '''tdborder4  >(.*?)&nbsp;</td><td  class=tdborder4  >(.*?)&nbsp;</td><td class=tdborder4  align='''
+            '''center  ><a href = '(.*?)' target=_blank >(.*?)</a></td>''',
             re.S)
         rents = re.findall(pattern, content)
         return rents
@@ -196,7 +204,7 @@ class JxustTSG:
         content = content[:content.find('");')]
 
     def xj_all(self):
-        rents = self.rent_list()
+        rents = self.rent_list
         rents_data = []
         for item in rents:
             rent_id = item[1]
@@ -234,8 +242,9 @@ def tsg_xj(username, password):
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser()
-    parser.add_argument('-u', '--username', required=True, help='Username')
-    parser.add_argument('-p', '--password', required=True, help='Password')
-    args = parser.parse_args()
-    tsg_xj(args.username, args.password)
+    if len(sys.argv) < 2:
+        print("Usage: python3 tsgd.py {tsg accounts json file}")
+        exit(-1)
+    accounts = json.load(open(sys.argv[1], 'r'))
+    for account in accounts:
+        tsg_xj(account['username'], account['password'])
