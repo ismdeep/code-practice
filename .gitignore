@@ -114,3 +114,4 @@ db.json
 python-practice/code-generator/templates
 python-practice/upload-to-aliyun-oss/.idea
 python-practice/split-doc/.idea
+.DS_Store

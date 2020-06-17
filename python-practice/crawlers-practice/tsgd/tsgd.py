@@ -187,10 +187,7 @@ class JxustTSG:
         r = opener.open(req)
         content = r.read().decode('gb2312', errors='ignore')
         pattern = re.compile(
-            '''<td  class=tdborder4  >(.*?)&nbsp;</td><td  class=tdborder4  >(.*?)&nbsp;'''
-            '''</td><td  class=tdborder4  >(.*?)</td><td  class=tdborder4  >(.*?)</td><td  class='''
-            '''tdborder4  >(.*?)&nbsp;</td><td  class=tdborder4  >(.*?)&nbsp;</td><td class=tdborder4  align='''
-            '''center  ><a href = '(.*?)' target=_blank >(.*?)</a></td>''',
+            '''<td  class=tdborder4  >(.*?)&nbsp;</td><td  class=tdborder4  >(.*?)&nbsp;</td><td  class=tdborder4  >(.*?)</td><td  class=tdborder4  >(.*?)</td><td  class=tdborder4  >(.*?)&nbsp;</td><td  class=tdborder4  >(.*?)&nbsp;</td><td class=tdborder4  align=center  ><a href = '(.*?)' target=_blank >(.*?)</a></td>''',
             re.S)
         rents = re.findall(pattern, content)
         return rents
@@ -248,3 +245,4 @@ if __name__ == '__main__':
     accounts = json.load(open(sys.argv[1], 'r'))
     for account in accounts:
         tsg_xj(account['username'], account['password'])
+    logging.info("-" * 60)
