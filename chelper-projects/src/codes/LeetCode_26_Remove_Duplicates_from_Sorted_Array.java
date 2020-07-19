@@ -24,6 +24,5 @@ public class LeetCode_26_Remove_Duplicates_from_Sorted_Array {
         for (int i = 0; i < len; i++) {
             System.out.println((nums[i]));
         }
-
     }
 }
