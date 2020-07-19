@@ -20,8 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="84a22948-5a03-4625-a70f-dd7284ea8432" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/codes/LeetCode_28_Implement_strStr.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/codes/LeetCode_28_Implement_strStr.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/codes/LeetCode_26_Remove_Duplicates_from_Sorted_Array.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/codes/LeetCode_26_Remove_Duplicates_from_Sorted_Array.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,7 +68,7 @@
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
-  <component name="RunManager" selected="Task.LeetCode_26_Remove_Duplicates_from_Sorted_Array">
+  <component name="RunManager" selected="Task.LeetCode_28_Implement_strStr">
     <configuration default="true" type="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
       <method v="2">
@@ -294,6 +295,12 @@
         <option name="MakeProject" enabled="false" />
       </method>
     </configuration>
+    <configuration name="LeetCode_28_Implement_strStr" type="Task" factoryName="Task">
+      <taskConf>src/codes/LeetCode_28_Implement_strStr.json</taskConf>
+      <method v="2">
+        <option name="MakeProject" enabled="false" />
+      </method>
+    </configuration>
     <configuration name="LeetCode_2_Add_Two_Numbers" type="Task" factoryName="Task">
       <taskConf>src/codes/LeetCode_2_Add_Two_Numbers.json</taskConf>
       <method v="2">
@@ -367,7 +374,7 @@
       <workItem from="1595146142738" duration="69000" />
       <workItem from="1595146235397" duration="796000" />
       <workItem from="1595147153482" duration="3153000" />
-      <workItem from="1595171070017" duration="454000" />
+      <workItem from="1595171070017" duration="1025000" />
     </task>
     <task id="LOCAL-00001" summary="Add LeetCode_1_Two_Sum">
       <created>1595148125657</created>
@@ -397,7 +404,21 @@
       <option name="project" value="LOCAL" />
       <updated>1595171503602</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Add LeetCode_26_Remove_Duplicates_from_Sorted_Array">
+      <created>1595171528739</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1595171528739</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Add LeetCode_26_Remove_Duplicates_from_Sorted_Array">
+      <created>1595171569033</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1595171569033</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -434,26 +455,26 @@
       <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state x="378" y="165" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1280.777/204.-1057.1920.1057@0.23.1280.777" timestamp="1595148100720" />
-    <state width="1238" height="379" key="GridCell.Tab.0.bottom" timestamp="1595171492831">
+    <state width="1238" height="394" key="GridCell.Tab.0.bottom" timestamp="1595172053119">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state width="1238" height="217" key="GridCell.Tab.0.bottom/0.23.1280.777/204.-1057.1920.1057@0.23.1280.777" timestamp="1595148167695" />
-    <state width="1238" height="379" key="GridCell.Tab.0.bottom/0.23.1280.777@0.23.1280.777" timestamp="1595171492831" />
-    <state width="1238" height="379" key="GridCell.Tab.0.center" timestamp="1595171492830">
+    <state width="1238" height="394" key="GridCell.Tab.0.bottom/0.23.1280.777@0.23.1280.777" timestamp="1595172053119" />
+    <state width="1238" height="394" key="GridCell.Tab.0.center" timestamp="1595172053118">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state width="1238" height="217" key="GridCell.Tab.0.center/0.23.1280.777/204.-1057.1920.1057@0.23.1280.777" timestamp="1595148167694" />
-    <state width="1238" height="379" key="GridCell.Tab.0.center/0.23.1280.777@0.23.1280.777" timestamp="1595171492830" />
-    <state width="1238" height="379" key="GridCell.Tab.0.left" timestamp="1595171492829">
+    <state width="1238" height="394" key="GridCell.Tab.0.center/0.23.1280.777@0.23.1280.777" timestamp="1595172053118" />
+    <state width="1238" height="394" key="GridCell.Tab.0.left" timestamp="1595172053118">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state width="1238" height="217" key="GridCell.Tab.0.left/0.23.1280.777/204.-1057.1920.1057@0.23.1280.777" timestamp="1595148167694" />
-    <state width="1238" height="379" key="GridCell.Tab.0.left/0.23.1280.777@0.23.1280.777" timestamp="1595171492829" />
-    <state width="1238" height="379" key="GridCell.Tab.0.right" timestamp="1595171492830">
+    <state width="1238" height="394" key="GridCell.Tab.0.left/0.23.1280.777@0.23.1280.777" timestamp="1595172053118" />
+    <state width="1238" height="394" key="GridCell.Tab.0.right" timestamp="1595172053119">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state width="1238" height="217" key="GridCell.Tab.0.right/0.23.1280.777/204.-1057.1920.1057@0.23.1280.777" timestamp="1595148167694" />
-    <state width="1238" height="379" key="GridCell.Tab.0.right/0.23.1280.777@0.23.1280.777" timestamp="1595171492830" />
+    <state width="1238" height="394" key="GridCell.Tab.0.right/0.23.1280.777@0.23.1280.777" timestamp="1595172053119" />
     <state width="1238" height="236" key="GridCell.Tab.1.bottom" timestamp="1595170925972">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
@@ -475,11 +496,11 @@
     </state>
     <state x="141" y="50" key="SettingsEditor/0.23.1280.777/204.-1057.1920.1057@0.23.1280.777" timestamp="1595147693743" />
     <state x="141" y="50" key="SettingsEditor/0.23.1280.777@0.23.1280.777" timestamp="1595169433629" />
-    <state x="240" y="151" key="Vcs.Push.Dialog.v2" timestamp="1595171505357">
+    <state x="240" y="151" key="Vcs.Push.Dialog.v2" timestamp="1595171570540">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state x="240" y="151" key="Vcs.Push.Dialog.v2/0.23.1280.777/204.-1057.1920.1057@0.23.1280.777" timestamp="1595148142085" />
-    <state x="240" y="151" key="Vcs.Push.Dialog.v2/0.23.1280.777@0.23.1280.777" timestamp="1595171505357" />
+    <state x="240" y="151" key="Vcs.Push.Dialog.v2/0.23.1280.777@0.23.1280.777" timestamp="1595171570540" />
     <state x="305" y="124" width="670" height="676" key="search.everywhere.popup" timestamp="1595170269812">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
