@@ -20,8 +20,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="84a22948-5a03-4625-a70f-dd7284ea8432" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/codes/LeetCode_28_Implement_strStr.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/codes/LeetCode_28_Implement_strStr.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/codes/LeetCode_38_Count_and_Say.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/codes/LeetCode_38_Count_and_Say.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -68,7 +68,7 @@
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
-  <component name="RunManager" selected="Task.LeetCode_28_Implement_strStr">
+  <component name="RunManager" selected="Task.LeetCode_38_Count_and_Say">
     <configuration default="true" type="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
       <method v="2">
@@ -99,11 +99,13 @@
         <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
       </method>
     </configuration>
     <configuration name="ECUSTACM1251" type="Task" factoryName="Task">
       <taskConf>src/codes/ECUSTACM1251.json</taskConf>
       <method v="2">
+        <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
@@ -125,11 +127,13 @@
         <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
       </method>
     </configuration>
     <configuration name="ECUSTACM1253" type="Task" factoryName="Task">
       <taskConf>src/codes/ECUSTACM1253.json</taskConf>
       <method v="2">
+        <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
@@ -151,11 +155,13 @@
         <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
       </method>
     </configuration>
     <configuration name="ECUSTACM1255" type="Task" factoryName="Task">
       <taskConf>src/codes/ECUSTACM1255.json</taskConf>
       <method v="2">
+        <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
@@ -177,11 +183,13 @@
         <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
       </method>
     </configuration>
     <configuration name="HDU2268" type="Task" factoryName="Task">
       <taskConf />
       <method v="2">
+        <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
@@ -217,11 +225,13 @@
         <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
       </method>
     </configuration>
     <configuration name="JustOJ1970" type="Task" factoryName="Task">
       <taskConf>src/codes/JustOJ1970.json</taskConf>
       <method v="2">
+        <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
@@ -249,11 +259,13 @@
         <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
       </method>
     </configuration>
     <configuration name="JustOJ2400" type="Task" factoryName="Task">
       <taskConf>src/codes/JustOJ2400.json</taskConf>
       <method v="2">
+        <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
@@ -280,11 +292,13 @@
         <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
       </method>
     </configuration>
     <configuration name="LeetCode_1_Two_Sum" type="Task" factoryName="Task">
       <taskConf>src/codes/LeetCode_1_Two_Sum.json</taskConf>
       <method v="2">
+        <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
       </method>
@@ -293,11 +307,13 @@
       <taskConf>src/codes/LeetCode_26_Remove_Duplicates_from_Sorted_Array.json</taskConf>
       <method v="2">
         <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
       </method>
     </configuration>
     <configuration name="LeetCode_28_Implement_strStr" type="Task" factoryName="Task">
       <taskConf>src/codes/LeetCode_28_Implement_strStr.json</taskConf>
       <method v="2">
+        <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
       </method>
     </configuration>
@@ -305,6 +321,13 @@
       <taskConf>src/codes/LeetCode_2_Add_Two_Numbers.json</taskConf>
       <method v="2">
         <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
+      </method>
+    </configuration>
+    <configuration name="LeetCode_38_Count_and_Say" type="Task" factoryName="Task">
+      <taskConf>src/codes/LeetCode_38_Count_and_Say.json</taskConf>
+      <method v="2">
         <option name="MakeProject" enabled="false" />
       </method>
     </configuration>
@@ -315,11 +338,13 @@
         <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
       </method>
     </configuration>
     <configuration name="T71" type="Task" factoryName="Task">
       <taskConf>src/codes/T71.json</taskConf>
       <method v="2">
+        <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
@@ -374,7 +399,8 @@
       <workItem from="1595146142738" duration="69000" />
       <workItem from="1595146235397" duration="796000" />
       <workItem from="1595147153482" duration="3153000" />
-      <workItem from="1595171070017" duration="1025000" />
+      <workItem from="1595171070017" duration="1095000" />
+      <workItem from="1595173194468" duration="411000" />
     </task>
     <task id="LOCAL-00001" summary="Add LeetCode_1_Two_Sum">
       <created>1595148125657</created>
@@ -418,7 +444,14 @@
       <option name="project" value="LOCAL" />
       <updated>1595171569033</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Add LeetCode_28_Implement_strStr">
+      <created>1595172116757</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1595172116757</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -440,7 +473,8 @@
     <MESSAGE value="Add LeetCode_1_Two_Sum" />
     <MESSAGE value="Add LeetCode_2_Add_Two_Numbers" />
     <MESSAGE value="Add LeetCode_26_Remove_Duplicates_from_Sorted_Array" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add LeetCode_26_Remove_Duplicates_from_Sorted_Array" />
+    <MESSAGE value="Add LeetCode_28_Implement_strStr" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add LeetCode_28_Implement_strStr" />
   </component>
   <component name="WindowStateProjectService">
     <state x="104" y="73" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1595147215315">
@@ -455,26 +489,26 @@
       <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state x="378" y="165" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1280.777/204.-1057.1920.1057@0.23.1280.777" timestamp="1595148100720" />
-    <state width="1238" height="394" key="GridCell.Tab.0.bottom" timestamp="1595172053119">
+    <state width="1238" height="271" key="GridCell.Tab.0.bottom" timestamp="1595173600271">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state width="1238" height="217" key="GridCell.Tab.0.bottom/0.23.1280.777/204.-1057.1920.1057@0.23.1280.777" timestamp="1595148167695" />
-    <state width="1238" height="394" key="GridCell.Tab.0.bottom/0.23.1280.777@0.23.1280.777" timestamp="1595172053119" />
-    <state width="1238" height="394" key="GridCell.Tab.0.center" timestamp="1595172053118">
+    <state width="1238" height="271" key="GridCell.Tab.0.bottom/0.23.1280.777@0.23.1280.777" timestamp="1595173600271" />
+    <state width="1238" height="271" key="GridCell.Tab.0.center" timestamp="1595173600270">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state width="1238" height="217" key="GridCell.Tab.0.center/0.23.1280.777/204.-1057.1920.1057@0.23.1280.777" timestamp="1595148167694" />
-    <state width="1238" height="394" key="GridCell.Tab.0.center/0.23.1280.777@0.23.1280.777" timestamp="1595172053118" />
-    <state width="1238" height="394" key="GridCell.Tab.0.left" timestamp="1595172053118">
+    <state width="1238" height="271" key="GridCell.Tab.0.center/0.23.1280.777@0.23.1280.777" timestamp="1595173600270" />
+    <state width="1238" height="271" key="GridCell.Tab.0.left" timestamp="1595173600270">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state width="1238" height="217" key="GridCell.Tab.0.left/0.23.1280.777/204.-1057.1920.1057@0.23.1280.777" timestamp="1595148167694" />
-    <state width="1238" height="394" key="GridCell.Tab.0.left/0.23.1280.777@0.23.1280.777" timestamp="1595172053118" />
-    <state width="1238" height="394" key="GridCell.Tab.0.right" timestamp="1595172053119">
+    <state width="1238" height="271" key="GridCell.Tab.0.left/0.23.1280.777@0.23.1280.777" timestamp="1595173600270" />
+    <state width="1238" height="271" key="GridCell.Tab.0.right" timestamp="1595173600271">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state width="1238" height="217" key="GridCell.Tab.0.right/0.23.1280.777/204.-1057.1920.1057@0.23.1280.777" timestamp="1595148167694" />
-    <state width="1238" height="394" key="GridCell.Tab.0.right/0.23.1280.777@0.23.1280.777" timestamp="1595172053119" />
+    <state width="1238" height="271" key="GridCell.Tab.0.right/0.23.1280.777@0.23.1280.777" timestamp="1595173600271" />
     <state width="1238" height="236" key="GridCell.Tab.1.bottom" timestamp="1595170925972">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
@@ -496,11 +530,11 @@
     </state>
     <state x="141" y="50" key="SettingsEditor/0.23.1280.777/204.-1057.1920.1057@0.23.1280.777" timestamp="1595147693743" />
     <state x="141" y="50" key="SettingsEditor/0.23.1280.777@0.23.1280.777" timestamp="1595169433629" />
-    <state x="240" y="151" key="Vcs.Push.Dialog.v2" timestamp="1595171570540">
+    <state x="240" y="151" key="Vcs.Push.Dialog.v2" timestamp="1595172119941">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state x="240" y="151" key="Vcs.Push.Dialog.v2/0.23.1280.777/204.-1057.1920.1057@0.23.1280.777" timestamp="1595148142085" />
-    <state x="240" y="151" key="Vcs.Push.Dialog.v2/0.23.1280.777@0.23.1280.777" timestamp="1595171570540" />
+    <state x="240" y="151" key="Vcs.Push.Dialog.v2/0.23.1280.777@0.23.1280.777" timestamp="1595172119941" />
     <state x="305" y="124" width="670" height="676" key="search.everywhere.popup" timestamp="1595170269812">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
