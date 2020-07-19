@@ -1,7 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="84a22948-5a03-4625-a70f-dd7284ea8432" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/codes/LeetCode_1_Two_Sum.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/codes/LeetCode_1_Two_Sum.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/ismdeep.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/ismdeep.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CHelperReport.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CHelperReport.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -32,10 +55,10 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -48,7 +71,7 @@
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
-  <component name="RunManager" selected="Task.T5">
+  <component name="RunManager" selected="Task.LeetCode_1_Two_Sum">
     <configuration default="true" type="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
       <method v="2">
@@ -76,11 +99,15 @@
         <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
       </method>
     </configuration>
     <configuration name="ECUSTACM1251" type="Task" factoryName="Task">
       <taskConf>src/codes/ECUSTACM1251.json</taskConf>
       <method v="2">
+        <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
@@ -96,11 +123,15 @@
         <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
       </method>
     </configuration>
     <configuration name="ECUSTACM1253" type="Task" factoryName="Task">
       <taskConf>src/codes/ECUSTACM1253.json</taskConf>
       <method v="2">
+        <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
@@ -116,11 +147,15 @@
         <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
       </method>
     </configuration>
     <configuration name="ECUSTACM1255" type="Task" factoryName="Task">
       <taskConf>src/codes/ECUSTACM1255.json</taskConf>
       <method v="2">
+        <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
@@ -136,11 +171,15 @@
         <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
       </method>
     </configuration>
     <configuration name="HDU2268" type="Task" factoryName="Task">
       <taskConf />
       <method v="2">
+        <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
@@ -170,11 +209,15 @@
         <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
       </method>
     </configuration>
     <configuration name="JustOJ1970" type="Task" factoryName="Task">
       <taskConf>src/codes/JustOJ1970.json</taskConf>
       <method v="2">
+        <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
@@ -196,11 +239,15 @@
         <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
       </method>
     </configuration>
     <configuration name="JustOJ2400" type="Task" factoryName="Task">
       <taskConf>src/codes/JustOJ2400.json</taskConf>
       <method v="2">
+        <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
@@ -221,17 +268,29 @@
         <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
+      </method>
+    </configuration>
+    <configuration name="LeetCode_1_Two_Sum" type="Task" factoryName="Task">
+      <taskConf>src/codes/LeetCode_1_Two_Sum.json</taskConf>
+      <method v="2">
+        <option name="MakeProject" enabled="false" />
       </method>
     </configuration>
     <configuration name="T5" type="Task" factoryName="Task">
       <taskConf>src/codes/T5.json</taskConf>
       <method v="2">
         <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
       </method>
     </configuration>
     <configuration name="T71" type="Task" factoryName="Task">
       <taskConf>src/codes/T71.json</taskConf>
       <method v="2">
+        <option name="MakeProject" enabled="false" />
+        <option name="MakeProject" enabled="false" />
         <option name="MakeProject" enabled="false" />
       </method>
     </configuration>
@@ -280,73 +339,52 @@
       <workItem from="1585875815535" duration="70000" />
       <workItem from="1585875962641" duration="68000" />
       <workItem from="1585983162350" duration="409000" />
+      <workItem from="1595146142738" duration="69000" />
+      <workItem from="1595146235397" duration="796000" />
+      <workItem from="1595147153482" duration="891000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="2" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="240" y="67" key="#Menus_and_Toolbars" timestamp="1580874332423">
-      <screen x="0" y="0" width="1280" height="800" />
+    <state x="104" y="73" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1595147215315">
+      <screen x="0" y="23" width="1280" height="777" />
     </state>
-    <state x="240" y="67" key="#Menus_and_Toolbars/0.0.1280.800@0.0.1280.800" timestamp="1580874332423" />
-    <state x="240" y="67" key="#Plugins" timestamp="1580874278359">
-      <screen x="0" y="0" width="1280" height="800" />
+    <state x="104" y="73" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1280.777/204.-1057.1920.1057@0.23.1280.777" timestamp="1595147215315" />
+    <state width="1238" height="218" key="GridCell.Tab.0.bottom" timestamp="1595147959386">
+      <screen x="0" y="23" width="1280" height="777" />
     </state>
-    <state x="240" y="67" key="#Plugins/0.0.1280.800@0.0.1280.800" timestamp="1580874278359" />
-    <state x="468" y="127" key="#com.intellij.ide.ui.customization.CustomizableActionsPanel.FindAvailableActionsDialog" timestamp="1580874332036">
-      <screen x="0" y="0" width="1280" height="800" />
+    <state width="1238" height="218" key="GridCell.Tab.0.bottom/0.23.1280.777/204.-1057.1920.1057@0.23.1280.777" timestamp="1595147959386" />
+    <state width="1238" height="218" key="GridCell.Tab.0.center" timestamp="1595147959384">
+      <screen x="0" y="23" width="1280" height="777" />
     </state>
-    <state x="468" y="127" key="#com.intellij.ide.ui.customization.CustomizableActionsPanel.FindAvailableActionsDialog/0.0.1280.800@0.0.1280.800" timestamp="1580874332036" />
-    <state x="453" y="112" key="#com.intellij.ide.util.MemberChooser" timestamp="1580877040640">
-      <screen x="0" y="0" width="1280" height="800" />
+    <state width="1238" height="218" key="GridCell.Tab.0.center/0.23.1280.777/204.-1057.1920.1057@0.23.1280.777" timestamp="1595147959384" />
+    <state width="1238" height="218" key="GridCell.Tab.0.left" timestamp="1595147959384">
+      <screen x="0" y="23" width="1280" height="777" />
     </state>
-    <state x="453" y="112" key="#com.intellij.ide.util.MemberChooser/0.0.1280.800@0.0.1280.800" timestamp="1580877040640" />
-    <state x="473" y="297" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1580874147439">
-      <screen x="0" y="0" width="1280" height="800" />
+    <state width="1238" height="218" key="GridCell.Tab.0.left/0.23.1280.777/204.-1057.1920.1057@0.23.1280.777" timestamp="1595147959384" />
+    <state width="1238" height="218" key="GridCell.Tab.0.right" timestamp="1595147959385">
+      <screen x="0" y="23" width="1280" height="777" />
     </state>
-    <state x="473" y="297" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.0.1280.800@0.0.1280.800" timestamp="1580874147439" />
-    <state width="1280" height="229" key="GridCell.Tab.0.bottom" timestamp="1585985965509">
-      <screen x="0" y="0" width="1280" height="800" />
+    <state width="1238" height="218" key="GridCell.Tab.0.right/0.23.1280.777/204.-1057.1920.1057@0.23.1280.777" timestamp="1595147959385" />
+    <state x="141" y="50" key="SettingsEditor" timestamp="1595147693743">
+      <screen x="0" y="23" width="1280" height="777" />
     </state>
-    <state width="1280" height="229" key="GridCell.Tab.0.bottom/0.0.1280.800@0.0.1280.800" timestamp="1585985965509" />
-    <state width="1280" height="229" key="GridCell.Tab.0.bottom/0.23.1280.710@0.23.1280.710" timestamp="1580879945621" />
-    <state width="1280" height="229" key="GridCell.Tab.0.center" timestamp="1585985965505">
-      <screen x="0" y="0" width="1280" height="800" />
-    </state>
-    <state width="1280" height="229" key="GridCell.Tab.0.center/0.0.1280.800@0.0.1280.800" timestamp="1585985965505" />
-    <state width="1280" height="229" key="GridCell.Tab.0.center/0.23.1280.710@0.23.1280.710" timestamp="1580879945617" />
-    <state width="1280" height="229" key="GridCell.Tab.0.left" timestamp="1585985965504">
-      <screen x="0" y="0" width="1280" height="800" />
-    </state>
-    <state width="1280" height="229" key="GridCell.Tab.0.left/0.0.1280.800@0.0.1280.800" timestamp="1585985965504" />
-    <state width="1280" height="229" key="GridCell.Tab.0.left/0.23.1280.710@0.23.1280.710" timestamp="1580879945616" />
-    <state width="1280" height="229" key="GridCell.Tab.0.right" timestamp="1585985965508">
-      <screen x="0" y="0" width="1280" height="800" />
-    </state>
-    <state width="1280" height="229" key="GridCell.Tab.0.right/0.0.1280.800@0.0.1280.800" timestamp="1585985965508" />
-    <state width="1280" height="229" key="GridCell.Tab.0.right/0.23.1280.710@0.23.1280.710" timestamp="1580879945619" />
-    <state width="1280" height="157" key="GridCell.Tab.1.bottom" timestamp="1580889507315">
-      <screen x="0" y="0" width="1280" height="800" />
-    </state>
-    <state width="1280" height="157" key="GridCell.Tab.1.bottom/0.0.1280.800@0.0.1280.800" timestamp="1580889507315" />
-    <state width="1280" height="157" key="GridCell.Tab.1.center" timestamp="1580889507314">
-      <screen x="0" y="0" width="1280" height="800" />
-    </state>
-    <state width="1280" height="157" key="GridCell.Tab.1.center/0.0.1280.800@0.0.1280.800" timestamp="1580889507314" />
-    <state width="1280" height="157" key="GridCell.Tab.1.left" timestamp="1580889507314">
-      <screen x="0" y="0" width="1280" height="800" />
-    </state>
-    <state width="1280" height="157" key="GridCell.Tab.1.left/0.0.1280.800@0.0.1280.800" timestamp="1580889507314" />
-    <state width="1280" height="157" key="GridCell.Tab.1.right" timestamp="1580889507315">
-      <screen x="0" y="0" width="1280" height="800" />
-    </state>
-    <state width="1280" height="157" key="GridCell.Tab.1.right/0.0.1280.800@0.0.1280.800" timestamp="1580889507315" />
-    <state x="141" y="0" key="SettingsEditor" timestamp="1580874340457">
-      <screen x="0" y="0" width="1280" height="800" />
-    </state>
-    <state x="141" y="0" key="SettingsEditor/0.0.1280.800@0.0.1280.800" timestamp="1580874340457" />
+    <state x="141" y="50" key="SettingsEditor/0.23.1280.777/204.-1057.1920.1057@0.23.1280.777" timestamp="1595147693743" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
