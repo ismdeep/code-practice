@@ -103,7 +103,7 @@ def handle_sig(signum, frame):
 if __name__ == '__main__':
     signal.signal(signal.SIGTERM, handle_sig)
     port = int(os.getenv('PORT', 53))
-    upstream = os.getenv('UPSTREAM', '180.76.76.76')
+    upstream = os.getenv('UPSTREAM', '8.8.8.8')
     resolver = Resolver(upstream)
     udp_server = DNSServer(resolver, port=port)
     # tcp_server = DNSServer(resolver, port=port, tcp=True)
