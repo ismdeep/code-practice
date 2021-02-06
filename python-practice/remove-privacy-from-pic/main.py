@@ -21,6 +21,17 @@ def convert_to_dest_path(__path__, __remove_level__):
 def remove_privacy(__source_pic_path__, __dest_pic_path__, __level__):
     img = Image.open(__source_pic_path__)
     width, height = img.size
+    # decide what size should be
+    if width > 1024:
+        r = 1024.0 / width
+        width = int(width * r)
+        height = int(height * r)
+    if height > 1024:
+        r = 1024.0 / height
+        width = int(width * r)
+        height = int(height * r)
+    img = img.resize((width, height), Image.ANTIALIAS)
+
     mode = img.mode
     dest_img = Image.new(mode, (width, height), (0, 0, 0))
     bar = IncrementalBar('Processing', max=width, width=50, suffix='%(percent)d%%')
