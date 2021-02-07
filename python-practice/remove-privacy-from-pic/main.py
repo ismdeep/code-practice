@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import sys
-from PIL import Image
+from PIL import Image, ExifTags
 from progress.bar import IncrementalBar
 
 level_val = [0xff, 0xfe, 0xfc, 0xf8, 0xf0, 0xe0, 0xc0, 0x80]
@@ -19,7 +19,20 @@ def convert_to_dest_path(__path__, __remove_level__):
 
 
 def remove_privacy(__source_pic_path__, __dest_pic_path__, __level__):
+    global orientation
     img = Image.open(__source_pic_path__)
+    for orientation in ExifTags.TAGS.keys():
+        if ExifTags.TAGS[orientation] == 'Orientation':
+            break
+    exif = img.getexif()
+    if exif[orientation] == 3:
+        img = img.rotate(180, expand=True)
+    elif exif[orientation] == 6:
+        img = img.rotate(270, expand=True)
+    elif exif[orientation] == 8:
+        img = img.rotate(90, expand=True)
+
+
     width, height = img.size
     # decide what size should be
     if width > 1024:
@@ -31,9 +44,7 @@ def remove_privacy(__source_pic_path__, __dest_pic_path__, __level__):
         width = int(width * r)
         height = int(height * r)
     img = img.resize((width, height), Image.ANTIALIAS)
-
-    mode = img.mode
-    dest_img = Image.new(mode, (width, height), (0, 0, 0))
+    dest_img = Image.new(img.mode, (width, height), (0, 0, 0))
     bar = IncrementalBar('Processing', max=width, width=50, suffix='%(percent)d%%')
     for i in range(width):
         for j in range(height):
