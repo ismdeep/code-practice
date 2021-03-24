@@ -25,12 +25,16 @@ def remove_privacy(__source_pic_path__, __dest_pic_path__, __level__):
         if ExifTags.TAGS[orientation] == 'Orientation':
             break
     exif = img.getexif()
-    if exif[orientation] == 3:
-        img = img.rotate(180, expand=True)
-    elif exif[orientation] == 6:
-        img = img.rotate(270, expand=True)
-    elif exif[orientation] == 8:
-        img = img.rotate(90, expand=True)
+    print(exif)
+    try:
+        if exif[orientation] == 3:
+            img = img.rotate(180, expand=True)
+        elif exif[orientation] == 6:
+            img = img.rotate(270, expand=True)
+        elif exif[orientation] == 8:
+            img = img.rotate(90, expand=True)
+    except:
+        pass
 
 
     width, height = img.size
