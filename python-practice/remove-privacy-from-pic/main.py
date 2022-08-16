@@ -36,7 +36,6 @@ def remove_privacy(__source_pic_path__, __dest_pic_path__, __level__):
     except:
         pass
 
-
     width, height = img.size
     # decide what size should be
     if width > 1024:
@@ -52,7 +51,9 @@ def remove_privacy(__source_pic_path__, __dest_pic_path__, __level__):
     bar = IncrementalBar('Processing', max=width, width=50, suffix='%(percent)d%%')
     for i in range(width):
         for j in range(height):
-            r, g, b = img.getpixel((i, j))
+            m = img.getpixel((i, j))
+            lst = list(m)
+            r, g, b = lst[0], lst[1], lst[2]
             r &= level_val[__level__]
             g &= level_val[__level__]
             b &= level_val[__level__]
