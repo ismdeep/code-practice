@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  db:
+    image: mysql:8.0-oracle
+    environment:
+      MYSQL_ROOT_PASSWORD: db-123456
+      MYSQL_DATABASE: db
+    ports:
+      - '20001:3306'
+    restart: always
