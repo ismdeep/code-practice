@@ -1,1 +1,5 @@
-/.idea
+# JetBrains
+/.idea/
+
+# venv
+/venv/
